@@ -155,7 +155,7 @@ namespace TeleBerço
                     txtTipoPr.Text = produtoRow.Tipo;
                     txtMarca.SelectedValue = produtoRow.Marcas;
                     txtModelo.SelectedValue = produtoRow.Categorias;
-                    TxtCodigoPr.Select();
+               
                 }
                 else
                 {
@@ -243,7 +243,7 @@ namespace TeleBerço
         {
             if (e.KeyCode == Keys.F4)
             {
-                FrmDados frmDados = new FrmDados();
+              
                 frmDados.MostrarTabelaDados("DsMarcas");
                 dsArtigos.CarregarMarcas();
             }
@@ -253,7 +253,7 @@ namespace TeleBerço
         {
             if (e.KeyCode == Keys.F4)
             {
-                FrmDados frmDados = new FrmDados();
+              
                 frmDados.MostrarTabelaDados("DsCategorias");
                 dsArtigos.CarregaCategorias();
             }

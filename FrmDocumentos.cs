@@ -267,7 +267,7 @@ namespace TeleBerço
         {
             if (e.KeyCode == Keys.F4)
             {
-                if (TxtDescricaoDoc.Text.Contains("Fornecedor"))
+                if (TxtCodigoCl.Text=="CL")
                 {
                     AbrirSelecaoForn();
                 }
@@ -301,7 +301,7 @@ namespace TeleBerço
             }
         }
 
-        private void btnNovoPr_Click(object sender, EventArgs e)
+        private void btnNovoPr_Click_1(object sender, EventArgs e)
         {
             try
             {
@@ -318,7 +318,7 @@ namespace TeleBerço
 
         }
 
-        private void btnGravarPr_Click(object sender, EventArgs e)
+        private void btnGravarPr_Click_1(object sender, EventArgs e)
         {
             try
             {
@@ -351,7 +351,7 @@ namespace TeleBerço
             }
         }
 
-        private void BtnNovo_Click(object sender, EventArgs e)
+        private void BtnNovo_Click_1(object sender, EventArgs e)
         {
             try
             {
@@ -370,7 +370,7 @@ namespace TeleBerço
             }
         }
 
-        private void BtnEliminar_Click(object sender, EventArgs e)
+        private void BtnEliminar_Click_1(object sender, EventArgs e)
         {
             try
             {
@@ -391,7 +391,7 @@ namespace TeleBerço
             }
         }
 
-        private void TsGravarDoc_Click(object sender, EventArgs e)
+        private void tsGravarDoc_Click_1(object sender, EventArgs e)
         {
             try
             {
@@ -437,7 +437,7 @@ namespace TeleBerço
             }
         }
 
-        private void TsNovoDoc_Click(object sender, EventArgs e)
+        private void tsNovoDoc_Click_1(object sender, EventArgs e)
         {
             try
             {
@@ -451,12 +451,12 @@ namespace TeleBerço
             }
         }
 
-        private void TsSair_Click(object sender, EventArgs e)
+        private void tsSair_Click_1(object sender, EventArgs e)
         {
             Close();
         }
 
-        private void tsImprimir_Click(object sender, EventArgs e)
+        private void tsImprimir_Click_1(object sender, EventArgs e)
         {
             try
             {
@@ -468,13 +468,7 @@ namespace TeleBerço
             }
         }
 
-
-        private void TsConsultarDocumentos_Click(object sender, EventArgs e)
-        {
-            AbrirSelecaoDocumentos();
-        }
-
-        private void TsAddProduto_Click(object sender, EventArgs e)
+        private void tsAddProduto_Click_1(object sender, EventArgs e)
         {
             try
             {
@@ -487,7 +481,7 @@ namespace TeleBerço
             }
         }
 
-        private void TsConsultaProduto_Click(object sender, EventArgs e)
+        private void tsConsultaProduto_Click_1(object sender, EventArgs e)
         {
             try
             {
@@ -530,18 +524,7 @@ namespace TeleBerço
             }
         }
 
-        private void btnAbrirCliente_Click_1(object sender, EventArgs e)
-        {
-            if (TxtDescricaoDoc.Text.Contains("Fornecedor"))
-            {
-                AbrirSelecaoForn();
-            }
-            else
-            {
-                AbrirSelecaoClientes();
-            }
-        }
-
+     
 
         private void btnNovoCliente_Click(object sender, EventArgs e)
         {
@@ -578,7 +561,7 @@ namespace TeleBerço
             }
         }
 
-        private void BtnGravarCliente_Click(object sender, EventArgs e)
+        private void BtnGravarCliente_Click_1(object sender, EventArgs e)
         {
             try
             {
@@ -618,7 +601,7 @@ namespace TeleBerço
             AplicarDesconto();
         }
 
-        private void btnAbrirPr_Click(object sender, EventArgs e)
+        private void btnAbrirPr_Click_1(object sender, EventArgs e)
         {
             try
             {
@@ -692,8 +675,10 @@ namespace TeleBerço
                 if (produtos.RowState != DataRowState.Deleted)
                 {
                     ProdutosRow produto = dsProdutos.Produtos.FindByCodPr(produtos.Produto);
-                    dsStock.AtualizarStock(produtos.Produto, produtos.Quantidade, tipoDocumento,produto);
-                    dsStock.RegistrarMovimentacao(produtos.Produto,produtos.Quantidade,tipoEntrada,data);
+                    dsStock.PesquisarStock(produtos.Produto, produto);
+
+                    dsStock.AtualizarStock(produtos.Produto, produtos.Quantidade, tipoDocumento);
+                
                 }
             }          
         }
@@ -1541,19 +1526,8 @@ namespace TeleBerço
             }
         }
 
-        private void toolStripMenuItem10_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                FrmDados frmDados = new FrmDados();
-                frmDados.MostrarTabelaDados("DsCategorias");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Erro ao carregar Categorias: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-        private void tsMarcas_Click(object sender, EventArgs e)
+       
+        private void tsMarcas_Click_1(object sender, EventArgs e)
         {
             try
             {
@@ -1566,7 +1540,7 @@ namespace TeleBerço
             }
         }
 
-        private void tsAddMarcas_Click(object sender, EventArgs e)
+        private void tsAddMarcas_Click_1(object sender, EventArgs e)
         {
             try
             {
@@ -1578,9 +1552,10 @@ namespace TeleBerço
             {
                 MessageBox.Show($"Erro ao abrir formulario: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
         }
 
-        private void tsAddCategorias_Click(object sender, EventArgs e)
+        private void tsAddCategorias_Click_1(object sender, EventArgs e)
         {
             try
             {
@@ -1613,18 +1588,18 @@ namespace TeleBerço
             }
         }
 
-        private void tsConsultaCliente_Click(object sender, EventArgs e)
+        private void tsConsultaCliente_Click_1(object sender, EventArgs e)
         {
             AbrirSelecaoClientes();
         }
 
-        private void tsConsultaForn_Click(object sender, EventArgs e)
+        private void tsConsultaForn_Click_1(object sender, EventArgs e)
         {
             AbrirSelecaoForn();
         }
 
 
-        private void tsAddForn_Click(object sender, EventArgs e)
+        private void tsAddForn_Click_1(object sender, EventArgs e)
         {
             try
             {
@@ -1634,16 +1609,73 @@ namespace TeleBerço
             }
             catch (Exception ex)
             {
+                MessageBox.Show($"Erro ao abrir formulário de fornecedores: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+    
+        private void tsArmazem_Click(object sender, EventArgs e)
+        {
+            FrmStock frmStock = new FrmStock();
+            frmStock.ShowDialog();
+        }
+
+       
+  
+
+        private void tsAddCl_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                FrmClientes frmClientes = new FrmClientes();
+                frmClientes.tipoDadosAtual = FrmClientes.TipoDados.Clientes;
+                frmClientes.ShowDialog();
+            }
+            catch (Exception ex)
+            {
                 MessageBox.Show($"Erro ao abrir formulário de clientes: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-      
-     
-        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+
+        private void tsDocumentos_Click(object sender, EventArgs e)
         {
-            FrmStock frmStock = new FrmStock();
-            frmStock.ShowDialog();
+            try
+            {
+                FrmDados frmDados = new FrmDados();
+                frmDados.MostrarTabelaDados("DsDocumentos");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao carregar Documentos: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+      
+
+        private void tsConsultaCat_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                FrmDados frmDados = new FrmDados();
+                frmDados.MostrarTabelaDados("DsCategorias");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao carregar Categorias: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnAbrirCliente_Click(object sender, EventArgs e)
+        {
+            if (TxtDescricaoDoc.Text.Contains("Fornecedor"))
+            {
+                AbrirSelecaoForn();
+            }
+            else
+            {
+                AbrirSelecaoClientes();
+            }
         }
     }
 }

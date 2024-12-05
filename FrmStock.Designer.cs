@@ -71,14 +71,14 @@
             this.BtnNovo.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.BtnNovo.FlatAppearance.BorderSize = 2;
             this.BtnNovo.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.BtnNovo.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnNovo.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.BtnNovo.Font = new System.Drawing.Font("Segoe UI Semibold", 11.14286F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnNovo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.BtnNovo.Location = new System.Drawing.Point(15, 9);
             this.BtnNovo.Margin = new System.Windows.Forms.Padding(6);
             this.BtnNovo.Name = "BtnNovo";
             this.BtnNovo.Size = new System.Drawing.Size(161, 40);
             this.BtnNovo.TabIndex = 55;
-            this.BtnNovo.Text = "Novo";
+            this.BtnNovo.Text = "Editar";
             this.BtnNovo.UseCompatibleTextRendering = true;
             this.BtnNovo.UseVisualStyleBackColor = false;
             this.BtnNovo.Click += new System.EventHandler(this.BtnNovo_Click);
@@ -90,7 +90,7 @@
             this.BtnSair.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDark;
             this.BtnSair.FlatAppearance.BorderSize = 2;
             this.BtnSair.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.BtnSair.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnSair.Font = new System.Drawing.Font("Segoe UI Semibold", 11.14286F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnSair.ForeColor = System.Drawing.Color.Red;
             this.BtnSair.Location = new System.Drawing.Point(345, 10);
             this.BtnSair.Margin = new System.Windows.Forms.Padding(6);
@@ -109,7 +109,7 @@
             this.BtnGravar.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.BtnGravar.FlatAppearance.BorderSize = 2;
             this.BtnGravar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.BtnGravar.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnGravar.Font = new System.Drawing.Font("Segoe UI Semibold", 11.14286F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnGravar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.BtnGravar.Location = new System.Drawing.Point(181, 9);
             this.BtnGravar.Margin = new System.Windows.Forms.Padding(6);
@@ -149,9 +149,9 @@
             this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(1150, 30);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(179, 37);
+            this.label3.Size = new System.Drawing.Size(181, 37);
             this.label3.TabIndex = 8;
-            this.label3.Text = "Nova Quant :";
+            this.label3.Text = " Quantidade :";
             // 
             // label2
             // 
@@ -159,9 +159,9 @@
             this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(480, 28);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(174, 37);
+            this.label2.Size = new System.Drawing.Size(159, 37);
             this.label2.TabIndex = 7;
-            this.label2.Text = "Quantidade :";
+            this.label2.Text = "Disponivel :";
             // 
             // lblOp
             // 
@@ -262,7 +262,7 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dGridStock.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dGridStock.Location = new System.Drawing.Point(15, 131);
+            this.dGridStock.Location = new System.Drawing.Point(16, 131);
             this.dGridStock.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dGridStock.Name = "dGridStock";
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -280,7 +280,7 @@
             dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Silver;
             this.dGridStock.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dGridStock.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dGridStock.Size = new System.Drawing.Size(1530, 337);
+            this.dGridStock.Size = new System.Drawing.Size(1529, 337);
             this.dGridStock.TabIndex = 56;
             // 
             // dgridMovimentos
@@ -334,6 +334,7 @@
             this.btnRefresh.TabIndex = 179;
             this.btnRefresh.Text = "Atualizar";
             this.btnRefresh.UseVisualStyleBackColor = false;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // btnAplicar
             // 
@@ -467,8 +468,11 @@
             this.Controls.Add(this.PainelCliente);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.MinimizeBox = false;
             this.Name = "FrmStock";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmStock";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FrmStock_Load);
             this.PainelCliente.ResumeLayout(false);
             this.PainelCliente.PerformLayout();

@@ -43,17 +43,17 @@
             // BtnNovo
             // 
             this.BtnNovo.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.BtnNovo.BackColor = System.Drawing.Color.Black;
+            this.BtnNovo.BackColor = System.Drawing.Color.WhiteSmoke;
             this.BtnNovo.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.BtnNovo.FlatAppearance.BorderSize = 2;
             this.BtnNovo.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.BtnNovo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnNovo.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnNovo.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.BtnNovo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnNovo.ForeColor = System.Drawing.Color.DodgerBlue;
             this.BtnNovo.Location = new System.Drawing.Point(15, 19);
-            this.BtnNovo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BtnNovo.Margin = new System.Windows.Forms.Padding(4);
             this.BtnNovo.Name = "BtnNovo";
-            this.BtnNovo.Size = new System.Drawing.Size(108, 44);
+            this.BtnNovo.Size = new System.Drawing.Size(108, 33);
             this.BtnNovo.TabIndex = 50;
             this.BtnNovo.Text = "Novo";
             this.BtnNovo.UseCompatibleTextRendering = true;
@@ -63,17 +63,17 @@
             // BtnSair
             // 
             this.BtnSair.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.BtnSair.BackColor = System.Drawing.Color.Black;
+            this.BtnSair.BackColor = System.Drawing.Color.WhiteSmoke;
             this.BtnSair.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDark;
             this.BtnSair.FlatAppearance.BorderSize = 2;
             this.BtnSair.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.BtnSair.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnSair.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnSair.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.BtnSair.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnSair.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.BtnSair.Location = new System.Drawing.Point(365, 20);
-            this.BtnSair.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BtnSair.Margin = new System.Windows.Forms.Padding(4);
             this.BtnSair.Name = "BtnSair";
-            this.BtnSair.Size = new System.Drawing.Size(108, 44);
+            this.BtnSair.Size = new System.Drawing.Size(108, 32);
             this.BtnSair.TabIndex = 49;
             this.BtnSair.Text = "Sair";
             this.BtnSair.UseCompatibleTextRendering = true;
@@ -83,17 +83,17 @@
             // BtnGravar
             // 
             this.BtnGravar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.BtnGravar.BackColor = System.Drawing.Color.Black;
+            this.BtnGravar.BackColor = System.Drawing.Color.WhiteSmoke;
             this.BtnGravar.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.BtnGravar.FlatAppearance.BorderSize = 2;
             this.BtnGravar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.BtnGravar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnGravar.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnGravar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.BtnGravar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnGravar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.BtnGravar.Location = new System.Drawing.Point(131, 20);
-            this.BtnGravar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BtnGravar.Margin = new System.Windows.Forms.Padding(4);
             this.BtnGravar.Name = "BtnGravar";
-            this.BtnGravar.Size = new System.Drawing.Size(108, 44);
+            this.BtnGravar.Size = new System.Drawing.Size(108, 32);
             this.BtnGravar.TabIndex = 48;
             this.BtnGravar.Text = "Gravar";
             this.BtnGravar.UseCompatibleTextRendering = true;
@@ -106,16 +106,16 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PainelCliente.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.PainelCliente.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.PainelCliente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.PainelCliente.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.PainelCliente.Controls.Add(this.label1);
             this.PainelCliente.Controls.Add(this.TxtCodigo);
             this.PainelCliente.Controls.Add(this.TxtNome);
             this.PainelCliente.Controls.Add(this.LabelMarca);
-            this.PainelCliente.Location = new System.Drawing.Point(15, 72);
-            this.PainelCliente.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PainelCliente.Location = new System.Drawing.Point(15, 61);
+            this.PainelCliente.Margin = new System.Windows.Forms.Padding(4);
             this.PainelCliente.Name = "PainelCliente";
-            this.PainelCliente.Size = new System.Drawing.Size(915, 103);
+            this.PainelCliente.Size = new System.Drawing.Size(915, 114);
             this.PainelCliente.TabIndex = 47;
             // 
             // label1
@@ -132,21 +132,21 @@
             // TxtCodigo
             // 
             this.TxtCodigo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TxtCodigo.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtCodigo.Location = new System.Drawing.Point(184, 37);
+            this.TxtCodigo.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtCodigo.Location = new System.Drawing.Point(164, 49);
             this.TxtCodigo.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
             this.TxtCodigo.Name = "TxtCodigo";
-            this.TxtCodigo.Size = new System.Drawing.Size(101, 25);
+            this.TxtCodigo.Size = new System.Drawing.Size(101, 29);
             this.TxtCodigo.TabIndex = 1;
             // 
             // TxtNome
             // 
             this.TxtNome.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TxtNome.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtNome.Location = new System.Drawing.Point(298, 37);
+            this.TxtNome.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtNome.Location = new System.Drawing.Point(278, 49);
             this.TxtNome.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
             this.TxtNome.Name = "TxtNome";
-            this.TxtNome.Size = new System.Drawing.Size(507, 25);
+            this.TxtNome.Size = new System.Drawing.Size(507, 29);
             this.TxtNome.TabIndex = 2;
             // 
             // LabelMarca
@@ -163,17 +163,17 @@
             // BtnEliminar
             // 
             this.BtnEliminar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.BtnEliminar.BackColor = System.Drawing.Color.Black;
+            this.BtnEliminar.BackColor = System.Drawing.Color.WhiteSmoke;
             this.BtnEliminar.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDark;
             this.BtnEliminar.FlatAppearance.BorderSize = 2;
             this.BtnEliminar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.BtnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnEliminar.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnEliminar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.BtnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnEliminar.ForeColor = System.Drawing.Color.Red;
             this.BtnEliminar.Location = new System.Drawing.Point(248, 20);
-            this.BtnEliminar.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.BtnEliminar.Margin = new System.Windows.Forms.Padding(5);
             this.BtnEliminar.Name = "BtnEliminar";
-            this.BtnEliminar.Size = new System.Drawing.Size(108, 44);
+            this.BtnEliminar.Size = new System.Drawing.Size(108, 32);
             this.BtnEliminar.TabIndex = 51;
             this.BtnEliminar.Text = "Eliminar";
             this.BtnEliminar.UseCompatibleTextRendering = true;
@@ -184,6 +184,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(936, 190);
             this.Controls.Add(this.BtnEliminar);
             this.Controls.Add(this.BtnNovo);
@@ -191,7 +192,7 @@
             this.Controls.Add(this.BtnGravar);
             this.Controls.Add(this.PainelCliente);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "FrmCat_Marca";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Adicionar";

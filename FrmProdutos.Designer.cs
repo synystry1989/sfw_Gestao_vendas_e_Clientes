@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmProdutos));
             this.PainelCliente = new System.Windows.Forms.Panel();
             this.txtTipoPr = new System.Windows.Forms.ComboBox();
@@ -53,6 +54,7 @@
             this.BtnNovo = new System.Windows.Forms.Button();
             this.BtnSair = new System.Windows.Forms.Button();
             this.BtnGravar = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.PainelCliente.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -102,7 +104,7 @@
             this.txtTipoPr.Location = new System.Drawing.Point(773, 230);
             this.txtTipoPr.Margin = new System.Windows.Forms.Padding(5);
             this.txtTipoPr.Name = "txtTipoPr";
-            this.txtTipoPr.Size = new System.Drawing.Size(315, 29);
+            this.txtTipoPr.Size = new System.Drawing.Size(315, 46);
             this.txtTipoPr.TabIndex = 6;
             // 
             // label4
@@ -126,8 +128,9 @@
             this.txtModelo.Location = new System.Drawing.Point(773, 162);
             this.txtModelo.Margin = new System.Windows.Forms.Padding(5);
             this.txtModelo.Name = "txtModelo";
-            this.txtModelo.Size = new System.Drawing.Size(315, 29);
+            this.txtModelo.Size = new System.Drawing.Size(315, 46);
             this.txtModelo.TabIndex = 4;
+            this.toolTip1.SetToolTip(this.txtModelo, "Prima F4 para lista");
             this.txtModelo.ValueMember = "CodCat";
             this.txtModelo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtModelo_KeyDown);
             // 
@@ -139,8 +142,9 @@
             this.txtMarca.Location = new System.Drawing.Point(279, 162);
             this.txtMarca.Margin = new System.Windows.Forms.Padding(5);
             this.txtMarca.Name = "txtMarca";
-            this.txtMarca.Size = new System.Drawing.Size(325, 29);
+            this.txtMarca.Size = new System.Drawing.Size(325, 46);
             this.txtMarca.TabIndex = 3;
+            this.toolTip1.SetToolTip(this.txtMarca, "Prima F4 para lista");
             this.txtMarca.ValueMember = "ID";
             this.txtMarca.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMarca_KeyDown);
             // 
@@ -162,7 +166,7 @@
             this.txtImei.Location = new System.Drawing.Point(280, 232);
             this.txtImei.Margin = new System.Windows.Forms.Padding(8, 5, 8, 5);
             this.txtImei.Name = "txtImei";
-            this.txtImei.Size = new System.Drawing.Size(326, 29);
+            this.txtImei.Size = new System.Drawing.Size(326, 45);
             this.txtImei.TabIndex = 5;
             // 
             // label2
@@ -194,8 +198,9 @@
             this.TxtCodigoPr.Location = new System.Drawing.Point(279, 85);
             this.TxtCodigoPr.Margin = new System.Windows.Forms.Padding(5);
             this.TxtCodigoPr.Name = "TxtCodigoPr";
-            this.TxtCodigoPr.Size = new System.Drawing.Size(177, 29);
+            this.TxtCodigoPr.Size = new System.Drawing.Size(177, 45);
             this.TxtCodigoPr.TabIndex = 1;
+            this.toolTip1.SetToolTip(this.TxtCodigoPr, "Prima F4 para lista");
             this.TxtCodigoPr.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtCodigoPr_KeyDown);
             this.TxtCodigoPr.Leave += new System.EventHandler(this.TxtCodigoPr_Leave);
             // 
@@ -239,7 +244,7 @@
             this.TxtCusto.Location = new System.Drawing.Point(279, 306);
             this.TxtCusto.Margin = new System.Windows.Forms.Padding(5);
             this.TxtCusto.Name = "TxtCusto";
-            this.TxtCusto.Size = new System.Drawing.Size(327, 29);
+            this.TxtCusto.Size = new System.Drawing.Size(327, 45);
             this.TxtCusto.TabIndex = 7;
             // 
             // TxtPreco
@@ -249,7 +254,7 @@
             this.TxtPreco.Location = new System.Drawing.Point(279, 378);
             this.TxtPreco.Margin = new System.Windows.Forms.Padding(8, 5, 8, 5);
             this.TxtPreco.Name = "TxtPreco";
-            this.TxtPreco.Size = new System.Drawing.Size(326, 29);
+            this.TxtPreco.Size = new System.Drawing.Size(326, 45);
             this.TxtPreco.TabIndex = 8;
             // 
             // LblNome
@@ -296,7 +301,7 @@
             this.TxtNomeProduto.Location = new System.Drawing.Point(600, 85);
             this.TxtNomeProduto.Margin = new System.Windows.Forms.Padding(8, 5, 8, 5);
             this.TxtNomeProduto.Name = "TxtNomeProduto";
-            this.TxtNomeProduto.Size = new System.Drawing.Size(489, 29);
+            this.TxtNomeProduto.Size = new System.Drawing.Size(489, 45);
             this.TxtNomeProduto.TabIndex = 2;
             // 
             // LblProduto
@@ -306,7 +311,7 @@
             this.LblProduto.Location = new System.Drawing.Point(13, 22);
             this.LblProduto.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.LblProduto.Name = "LblProduto";
-            this.LblProduto.Size = new System.Drawing.Size(75, 18);
+            this.LblProduto.Size = new System.Drawing.Size(132, 32);
             this.LblProduto.TabIndex = 1;
             this.LblProduto.Text = "Produto";
             // 
@@ -315,10 +320,9 @@
             this.BtnEliminar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BtnEliminar.BackColor = System.Drawing.Color.White;
             this.BtnEliminar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.BtnEliminar.FlatAppearance.BorderSize = 2;
             this.BtnEliminar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.BtnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnEliminar.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnEliminar.Font = new System.Drawing.Font("Segoe UI Semibold", 11.14286F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnEliminar.ForeColor = System.Drawing.Color.Red;
             this.BtnEliminar.Location = new System.Drawing.Point(252, 20);
             this.BtnEliminar.Margin = new System.Windows.Forms.Padding(5);
@@ -335,10 +339,9 @@
             this.BtnNovo.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BtnNovo.BackColor = System.Drawing.Color.White;
             this.BtnNovo.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.BtnNovo.FlatAppearance.BorderSize = 2;
             this.BtnNovo.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.BtnNovo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnNovo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnNovo.Font = new System.Drawing.Font("Segoe UI Semibold", 11.14286F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnNovo.ForeColor = System.Drawing.Color.DodgerBlue;
             this.BtnNovo.Location = new System.Drawing.Point(18, 20);
             this.BtnNovo.Margin = new System.Windows.Forms.Padding(5);
@@ -355,10 +358,9 @@
             this.BtnSair.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BtnSair.BackColor = System.Drawing.Color.White;
             this.BtnSair.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.BtnSair.FlatAppearance.BorderSize = 2;
             this.BtnSair.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.BtnSair.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnSair.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnSair.Font = new System.Drawing.Font("Segoe UI Semibold", 11.14286F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnSair.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.BtnSair.Location = new System.Drawing.Point(369, 20);
             this.BtnSair.Margin = new System.Windows.Forms.Padding(5);
@@ -375,10 +377,9 @@
             this.BtnGravar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BtnGravar.BackColor = System.Drawing.Color.White;
             this.BtnGravar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.BtnGravar.FlatAppearance.BorderSize = 2;
             this.BtnGravar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.BtnGravar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnGravar.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnGravar.Font = new System.Drawing.Font("Segoe UI Semibold", 11.14286F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnGravar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.BtnGravar.Location = new System.Drawing.Point(135, 20);
             this.BtnGravar.Margin = new System.Windows.Forms.Padding(5);
@@ -392,7 +393,7 @@
             // 
             // FrmProdutos
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(15F, 38F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1211, 578);
@@ -441,5 +442,6 @@
         internal System.Windows.Forms.Button BtnGravar;
         internal System.Windows.Forms.ComboBox txtTipoPr;
         internal System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

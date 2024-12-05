@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows.Forms;
 using TeleBerço.DsProdutosTableAdapters;
 using static TeleBerço.DsProdutos;
+using static TeleBerço.DsStock;
 
 namespace TeleBerço
 {
@@ -31,7 +32,7 @@ namespace TeleBerço
           
             CarregarMovimentos();
             CarregarStockPr();
-          
+            
             ConfigurarControles();
 
         }
@@ -187,15 +188,7 @@ namespace TeleBerço
 
         }
 
-       
-        public void CarregarStockSelecionado(ProdutosRow produto)
-        {
-            if (RowSelecionada != null)
-            {
-                PreencherStock(produto);
-            }
-
-        }
+  
         public void PreencherStock(ProdutosRow produto)
         {
             
@@ -294,46 +287,33 @@ namespace TeleBerço
             }
 
         }
-
-
-        private void btnRefresh_Click(object sender, EventArgs e)
-        {
-            // Limpa filtros e recarrega os dados
-            txtPesquisa.Text = string.Empty;
-            cbOrdenar.Text = "";
-            cbFiltro.Text = "";
-            dateTimePicker1.Value = DateTime.Now;
-            dateTimePicker2.Value = DateTime.Now;
-            dateTimePicker1.Visible = false;
-            dateTimePicker2.Visible = false;
-
-
-            CarregarMovimentos();       
-            CarregarStockPr();
-
-        }
-
-
+   
         private void BtnGravar_Click(object sender, EventArgs e)
         {
             if (ValidarPreenchimento())
             {
-                var stock = dsStock.Armazem[0];
+                ArmazemRow stock = dsStock.Armazem[0];
 
                 int valorAntigo = stock.Quantidade;
-                int Valor = int.Parse(txtAddStock.Text);
+                int valor = int.Parse(txtAddStock.Text);
                 int valorNovo = 0;
-
+                string tipoDoc = "";
                 if (cbTipoDoc.Text == "Entrada")
                 {
-                    valorNovo = valorAntigo + Valor;
+                    valorNovo = valorAntigo + valor;
+                    tipoDoc = "FTF";
                 }
                 else
                 {
-                    valorNovo = valorAntigo - Valor;
+                    valorNovo = valorAntigo - valor;
+                    tipoDoc = "FTC";                 
+                    
                 }
                 stock.ProdutoID = TxtCodigo.Text;
-                stock.Quantidade = valorNovo;
+
+                dsStock.AtualizarStock(stock.ProdutoID, valor, tipoDoc);
+               
+                Limpar();
             }
         }
 
@@ -341,10 +321,12 @@ namespace TeleBerço
         {
             Limpar();
             SelecionarLinhaAtual(dGridStock);
-            if (RowSelecionada is ProdutosRow produtoRow)
+            if (RowSelecionada is StockPrRow row)
             {
-                dsStock.NovoStockRow(produtoRow);
+               ProdutosRow produtoRow = dsArtigos.PesquisarArtigo(row.CodPr);
+               ArmazemRow stock = dsStock.PesquisarStock(row.CodPr, produtoRow);
                 TxtCodigo.Text = dsStock.Armazem[0].ProdutoID;
+                TxtNome.Text = dsStock.Armazem[0].Quantidade.ToString();
             }
         }
 
@@ -362,5 +344,21 @@ namespace TeleBerço
             txtAddStock.Clear();
         }
 
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            // Limpa filtros e recarrega os dados
+            txtPesquisa.Text = string.Empty;
+            cbOrdenar.Text = "";
+            cbFiltro.Text = "";
+            dateTimePicker1.Value = DateTime.Now;
+            dateTimePicker2.Value = DateTime.Now;
+            dateTimePicker1.Visible = false;
+            dateTimePicker2.Visible = false;
+
+
+            CarregarMovimentos();
+            CarregarStockPr();
+
+        }
     }
 }

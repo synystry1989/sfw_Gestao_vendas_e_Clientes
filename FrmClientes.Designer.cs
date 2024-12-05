@@ -58,17 +58,16 @@
             // BtnEliminar
             // 
             this.BtnEliminar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.BtnEliminar.BackColor = System.Drawing.Color.Black;
-            this.BtnEliminar.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.BtnEliminar.FlatAppearance.BorderSize = 2;
+            this.BtnEliminar.BackColor = System.Drawing.Color.White;
+            this.BtnEliminar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.BtnEliminar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.BtnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnEliminar.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnEliminar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.BtnEliminar.Font = new System.Drawing.Font("Segoe UI Semibold", 9.857143F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnEliminar.ForeColor = System.Drawing.Color.Red;
             this.BtnEliminar.Location = new System.Drawing.Point(252, 20);
             this.BtnEliminar.Margin = new System.Windows.Forms.Padding(5);
             this.BtnEliminar.Name = "BtnEliminar";
-            this.BtnEliminar.Size = new System.Drawing.Size(108, 46);
+            this.BtnEliminar.Size = new System.Drawing.Size(108, 35);
             this.BtnEliminar.TabIndex = 46;
             this.BtnEliminar.Text = "Eliminar";
             this.BtnEliminar.UseCompatibleTextRendering = true;
@@ -78,17 +77,16 @@
             // BtnNovo
             // 
             this.BtnNovo.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.BtnNovo.BackColor = System.Drawing.Color.Black;
-            this.BtnNovo.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.BtnNovo.FlatAppearance.BorderSize = 2;
+            this.BtnNovo.BackColor = System.Drawing.Color.White;
+            this.BtnNovo.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.BtnNovo.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.BtnNovo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnNovo.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnNovo.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.BtnNovo.Font = new System.Drawing.Font("Segoe UI Semibold", 9.857143F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnNovo.ForeColor = System.Drawing.Color.DodgerBlue;
             this.BtnNovo.Location = new System.Drawing.Point(18, 20);
             this.BtnNovo.Margin = new System.Windows.Forms.Padding(5);
             this.BtnNovo.Name = "BtnNovo";
-            this.BtnNovo.Size = new System.Drawing.Size(108, 46);
+            this.BtnNovo.Size = new System.Drawing.Size(108, 35);
             this.BtnNovo.TabIndex = 45;
             this.BtnNovo.Text = "Novo";
             this.BtnNovo.UseCompatibleTextRendering = true;
@@ -98,17 +96,16 @@
             // BtnSair
             // 
             this.BtnSair.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.BtnSair.BackColor = System.Drawing.Color.Black;
-            this.BtnSair.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.BtnSair.FlatAppearance.BorderSize = 2;
+            this.BtnSair.BackColor = System.Drawing.Color.White;
+            this.BtnSair.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.BtnSair.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.BtnSair.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnSair.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnSair.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.BtnSair.Font = new System.Drawing.Font("Segoe UI Semibold", 9.857143F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnSair.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.BtnSair.Location = new System.Drawing.Point(368, 20);
             this.BtnSair.Margin = new System.Windows.Forms.Padding(5);
             this.BtnSair.Name = "BtnSair";
-            this.BtnSair.Size = new System.Drawing.Size(108, 46);
+            this.BtnSair.Size = new System.Drawing.Size(108, 35);
             this.BtnSair.TabIndex = 44;
             this.BtnSair.Text = "Sair";
             this.BtnSair.UseCompatibleTextRendering = true;
@@ -118,17 +115,16 @@
             // BtnGravar
             // 
             this.BtnGravar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.BtnGravar.BackColor = System.Drawing.Color.Black;
-            this.BtnGravar.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.BtnGravar.FlatAppearance.BorderSize = 2;
+            this.BtnGravar.BackColor = System.Drawing.Color.White;
+            this.BtnGravar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.BtnGravar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.BtnGravar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnGravar.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnGravar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.BtnGravar.Font = new System.Drawing.Font("Segoe UI Semibold", 9.857143F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnGravar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.BtnGravar.Location = new System.Drawing.Point(135, 20);
             this.BtnGravar.Margin = new System.Windows.Forms.Padding(5);
             this.BtnGravar.Name = "BtnGravar";
-            this.BtnGravar.Size = new System.Drawing.Size(108, 46);
+            this.BtnGravar.Size = new System.Drawing.Size(108, 35);
             this.BtnGravar.TabIndex = 43;
             this.BtnGravar.Text = "Gravar";
             this.BtnGravar.UseCompatibleTextRendering = true;
@@ -160,10 +156,10 @@
             this.PainelCliente.Controls.Add(this.TxtNomeCl);
             this.PainelCliente.Controls.Add(this.LabelCliente);
             this.PainelCliente.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.PainelCliente.Location = new System.Drawing.Point(18, 74);
+            this.PainelCliente.Location = new System.Drawing.Point(18, 65);
             this.PainelCliente.Margin = new System.Windows.Forms.Padding(5);
             this.PainelCliente.Name = "PainelCliente";
-            this.PainelCliente.Size = new System.Drawing.Size(1238, 338);
+            this.PainelCliente.Size = new System.Drawing.Size(1238, 314);
             this.PainelCliente.TabIndex = 42;
             // 
             // label1
@@ -290,7 +286,7 @@
             this.TxtCodigoCl.Name = "TxtCodigoCl";
             this.TxtCodigoCl.Size = new System.Drawing.Size(206, 29);
             this.TxtCodigoCl.TabIndex = 1;
-            this.toolTip1.SetToolTip(this.TxtCodigoCl, "\r\nPressione F4 para Consultar Lista");
+            this.toolTip1.SetToolTip(this.TxtCodigoCl, "Prima F4 para lista");
             this.TxtCodigoCl.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtCodigoCl_KeyDown);
             this.TxtCodigoCl.Leave += new System.EventHandler(this.TxtCodigoCl_Leave);
             // 
@@ -356,7 +352,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(1275, 426);
+            this.ClientSize = new System.Drawing.Size(1275, 393);
             this.Controls.Add(this.BtnEliminar);
             this.Controls.Add(this.BtnNovo);
             this.Controls.Add(this.BtnSair);

@@ -68,9 +68,9 @@ namespace TeleBerço
                     break;
                 case "DsFornecedores":
                     tipoDadosAtual = TipoDados.Fornecedores;
-                    CarregarFornecedores ();
+                    CarregarFornecedores();
                     break;
-              
+
             }
 
             ConfigurarDataGridView();
@@ -147,13 +147,13 @@ namespace TeleBerço
                         DgridDados.Columns["Cliente"].HeaderText = "Cliente";
                         break;
                     case TipoDados.Fornecedores:
-                      
+
                         DgridDados.Columns["FornecedorID"].HeaderText = "Codigo";
                         DgridDados.Columns["Nome"].HeaderText = "Fornecedor";
 
                         break;
-                   
-                   
+
+
                 }
 
             }
@@ -215,12 +215,12 @@ namespace TeleBerço
                 dataViewAtual = new DataView(dsDocumentos.CabecDocumento);
                 DgridDados.DataSource = dataViewAtual;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show("Erro ao carregar Documentos", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-
         }
+
         private void CarregarCategorias()
         {
             try
@@ -229,13 +229,12 @@ namespace TeleBerço
                 dataViewAtual = new DataView(dsArtigos.Categorias);
                 DgridDados.DataSource = dataViewAtual;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show("Erro ao carregar Categorias", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
-       
 
         private void CarregarMarcas()
         {
@@ -249,9 +248,8 @@ namespace TeleBerço
             catch
             {
                 MessageBox.Show("Erro ao carregar Marcas", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }            
+            }
         }
-      
 
         private void AdicionarDetalhesProdutos()
         {
@@ -269,10 +267,10 @@ namespace TeleBerço
                         row["Categoria"] = querryProdutosTableAdapter.NomeCategoria(row["Categorias"].ToString());
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show("Erro ao carregar Marcas", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }          
+            }
         }
 
         private void AdicionarNomeClientesAosDocumentos()
@@ -336,9 +334,9 @@ namespace TeleBerço
                     {
                         dataViewAtual.RowFilter = $"{campo}  = '{valor}'";
                     }
-                   break;
+                    break;
                 case TipoDados.Fornecedores:
-                    if (campo == "Categoria") 
+                    if (campo == "Categoria")
                     {
                         dataViewAtual.RowFilter = $"{campo}  = '{valor}'";
                     }
@@ -527,13 +525,13 @@ namespace TeleBerço
         }
 
 
-        private void BtnOk_Click(object sender, EventArgs e)
+        private void BtnOk_Click_1(object sender, EventArgs e)
         {
             SelecionarLinhaAtual();
             DialogResult = DialogResult.OK;
         }
 
-        private void BtnEditar_Click(object sender, EventArgs e)
+        private void BtnEditar_Click_1(object sender, EventArgs e)
         {
             SelecionarLinhaAtual();
 
@@ -556,12 +554,12 @@ namespace TeleBerço
                     case TipoDados.Fornecedores:
                         EditarFornecedores();
                         break;
-               
+
                 }
             }
         }
 
-        private void BtnAdicionar_Click(object sender, EventArgs e)
+        private void BtnAdicionar_Click_1(object sender, EventArgs e)
         {
             switch (tipoDadosAtual)
             {
@@ -584,21 +582,8 @@ namespace TeleBerço
             }
         }
 
-        private void BtnSair_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                RowSelecionada = null;
-                DialogResult = DialogResult.Cancel;
-                Dispose();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro ao encerrar: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
         //selecionar na grid com enter
-        private void DgridDados_KeyDown_1(object sender, KeyEventArgs e)
+        private void DgridDados_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
@@ -613,7 +598,7 @@ namespace TeleBerço
 
         }
         //pesquisar entre datas pressionar enter
-        private void dateTimePicker2_KeyDown(object sender, KeyEventArgs e)
+        private void dateTimePicker2_KeyDown_1(object sender, KeyEventArgs e)
         {
             try
             {
@@ -628,7 +613,7 @@ namespace TeleBerço
             }
         }
 
-        private void dateTimePicker1_KeyDown(object sender, KeyEventArgs e)
+        private void dateTimePicker1_KeyDown_1(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
@@ -643,7 +628,7 @@ namespace TeleBerço
         }
         //carregar fontes no botao de filtro
 
-        private void btnPesquisar_Click(object sender, EventArgs e)
+        private void btnPesquisar_Click_1(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtNome.Text))
             {
@@ -667,7 +652,7 @@ namespace TeleBerço
             }
         }
         //fill da grid consoante os filtros
-        private void btnAplicar_Click(object sender, EventArgs e)
+        private void btnAplicar_Click_1(object sender, EventArgs e)
         {
             if (cbOrdenar.SelectedItem == null || cbFiltro.SelectedItem == null)
             {
@@ -681,48 +666,9 @@ namespace TeleBerço
             AplicarFiltro(campo, valor);
         }
 
+     
 
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            // Limpa filtros e recarrega os dados
-            txtNome.Text = string.Empty;
-            cbOrdenar.Text = "";
-            cbFiltro.Text = "";
-            dateTimePicker1.Value = DateTime.Now;
-            dateTimePicker2.Value = DateTime.Now;
-            dateTimePicker1.Visible = false;
-            dateTimePicker2.Visible = false;
-
-
-            switch (tipoDadosAtual)
-            {
-                case TipoDados.Clientes:
-                    CarregarClientes();
-                    break;
-                case TipoDados.Produtos:
-                    CarregarProdutos();
-                    break;
-                case TipoDados.Documentos:
-                    CarregarDocumentos();
-                    break;
-                case TipoDados.Categorias:
-
-                    CarregarCategorias();
-                    break;
-                case TipoDados.Marcas:
-
-                    CarregarMarcas();
-                    break;
-                case TipoDados.Fornecedores:
-
-                    CarregarFornecedores();
-                    break;
-            }
-
-        }
-
-        private void cbOrdenar_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbOrdenar_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             cbFiltro.Items.Clear();
 
@@ -785,17 +731,71 @@ namespace TeleBerço
             cbFiltro.Enabled = cbFiltro.Items.Count > 0;
         }
 
-        private void txtNome_TextChanged(object sender, EventArgs e)
+      
+        private void BtnSair_Click_1(object sender, EventArgs e)
         {
-
-            if ((string.IsNullOrEmpty(txtNome.Text)) && (cbFiltro.Text == ""))
+            try
             {
-                // Se o texto for apagado, recarrega os dados originais
-                button1_Click(sender, e);
+                RowSelecionada = null;
+                DialogResult = DialogResult.Cancel;
+                Dispose();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao encerrar: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+
+        private void btnRefresh_Click_1(object sender, EventArgs e)
+        {
+            // Limpa filtros e recarrega os dados
+            txtNome.Text = string.Empty;
+            cbOrdenar.Text = "";
+            cbFiltro.Text = "";
+            dateTimePicker1.Value = DateTime.Now;
+            dateTimePicker2.Value = DateTime.Now;
+            dateTimePicker1.Visible = false;
+            dateTimePicker2.Visible = false;
+
+
+            switch (tipoDadosAtual)
+            {
+                case TipoDados.Clientes:
+                    CarregarClientes();
+                    break;
+                case TipoDados.Produtos:
+                    CarregarProdutos();
+                    break;
+                case TipoDados.Documentos:
+                    CarregarDocumentos();
+                    break;
+                case TipoDados.Categorias:
+
+                    CarregarCategorias();
+                    break;
+                case TipoDados.Marcas:
+
+                    CarregarMarcas();
+                    break;
+                case TipoDados.Fornecedores:
+
+                    CarregarFornecedores();
+                    break;
             }
 
         }
- 
+
+        private void txtNome_TextChanged(object sender, EventArgs e)
+        {
+            if ((string.IsNullOrEmpty(txtNome.Text)) && (cbFiltro.Text == ""))
+            {
+                // Se o texto for apagado, recarrega os dados originais
+                btnRefresh_Click_1(sender, e);
+            }
+        }
+
+       
     }
 
 }

@@ -18,6 +18,7 @@ namespace TeleBerço
         public void CarregarStockPr()
         {
             StockPr.Clear();
+         
             stockPrTableAdapter.FillPr_Stock(StockPr);
         }
 
@@ -50,13 +51,27 @@ namespace TeleBerço
         {
             var movimento = MovimentacoeStock.NewMovimentacoeStockRow();
 
-            movimento.MovimentacaoID = 0;
             movimento.ProdutoID = "";
             movimento.DataMovimentacao = DateTime.Now;
             movimento.Quantidade = 0;
             movimento.TipoMovimentacao = "";
             movimento.NomeProduto = "";
             MovimentacoeStock.AddMovimentacoeStockRow(movimento);
+        }
+
+        public MovimentacoeStockRow PesquisarMov(int movID)
+        {
+            movimentacoeStockTableAdapter.FillByMovID(MovimentacoeStock, movID);
+            if (MovimentacoeStock.Rows.Count > 0)
+            {
+                return MovimentacoeStock[0];
+            }
+            else
+            {
+                NovoMovimentoRow();
+                return MovimentacoeStock[0];
+            }
+
         }
 
         public ArmazemRow PesquisarStock(string produto, ProdutosRow produtos)
@@ -87,24 +102,29 @@ namespace TeleBerço
 
         }
 
-        public void AtualizarStock(string produtoID, int quantidade, string tipoDocumento, ProdutosRow produtos)
+        public void AtualizarStock(string produtoID, int quantidade, string tipoDocumento)
         {
             // Encontrar o registro do produto no estoque
-            ArmazemRow stockRow = PesquisarStock(produtoID, produtos);
+            ArmazemRow stockRow = Armazem[0];
 
+            string tipoEntrada = "";
             int ajusteQuantidade = 0;
-            if (stockRow.ProdutoID != "")
+            DateTime data = DateTime.Now;
+
+            if (stockRow.ProdutoID == produtoID)
             {
 
                 if ((tipoDocumento.Contains("FTC")) || (tipoDocumento.Contains("NDF")))
                 {
                     // Para vendas e devoluções ao fornecedor, diminuir o estoque
                     ajusteQuantidade = -quantidade;
+                    tipoEntrada = "S";
                 }
                 else if ((tipoDocumento.Contains("FTF")) || (tipoDocumento.Contains("NDC")))
                 {
                     // Para compras e devoluções de clientes, aumentar o estoque
                     ajusteQuantidade = quantidade;
+                    tipoEntrada = "E";
                 }
 
 
@@ -118,7 +138,8 @@ namespace TeleBerço
                     // Você pode decidir como tratar esse caso, por exemplo, impedir a operação
                     stockRow.Quantidade = 0; // Ajustar para zero para evitar estoque negativo
                 }
-                UpdateStock();
+               RegistrarMovimentacao(stockRow.ProdutoID, ajusteQuantidade, tipoEntrada, data);
+               UpdateStock();
             }
             else
             {
@@ -130,8 +151,10 @@ namespace TeleBerço
         }
         public void RegistrarMovimentacao(string produtoID, int quantidade, string tipoMovimento, DateTime date)
         {
+            MovimentacoeStock.Clear();
             NovoMovimentoRow();
-            var novaMovimentacao = MovimentacoeStock[0];
+           
+            MovimentacoeStockRow novaMovimentacao = MovimentacoeStock[0];
 
             novaMovimentacao.ProdutoID = produtoID;
             novaMovimentacao.Quantidade = quantidade;

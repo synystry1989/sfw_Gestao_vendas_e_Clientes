@@ -35,6 +35,11 @@
             this.BtnSair = new System.Windows.Forms.Button();
             this.BtnGravar = new System.Windows.Forms.Button();
             this.PainelCliente = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.TxtTelefone = new System.Windows.Forms.TextBox();
             this.lblMorada = new System.Windows.Forms.Label();
             this.txtMorada = new System.Windows.Forms.TextBox();
             this.cbCategoria = new System.Windows.Forms.ComboBox();
@@ -47,11 +52,6 @@
             this.TxtNomeCl = new System.Windows.Forms.TextBox();
             this.LabelCliente = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.TxtTelefone = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.PainelCliente.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -166,10 +166,69 @@
             this.PainelCliente.Size = new System.Drawing.Size(1238, 338);
             this.PainelCliente.TabIndex = 42;
             // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(210, 218);
+            this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(89, 18);
+            this.label1.TabIndex = 27;
+            this.label1.Text = "Categoria :";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label2
+            // 
+            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(210, 164);
+            this.label2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(82, 25);
+            this.label2.TabIndex = 26;
+            this.label2.Text = "Contato :";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label3
+            // 
+            this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(208, 160);
+            this.label3.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(65, 27);
+            this.label3.TabIndex = 25;
+            this.label3.Text = "Email :";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(210, 110);
+            this.label4.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(63, 26);
+            this.label4.TabIndex = 24;
+            this.label4.Text = "Nrº :";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // TxtTelefone
+            // 
+            this.TxtTelefone.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TxtTelefone.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TxtTelefone.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtTelefone.Location = new System.Drawing.Point(301, 160);
+            this.TxtTelefone.Margin = new System.Windows.Forms.Padding(8, 5, 8, 5);
+            this.TxtTelefone.Name = "TxtTelefone";
+            this.TxtTelefone.Size = new System.Drawing.Size(206, 29);
+            this.TxtTelefone.TabIndex = 23;
+            this.toolTip1.SetToolTip(this.TxtTelefone, "\r\nPrecione F4 para Consultar Lista");
+            // 
             // lblMorada
             // 
             this.lblMorada.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblMorada.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMorada.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMorada.Location = new System.Drawing.Point(553, 213);
             this.lblMorada.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblMorada.Name = "lblMorada";
@@ -200,7 +259,7 @@
             // 
             // lblLoja
             // 
-            this.lblLoja.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLoja.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLoja.Location = new System.Drawing.Point(553, 164);
             this.lblLoja.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblLoja.Name = "lblLoja";
@@ -225,11 +284,11 @@
             this.TxtCodigoCl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TxtCodigoCl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TxtCodigoCl.Font = new System.Drawing.Font("Lucida Sans Unicode", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtCodigoCl.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtCodigoCl.Location = new System.Drawing.Point(301, 110);
             this.TxtCodigoCl.Margin = new System.Windows.Forms.Padding(8, 5, 8, 5);
             this.TxtCodigoCl.Name = "TxtCodigoCl";
-            this.TxtCodigoCl.Size = new System.Drawing.Size(206, 26);
+            this.TxtCodigoCl.Size = new System.Drawing.Size(206, 29);
             this.TxtCodigoCl.TabIndex = 1;
             this.toolTip1.SetToolTip(this.TxtCodigoCl, "\r\nPressione F4 para Consultar Lista");
             this.TxtCodigoCl.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtCodigoCl_KeyDown);
@@ -237,7 +296,7 @@
             // 
             // LblEmail
             // 
-            this.LblEmail.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblEmail.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblEmail.Location = new System.Drawing.Point(551, 160);
             this.LblEmail.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.LblEmail.Name = "LblEmail";
@@ -261,7 +320,7 @@
             // LblNome
             // 
             this.LblNome.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.LblNome.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblNome.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblNome.Location = new System.Drawing.Point(553, 110);
             this.LblNome.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.LblNome.Name = "LblNome";
@@ -291,65 +350,6 @@
             this.LabelCliente.Size = new System.Drawing.Size(70, 18);
             this.LabelCliente.TabIndex = 1;
             this.LabelCliente.Text = "Cliente";
-            // 
-            // TxtTelefone
-            // 
-            this.TxtTelefone.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtTelefone.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TxtTelefone.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtTelefone.Location = new System.Drawing.Point(301, 160);
-            this.TxtTelefone.Margin = new System.Windows.Forms.Padding(8, 5, 8, 5);
-            this.TxtTelefone.Name = "TxtTelefone";
-            this.TxtTelefone.Size = new System.Drawing.Size(206, 29);
-            this.TxtTelefone.TabIndex = 23;
-            this.toolTip1.SetToolTip(this.TxtTelefone, "\r\nPrecione F4 para Consultar Lista");
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(210, 218);
-            this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(71, 18);
-            this.label1.TabIndex = 27;
-            this.label1.Text = "Categoria :";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label2
-            // 
-            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(210, 164);
-            this.label2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(71, 25);
-            this.label2.TabIndex = 26;
-            this.label2.Text = "Contato :";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label3
-            // 
-            this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(208, 160);
-            this.label3.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(65, 27);
-            this.label3.TabIndex = 25;
-            this.label3.Text = "Email :";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label4
-            // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(210, 110);
-            this.label4.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(52, 26);
-            this.label4.TabIndex = 24;
-            this.label4.Text = "Nrº :";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // FrmClientes
             // 

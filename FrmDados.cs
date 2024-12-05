@@ -3,25 +3,29 @@ using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 using TeleBerço.DsProdutosTableAdapters;
+using static TeleBerço.DsProdutos;
 
 namespace TeleBerço
 {
     public partial class FrmDados : Form
     {
-        private enum TipoDados
+        public enum TipoDados
         {
             Clientes,
             Produtos,
             Documentos,
             Marcas,
             Categorias,
-            Fornecedores
+            Fornecedores,
+            Stock,
+            Movimentos
         }
 
         // Datasets
         private DsClientes dsClientes = new DsClientes();
         private DsProdutos dsArtigos = new DsProdutos();
         private DsDocumentos dsDocumentos = new DsDocumentos();
+        private DsStock dsStock = new DsStock();
 
         // TableAdapters
 
@@ -29,7 +33,7 @@ namespace TeleBerço
 
 
         public DataRow RowSelecionada { get; private set; }
-        private TipoDados tipoDadosAtual;
+        public TipoDados tipoDadosAtual;
         private DataView dataViewAtual;
 
         public FrmDados()
@@ -66,6 +70,7 @@ namespace TeleBerço
                     tipoDadosAtual = TipoDados.Fornecedores;
                     CarregarFornecedores ();
                     break;
+              
             }
 
             ConfigurarDataGridView();
@@ -139,34 +144,16 @@ namespace TeleBerço
 
                         DgridDados.Columns["Total"].DefaultCellStyle.Format = "F2";
                         DgridDados.Columns["NomeCliente"].HeaderText = "Cliente";
-                        DgridDados.Columns["CodCl"].HeaderText = "Cliente";
+                        DgridDados.Columns["Cliente"].HeaderText = "Cliente";
                         break;
                     case TipoDados.Fornecedores:
-                        try
-                        {
-                           
-                            foreach (DataRow row in dsArtigos.Produtos.Rows)
-                            {
-                                
-                             // Preenche a coluna Categoria
-                                if (row["Categorias"] != DBNull.Value)
-                                    row["NomeCategoria"] = querryProdutosTableAdapter.NomeCategoria(row["Categorias"].ToString());
-                            }
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show("Erro ao carregar Categorias", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-
-                        DgridDados.Columns["NomeCategoria"].HeaderText = "Categoria";
-                        DgridDados.Columns["Categoria"].Visible = false;
+                      
                         DgridDados.Columns["FornecedorID"].HeaderText = "Codigo";
                         DgridDados.Columns["Nome"].HeaderText = "Fornecedor";
 
-
                         break;
-
-
+                   
+                   
                 }
 
             }
@@ -247,6 +234,9 @@ namespace TeleBerço
                 MessageBox.Show("Erro ao carregar Categorias", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
+       
+
         private void CarregarMarcas()
         {
             try
@@ -261,6 +251,7 @@ namespace TeleBerço
                 MessageBox.Show("Erro ao carregar Marcas", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }            
         }
+      
 
         private void AdicionarDetalhesProdutos()
         {
@@ -382,8 +373,8 @@ namespace TeleBerço
             }
         }
 
-        private void EditarFornecedores()
 
+        private void EditarFornecedores()
         {
             try
             {
@@ -398,7 +389,6 @@ namespace TeleBerço
             {
                 MessageBox.Show($"Erro ao editar Fornecedor: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-
         }
 
         private void EditarCliente()
@@ -489,14 +479,12 @@ namespace TeleBerço
         }
 
         private void EditarCat()
-
         {
             try
             {
                 FrmCat_Marca frm = new FrmCat_Marca
                 {
                     RowSelecionada = RowSelecionada,
-
                 };
                 frm.tipoDadosAtual = FrmCat_Marca.TipoDados.Categorias;
                 frm.ShowDialog();
@@ -509,7 +497,6 @@ namespace TeleBerço
         }
 
         private void EditarMarca()
-
         {
             try
             {
@@ -569,10 +556,11 @@ namespace TeleBerço
                     case TipoDados.Fornecedores:
                         EditarFornecedores();
                         break;
+               
                 }
             }
         }
-     
+
         private void BtnAdicionar_Click(object sender, EventArgs e)
         {
             switch (tipoDadosAtual)
@@ -592,6 +580,7 @@ namespace TeleBerço
                 case TipoDados.Marcas:
                     AdicionarMarca();
                     break;
+
             }
         }
 
@@ -806,8 +795,7 @@ namespace TeleBerço
             }
 
         }
-
-
+ 
     }
 
 }

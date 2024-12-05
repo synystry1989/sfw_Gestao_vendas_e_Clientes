@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
 using System.Drawing;
 using System.Drawing.Printing;
 using System.IO;
@@ -7,6 +9,7 @@ using System.Linq;
 using System.Windows.Forms;
 using TeleBerço.DsProdutosTableAdapters;
 using static TeleBerço.DsClientes;
+using static TeleBerço.DsDocumentos;
 using static TeleBerço.DsProdutos;
 
 namespace TeleBerço
@@ -15,6 +18,7 @@ namespace TeleBerço
     {
         // Datasets e TableAdapters
         private DsClientes dsClientes = new DsClientes();
+        DsStock dsStock = new DsStock();
         private QuerryProdutosTableAdapter querryProdutosTableAdapter = new QuerryProdutosTableAdapter();
         // Variáveis de controle
         private PrintDocument printDocument = new PrintDocument();
@@ -26,9 +30,10 @@ namespace TeleBerço
 
         private void FrmDocumentos_Load(object sender, EventArgs e)
         {
+         
             try
             {
-                FormatarTabelas();
+               // DgridArtigos.Sort(DgridArtigos.Columns["numLInhaDataGridViewTextBoxColumn"], ListSortDirection.Ascending);
                 CarregarDadosIniciais();
                 LimparFormulario();
             }
@@ -45,7 +50,7 @@ namespace TeleBerço
                 dsProdutos.CarregaCategorias();
                 dsProdutos.CarregarMarcas();
                 dsDocumentos.CarregaTipoDoc();
-                TxtCodigoDoc.Focus();
+              //  TxtCodigoDoc.Focus();
                 // Configurar ComboBoxes
 
                 TxtCodigoDoc.Text = "";
@@ -175,6 +180,7 @@ namespace TeleBerço
                     if (tipoRow != null)
                     {
                         TxtDescricaoDoc.Text = tipoRow.Descricao;
+                        AtribuirDescriçaoCodCl();
                         NrDoc.Text = dsDocumentos.DaNrDocSeguinte(TxtCodigoDoc.Text).ToString();
 
                         HabilitarBotoes();
@@ -219,7 +225,6 @@ namespace TeleBerço
             }
 
         }
-
         public void PreencherFornecedor()
         {
             var fornecedorRow = dsClientes.PesquisaFornecedor(TxtCodigoCl.Text);
@@ -236,7 +241,6 @@ namespace TeleBerço
             {
                 PrepararFornecedor();
             }
-
         }
 
         public void PrepararFornecedor()
@@ -244,6 +248,7 @@ namespace TeleBerço
          
             TxtCodigoCl.Text = dsClientes.DaProxNrFornecedor();
             TxtNomeCl.Enabled = true;
+
             BtnGravarCliente.Enabled = true;
            
             HabilitarFornecedor();
@@ -414,6 +419,8 @@ namespace TeleBerço
 
                     dsDocumentos.UpdateDoc();
                     dsDocumentos.UpdateLinhas();
+                    
+                    AtualizarEstoqueAoSalvarDocumento();
 
                     MessageBox.Show("Documento salvo com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     LimparFormulario();
@@ -562,7 +569,6 @@ namespace TeleBerço
                     { 
                         PrepararCliente();
                     }
-
                 }
 
             }
@@ -591,6 +597,7 @@ namespace TeleBerço
 
                         MessageBox.Show("Cliente Criado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         LimparCliente();
+                        
                         BtnGravarCliente.Enabled = false;
                         TxtNomeCl.Enabled = false;
                     }
@@ -633,9 +640,62 @@ namespace TeleBerço
             }
         }
 
+        private void AtribuirDescriçaoCodCl()
+        {
+            if (TxtDescricaoDoc.Text.Contains("Fornecedor"))
+            {
+                HabilitarFornecedor();
+                TxtCodigoCl.Text = "FN";
+
+            }
+            else if (TxtDescricaoDoc.Text.Contains("Cliente"))
+            {
+                HabilitarCliente();
+
+                TxtCodigoCl.Text = "CL";
+            }
+            else
+            {
+                TxtCodigoCl.Text = "CL";
+            }
+        }
+
         private void NrDoc_SelectedIndexChanged(object sender, EventArgs e)
         {
+           
             PreencheDocumento(TxtCodigoDoc.Text, int.Parse(NrDoc.Text));
+           
+        }
+
+        public void AtualizarEstoqueAoSalvarDocumento()
+        {
+            // Obter o tipo do documento
+            string tipoDocumento = dsDocumentos.CabecDocumento[0].TipoDocumento;
+            string tipoEntrada = "";
+            DateTime data = dsDocumentos.CabecDocumento[0].DataRececao;
+            if ((tipoDocumento.Contains("FTC")) || (tipoDocumento.Contains("NDF")))
+            {
+                // Para vendas e devoluções ao fornecedor, diminuir o estoque
+                tipoEntrada = "S";
+            }
+            else if ((tipoDocumento.Contains("FTF")) || (tipoDocumento.Contains("NDC")))
+            {
+                // Para compras e devoluções de clientes, aumentar o estoque
+                tipoEntrada = "E";
+            }
+            // Exemplo: "Venda", "Compra", "Devolucao"
+           
+            // Iterar sobre a ListaProdutos associada ao documento
+            foreach (ListaProdutosRow produtos in dsDocumentos.ListaProdutos.Rows)
+            {
+                // Apenas processar linhas que não foram excluídas
+                if (produtos.RowState != DataRowState.Deleted)
+                {
+                    ProdutosRow produto = dsProdutos.Produtos.FindByCodPr(produtos.Produto);
+                    dsStock.AtualizarStock(produtos.Produto, produtos.Quantidade, tipoDocumento,produto);
+                    dsStock.RegistrarMovimentacao(produtos.Produto,produtos.Quantidade,tipoEntrada,data);
+                }
+            }          
         }
 
         private void AplicarDesconto()
@@ -742,22 +802,22 @@ namespace TeleBerço
 
         private void EstadoDoc()
         {
-            if (TxtCodigoDoc.Text == "ORC")
+            if (TxtCodigoDoc.Text.Contains( "OR"))
             {
                 txtEstado.Items.Clear();
                 txtEstado.Items.AddRange(new string[] { "Entregue", "Aceite", "Cancelado", "Finalizado" });
             }
-            else if (TxtCodigoDoc.Text == "FC")
+            else if (TxtCodigoDoc.Text.Contains( "FT"))
             {
                 txtEstado.Items.Clear();
                 txtEstado.Items.AddRange(new string[] { "Emitida", "Concluida", "Anulada" });
             }
-            else if (TxtCodigoDoc.Text == "NDE")
+            else if (TxtCodigoDoc.Text.Contains("ED"))
             {
                 txtEstado.Items.Clear();
                 txtEstado.Items.AddRange(new string[] { "Realizada", "Em espera", "Cancelada", "Em andamento" });
             }
-            else if (TxtCodigoDoc.Text == "NDE")
+            else if (TxtCodigoDoc.Text.Contains( "ND"))
             {
                 txtEstado.Items.Clear();
                 txtEstado.Items.AddRange(new string[] { "Numerario", "Artigo", "Cancelada" });
@@ -802,7 +862,9 @@ namespace TeleBerço
                     {
                         linha.Cells["NomeCategoria"].Value = querryProdutosTableAdapter.NomeCategoria(linha.Cells["Categoria"].Value.ToString());
                     }
+
                 }
+              
             }
             catch (Exception ex)
             {
@@ -810,14 +872,8 @@ namespace TeleBerço
             }
         }
 
-        private void FormatarTabelas()
-        {
+     
 
-            DgridArtigos.Columns["precoUntDataGridViewTextBoxColumn"].DefaultCellStyle.Format = "F2";
-            DgridArtigos.Columns["quantidadeDataGridViewTextBoxColumn"].DefaultCellStyle.Format = "F2";
-            DgridArtigos.Sort(DgridArtigos.Columns["numLInhaDataGridViewTextBoxColumn"], ListSortDirection.Ascending);
-
-        }
 
         private void LimparFormulario()
         {
@@ -831,6 +887,7 @@ namespace TeleBerço
             txtEstado.SelectedIndex = -1;
 
             LimparCliente();
+           
             LimparProduto();
             txtObservacoes.Text = "";
             dsClientes.Clientes.Clear();
@@ -897,7 +954,10 @@ namespace TeleBerço
             lblFornecedor.Visible = false;
             txtMorada.Visible = false;
             cbCategoria.Visible = false;
-            
+            TxtNomeCl.Enabled = true;
+            TxtTelefone.Enabled = true;
+            TxtEmail.Enabled = true;
+
 
         }
         private void HabilitarFornecedor()
@@ -906,6 +966,8 @@ namespace TeleBerço
             lblFornecedor.Visible = true;
             txtMorada.Visible = true;
             cbCategoria.Visible = true;
+            cbCategoria.Enabled = true;
+     
             TxtEmail.Text = "Site";
           
 
@@ -1372,11 +1434,14 @@ namespace TeleBerço
 
                 // Centralizar texto no cabeçalho
                 string headerText = columnHeaders[i];
-                SizeF headerSize = graphics.MeasureString(headerText, fonteTexto);
-                float textX = xPos + (columnWidths[i] - headerSize.Width) / 2;
-                float textY = yPos + (lineHeight - headerSize.Height) / 2;
+                RectangleF headerRect = new RectangleF(xPos, yPos, columnWidths[i], lineHeight);
+                StringFormat headerFormat = new StringFormat
+                {
+                    Alignment = StringAlignment.Center,
+                    LineAlignment = StringAlignment.Center
+                };
 
-                graphics.DrawString(headerText, fonteTexto, brush, textX, textY);
+                graphics.DrawString(headerText, fonteTexto, brush, headerRect, headerFormat);
                 xPos += columnWidths[i];
             }
             yPos += lineHeight;
@@ -1387,23 +1452,50 @@ namespace TeleBerço
             {
                 if (!row.IsNewRow)
                 {
+                    // Calcular a altura máxima necessária para esta linha
+                    float maxCellHeight = 0;
+                    List<string> cellValues = new List<string>();
+
+                    for (int i = 0; i < numColumns; i++)
+                    {
+                        // Obter o valor da célula
+                        string cellValue = row.Cells[columnsToPrint[i]].Value?.ToString() ?? "";
+                        cellValues.Add(cellValue);
+
+                        // Medir o tamanho do texto com quebra de linha
+                        SizeF textSize = graphics.MeasureString(cellValue, fonteTabela, (int)columnWidths[i]);
+                        if (textSize.Height > maxCellHeight)
+                        {
+                            maxCellHeight = textSize.Height;
+                        }
+                    }
+
+                    // Definir a altura da linha com base na altura máxima das células
+                    float cellHeight = maxCellHeight + 5; // Adicionar um pequeno espaçamento
+
+                    xPos = marginLeft;
                     for (int i = 0; i < numColumns; i++)
                     {
                         // Desenhar retângulo da célula
-                        graphics.DrawRectangle(pen, xPos, yPos, columnWidths[i], lineHeight - 2);
+                        graphics.DrawRectangle(pen, xPos, yPos, columnWidths[i], cellHeight);
 
-                        // Obter o valor da célula
-                        string cellValue = row.Cells[columnsToPrint[i]].Value?.ToString() ?? "";
+                        // Definir o retângulo para desenhar o texto
+                        RectangleF cellRect = new RectangleF(xPos + 2, yPos + 2, columnWidths[i] - 4, cellHeight - 4);
 
-                        // Centralizar texto na célula
-                        SizeF cellSize = graphics.MeasureString(cellValue, fonteTabela);
-                        float textX = xPos + (columnWidths[i] - cellSize.Width) / 2;
-                        float textY = yPos + (lineHeight - cellSize.Height) / 2;
+                        // Formatar o texto para quebra de linha
+                        StringFormat cellFormat = new StringFormat
+                        {
+                            Alignment = StringAlignment.Near,
+                            LineAlignment = StringAlignment.Near,
+                            FormatFlags = StringFormatFlags.LineLimit // Permitir quebra de linha
+                        };
 
-                        graphics.DrawString(cellValue, fonteTabela, brush, textX, textY);
+                        // Desenhar o texto dentro da célula
+                        graphics.DrawString(cellValues[i], fonteTabela, brush, cellRect, cellFormat);
+
                         xPos += columnWidths[i];
                     }
-                    yPos += lineHeight;
+                    yPos += cellHeight;
                     xPos = marginLeft;
                 }
             }
@@ -1411,6 +1503,8 @@ namespace TeleBerço
             yPos += 20; // Espaçamento após a tabela
             return yPos;
         }
+
+
 
         private float DrawFinalLogo(Graphics graphics, float marginLeft, float yPos, float marginTop, float pageWidth, float pageHeight, Brush brush)
         {
@@ -1420,15 +1514,15 @@ namespace TeleBerço
             {
                 using (Image bottomImage = Image.FromFile(bottomImagePath))
                 {
-                    float desiredBottomImgWidth = 600;
+                    float desiredBottomImgWidth = 500;
                     float bottomImgHeight = bottomImage.Height * (desiredBottomImgWidth / bottomImage.Width) - 75;
 
                     // Posicionar a imagem no fundo da página, centralizada horizontalmente
-                    float bottomImageX = marginLeft + pageWidth - desiredBottomImgWidth;
-                    float bottomImageYPosition = marginTop + pageHeight - bottomImgHeight; // Posicionar logo após o último conteúdo
+                    float bottomImageX = marginLeft + (pageWidth/2) - (desiredBottomImgWidth/2);
+                    float bottomImageYPosition = marginTop + pageHeight - (bottomImgHeight/2); // Posicionar logo após o último conteúdo
 
-                    graphics.DrawImage(bottomImage, bottomImageX, bottomImageYPosition, desiredBottomImgWidth, bottomImgHeight);
-                    yPos = marginTop + pageHeight - bottomImgHeight - 70;
+                    graphics.DrawImage(bottomImage, bottomImageX, bottomImageYPosition+30, desiredBottomImgWidth, bottomImgHeight);
+                    yPos = marginTop + pageHeight - bottomImgHeight - 50;
 
                 }
             }
@@ -1544,19 +1638,12 @@ namespace TeleBerço
             }
         }
 
-        private void TxtDescricaoDoc_TextChanged(object sender, EventArgs e)
+      
+     
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            if (TxtDescricaoDoc.Text.Contains("Fornecedor"))
-            {
-                HabilitarFornecedor();
-                TxtCodigoCl.Text = "FN";
-
-            }
-            else
-            {
-                HabilitarCliente();
-                TxtCodigoCl.Text = "CL";
-            }
+            FrmStock frmStock = new FrmStock();
+            frmStock.ShowDialog();
         }
     }
 }

@@ -70,17 +70,17 @@ namespace TeleBerço
             LblEmail.Visible = true;
         }
         private void ConfigInicialForn()
-        { 
-                LabelCliente.Visible = false;
-                LblEmail.Visible = false;
+        {
+            LabelCliente.Visible = false;
+            LblEmail.Visible = false;
 
-                lblForncedor.Visible = true;
-                lblMorada.Visible = true;
-                lblLoja.Visible = true;
-                cbCategoria.Visible = true;
-                label1.Visible = true;
-            }
-        
+            lblForncedor.Visible = true;
+            lblMorada.Visible = true;
+            lblLoja.Visible = true;
+            cbCategoria.Visible = true;
+            label1.Visible = true;
+        }
+
 
         private void CarregarFornecedorSelecionado()
         {
@@ -116,7 +116,7 @@ namespace TeleBerço
         {
             try
             {
-            
+
                 LimparFormulario();
                 TxtCodigoCl.Text = dsClientes.DaProxNrCliente();
             }
@@ -131,7 +131,7 @@ namespace TeleBerço
         {
             try
             {
-           
+
                 LimparFormulario();
                 TxtCodigoCl.Text = dsClientes.DaProxNrFornecedor();
             }

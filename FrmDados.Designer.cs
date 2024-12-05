@@ -222,7 +222,7 @@
             this.Label1.BackColor = System.Drawing.Color.Transparent;
             this.Label1.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label1.ForeColor = System.Drawing.Color.Black;
-            this.Label1.Location = new System.Drawing.Point(1103, 62);
+            this.Label1.Location = new System.Drawing.Point(933, 62);
             this.Label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Label1.Name = "Label1";
             this.Label1.Size = new System.Drawing.Size(81, 20);
@@ -322,7 +322,7 @@
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.Image = global::TeleBerço.Properties.Resources.add_yellow_button_icon_227864;
-            this.button1.Location = new System.Drawing.Point(900, 97);
+            this.button1.Location = new System.Drawing.Point(678, 95);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(32, 23);
             this.button1.TabIndex = 157;
@@ -352,6 +352,7 @@
             this.Name = "FrmDados";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Dados";
+
             this.tsDados.ResumeLayout(false);
             this.tsDados.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgridDados)).EndInit();

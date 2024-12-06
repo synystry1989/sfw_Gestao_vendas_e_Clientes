@@ -30,11 +30,11 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmDocumentos));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtMorada = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.NrDoc = new System.Windows.Forms.ComboBox();
@@ -217,6 +217,7 @@
             this.NrDoc.Size = new System.Drawing.Size(153, 29);
             this.NrDoc.TabIndex = 2;
             this.NrDoc.Text = "1";
+            this.NrDoc.SelectedIndexChanged += new System.EventHandler(this.NrDoc_SelectedIndexChanged_1);
             // 
             // label12
             // 
@@ -252,6 +253,8 @@
             this.TxtCodigoDoc.TabIndex = 1;
             this.toolTip1.SetToolTip(this.TxtCodigoDoc, "Prima F4 para aceder a lista");
             this.TxtCodigoDoc.ValueMember = "CodDoc";
+            this.TxtCodigoDoc.SelectedIndexChanged += new System.EventHandler(this.TxtCodigoDoc_SelectedIndexChanged_1);
+            this.TxtCodigoDoc.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtCodigoDoc_KeyDown_1);
             // 
             // tipoDocumentosBindingSource
             // 
@@ -439,6 +442,8 @@
             this.TxtCodigoCl.Size = new System.Drawing.Size(214, 29);
             this.TxtCodigoCl.TabIndex = 4;
             this.toolTip1.SetToolTip(this.TxtCodigoCl, "Prima F4 para aceder a lista");
+            this.TxtCodigoCl.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtCodigoCl_KeyDown_1);
+            this.TxtCodigoCl.Leave += new System.EventHandler(this.TxtCodigoCl_Leave_1);
             // 
             // TxtNomeCl
             // 
@@ -577,6 +582,7 @@
             this.cBoxEuro.TabIndex = 128;
             this.cBoxEuro.Text = "€";
             this.cBoxEuro.UseVisualStyleBackColor = true;
+            this.cBoxEuro.CheckedChanged += new System.EventHandler(this.cBoxEuro_CheckedChanged_1);
             // 
             // label15
             // 
@@ -602,6 +608,7 @@
             this.cBoxPercent.TabIndex = 125;
             this.cBoxPercent.Text = "%";
             this.cBoxPercent.UseVisualStyleBackColor = true;
+            this.cBoxPercent.CheckedChanged += new System.EventHandler(this.cBoxPercent_CheckedChanged_1);
             // 
             // txtDesconto
             // 
@@ -614,6 +621,7 @@
             this.txtDesconto.Size = new System.Drawing.Size(139, 29);
             this.txtDesconto.TabIndex = 124;
             this.txtDesconto.Text = "0";
+            this.txtDesconto.TextChanged += new System.EventHandler(this.txtDesconto_TextChanged);
             // 
             // txtTipoPr
             // 
@@ -861,9 +869,11 @@
             this.tsConsultaCat.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tsConsultaCat.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.tsConsultaCat.Image = ((System.Drawing.Image)(resources.GetObject("tsConsultaCat.Image")));
+            this.tsConsultaCat.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsConsultaCat.Name = "tsConsultaCat";
             this.tsConsultaCat.Size = new System.Drawing.Size(192, 34);
             this.tsConsultaCat.Text = "Consultar";
+            this.tsConsultaCat.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.tsConsultaCat.Click += new System.EventHandler(this.tsConsultaCat_Click);
             // 
             // tsAddCategorias
@@ -872,9 +882,11 @@
             this.tsAddCategorias.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tsAddCategorias.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.tsAddCategorias.Image = ((System.Drawing.Image)(resources.GetObject("tsAddCategorias.Image")));
+            this.tsAddCategorias.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsAddCategorias.Name = "tsAddCategorias";
             this.tsAddCategorias.Size = new System.Drawing.Size(192, 34);
             this.tsAddCategorias.Text = "Adicionar";
+            this.tsAddCategorias.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.tsAddCategorias.Click += new System.EventHandler(this.tsAddCategorias_Click_1);
             // 
             // toolStripMenuItem4
@@ -896,9 +908,11 @@
             this.tsConsultaForn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tsConsultaForn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.tsConsultaForn.Image = ((System.Drawing.Image)(resources.GetObject("tsConsultaForn.Image")));
+            this.tsConsultaForn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsConsultaForn.Name = "tsConsultaForn";
             this.tsConsultaForn.Size = new System.Drawing.Size(192, 34);
             this.tsConsultaForn.Text = "Consultar";
+            this.tsConsultaForn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.tsConsultaForn.Click += new System.EventHandler(this.tsConsultaForn_Click_1);
             // 
             // tsAddForn
@@ -907,9 +921,11 @@
             this.tsAddForn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tsAddForn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.tsAddForn.Image = ((System.Drawing.Image)(resources.GetObject("tsAddForn.Image")));
+            this.tsAddForn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsAddForn.Name = "tsAddForn";
             this.tsAddForn.Size = new System.Drawing.Size(192, 34);
             this.tsAddForn.Text = "Adicionar";
+            this.tsAddForn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.tsAddForn.Click += new System.EventHandler(this.tsAddForn_Click_1);
             // 
             // tsFornecedor
@@ -921,9 +937,11 @@
             this.tsFornecedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tsFornecedor.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.tsFornecedor.Image = ((System.Drawing.Image)(resources.GetObject("tsFornecedor.Image")));
+            this.tsFornecedor.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsFornecedor.Name = "tsFornecedor";
             this.tsFornecedor.Size = new System.Drawing.Size(192, 34);
             this.tsFornecedor.Text = "Fornecedores";
+            this.tsFornecedor.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // tsConsultaCliente
             // 
@@ -931,9 +949,11 @@
             this.tsConsultaCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tsConsultaCliente.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.tsConsultaCliente.Image = ((System.Drawing.Image)(resources.GetObject("tsConsultaCliente.Image")));
+            this.tsConsultaCliente.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsConsultaCliente.Name = "tsConsultaCliente";
             this.tsConsultaCliente.Size = new System.Drawing.Size(192, 34);
             this.tsConsultaCliente.Text = "Consultar";
+            this.tsConsultaCliente.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.tsConsultaCliente.Click += new System.EventHandler(this.tsConsultaCliente_Click_1);
             // 
             // tsAddCl
@@ -942,9 +962,11 @@
             this.tsAddCl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tsAddCl.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.tsAddCl.Image = ((System.Drawing.Image)(resources.GetObject("tsAddCl.Image")));
+            this.tsAddCl.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsAddCl.Name = "tsAddCl";
             this.tsAddCl.Size = new System.Drawing.Size(192, 34);
             this.tsAddCl.Text = "Adicionar";
+            this.tsAddCl.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.tsAddCl.Click += new System.EventHandler(this.tsAddCl_Click_1);
             // 
             // tsCliente
@@ -956,9 +978,11 @@
             this.tsCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tsCliente.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.tsCliente.Image = ((System.Drawing.Image)(resources.GetObject("tsCliente.Image")));
+            this.tsCliente.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsCliente.Name = "tsCliente";
             this.tsCliente.Size = new System.Drawing.Size(192, 34);
             this.tsCliente.Text = "Clientes";
+            this.tsCliente.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // toolStripMenuItem1
             // 
@@ -979,9 +1003,11 @@
             this.tsConsultaProduto.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tsConsultaProduto.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.tsConsultaProduto.Image = ((System.Drawing.Image)(resources.GetObject("tsConsultaProduto.Image")));
+            this.tsConsultaProduto.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsConsultaProduto.Name = "tsConsultaProduto";
             this.tsConsultaProduto.Size = new System.Drawing.Size(192, 34);
             this.tsConsultaProduto.Text = "Consultar";
+            this.tsConsultaProduto.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.tsConsultaProduto.Click += new System.EventHandler(this.tsConsultaProduto_Click_1);
             // 
             // tsAddProduto
@@ -990,9 +1016,11 @@
             this.tsAddProduto.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tsAddProduto.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.tsAddProduto.Image = ((System.Drawing.Image)(resources.GetObject("tsAddProduto.Image")));
+            this.tsAddProduto.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsAddProduto.Name = "tsAddProduto";
             this.tsAddProduto.Size = new System.Drawing.Size(192, 34);
             this.tsAddProduto.Text = "Adicionar";
+            this.tsAddProduto.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.tsAddProduto.Click += new System.EventHandler(this.tsAddProduto_Click_1);
             // 
             // tsProdutos
@@ -1020,8 +1048,8 @@
             this.tsMenu.Image = ((System.Drawing.Image)(resources.GetObject("tsMenu.Image")));
             this.tsMenu.Margin = new System.Windows.Forms.Padding(0, 0, 30, 0);
             this.tsMenu.Name = "tsMenu";
-            this.tsMenu.Size = new System.Drawing.Size(53, 51);
-            this.tsMenu.Text = "  ";
+            this.tsMenu.Size = new System.Drawing.Size(101, 51);
+            this.tsMenu.Text = "                  ";
             // 
             // tsDocumentos
             // 
@@ -1260,24 +1288,24 @@
             // DgridArtigos
             // 
             this.DgridArtigos.AllowUserToAddRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ControlDark;
-            this.DgridArtigos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.ControlDark;
+            this.DgridArtigos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
             this.DgridArtigos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DgridArtigos.AutoGenerateColumns = false;
             this.DgridArtigos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DgridArtigos.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ControlDark;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DgridArtigos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.ControlDark;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DgridArtigos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.DgridArtigos.ColumnHeadersHeight = 30;
             this.DgridArtigos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.iDDataGridViewTextBoxColumn,
@@ -1295,35 +1323,36 @@
             this.quantidadeDataGridViewTextBoxColumn,
             this.totalDataGridViewTextBoxColumn});
             this.DgridArtigos.DataSource = this.listaProdutosBindingSource;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ControlDark;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DgridArtigos.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.ControlDark;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DgridArtigos.DefaultCellStyle = dataGridViewCellStyle8;
             this.DgridArtigos.GridColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.DgridArtigos.Location = new System.Drawing.Point(0, 382);
             this.DgridArtigos.Name = "DgridArtigos";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.ControlDark;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DgridArtigos.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.ControlDark;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DgridArtigos.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.DgridArtigos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.ControlDark;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DgridArtigos.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.ControlDark;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DgridArtigos.RowsDefaultCellStyle = dataGridViewCellStyle10;
             this.DgridArtigos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DgridArtigos.Size = new System.Drawing.Size(1583, 63);
             this.DgridArtigos.TabIndex = 32;
+            this.DgridArtigos.RowLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgridArtigos_RowLeave);
             // 
             // btnAbrirPr
             // 

@@ -30,10 +30,10 @@ namespace TeleBerço
 
         private void FrmDocumentos_Load(object sender, EventArgs e)
         {
-         
+
             try
             {
-               // DgridArtigos.Sort(DgridArtigos.Columns["numLInhaDataGridViewTextBoxColumn"], ListSortDirection.Ascending);
+                // DgridArtigos.Sort(DgridArtigos.Columns["numLInhaDataGridViewTextBoxColumn"], ListSortDirection.Ascending);
                 CarregarDadosIniciais();
                 LimparFormulario();
             }
@@ -50,7 +50,7 @@ namespace TeleBerço
                 dsProdutos.CarregaCategorias();
                 dsProdutos.CarregarMarcas();
                 dsDocumentos.CarregaTipoDoc();
-              //  TxtCodigoDoc.Focus();
+                //  TxtCodigoDoc.Focus();
                 // Configurar ComboBoxes
 
                 TxtCodigoDoc.Text = "";
@@ -168,38 +168,9 @@ namespace TeleBerço
                    !string.IsNullOrWhiteSpace(TxtCusto.Text);
         }
 
-        private void TxtCodigoDoc_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (TxtCodigoDoc.Text != "")
-                {
-
-                    var tipoRow = dsDocumentos.TipoDocumentos.FindByCodDoc(TxtCodigoDoc.SelectedValue.ToString());
-
-                    if (tipoRow != null)
-                    {
-                        TxtDescricaoDoc.Text = tipoRow.Descricao;
-                        AtribuirDescriçaoCodCl();
-                        NrDoc.Text = dsDocumentos.DaNrDocSeguinte(TxtCodigoDoc.Text).ToString();
-
-                        HabilitarBotoes();
-                        HabilitarCampos();
-                        LimparProduto();
-                        dsDocumentos.ListaProdutos.Clear();
-                    }
-                    EstadoDoc();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Erro ao carregar tipo de documento: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
         public void PrepararCliente()
         {
-            
+
             TxtCodigoCl.Text = dsClientes.DaProxNrCliente();
 
             BtnGravarCliente.Enabled = true;
@@ -234,7 +205,7 @@ namespace TeleBerço
                 TxtNomeCl.Text = fornecedorRow.Nome;
                 TxtTelefone.Text = fornecedorRow.Contato;
                 TxtEmail.Text = fornecedorRow.Site;
-                txtMorada.Text = fornecedorRow.Morada;         
+                txtMorada.Text = fornecedorRow.Morada;
                 cbCategoria.SelectedValue = fornecedorRow.Categoria;
             }
             else
@@ -245,16 +216,16 @@ namespace TeleBerço
 
         public void PrepararFornecedor()
         {
-         
+
             TxtCodigoCl.Text = dsClientes.DaProxNrFornecedor();
             TxtNomeCl.Enabled = true;
 
             BtnGravarCliente.Enabled = true;
-           
+
             HabilitarFornecedor();
 
         }
-        private void TxtCodigoDoc_KeyDown(object sender, KeyEventArgs e)
+        private void TxtCodigoDoc_KeyDown_1(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.F4)
             {
@@ -263,11 +234,380 @@ namespace TeleBerço
             }
         }
 
-        private void TxtCodigoCl_KeyDown(object sender, KeyEventArgs e)
+        private void AtribuirDescriçaoCodCl()
+        {
+            if (TxtDescricaoDoc.Text.Contains("Fornecedor"))
+            {
+                HabilitarFornecedor();
+                TxtCodigoCl.Text = "FN";
+
+            }
+            else if (TxtDescricaoDoc.Text.Contains("Cliente"))
+            {
+                HabilitarCliente();
+
+                TxtCodigoCl.Text = "CL";
+            }
+            else
+            {
+                TxtCodigoCl.Text = "CL";
+            }
+        }
+
+
+
+        public void AtualizarEstoqueAoSalvarDocumento()
+        {
+            // Obter o tipo do documento
+            string tipoDocumento = dsDocumentos.CabecDocumento[0].TipoDocumento;
+            string tipoEntrada = "";
+            DateTime data = dsDocumentos.CabecDocumento[0].DataRececao;
+            if ((tipoDocumento.Contains("FTC")) || (tipoDocumento.Contains("NDF")))
+            {
+                // Para vendas e devoluções ao fornecedor, diminuir o estoque
+                tipoEntrada = "S";
+            }
+            else if ((tipoDocumento.Contains("FTF")) || (tipoDocumento.Contains("NDC")))
+            {
+                // Para compras e devoluções de clientes, aumentar o estoque
+                tipoEntrada = "E";
+            }
+            // Exemplo: "Venda", "Compra", "Devolucao"
+
+            // Iterar sobre a ListaProdutos associada ao documento
+            foreach (ListaProdutosRow produtos in dsDocumentos.ListaProdutos.Rows)
+            {
+                // Apenas processar linhas que não foram excluídas
+                if (produtos.RowState != DataRowState.Deleted)
+                {
+                    ProdutosRow produto = dsProdutos.Produtos.FindByCodPr(produtos.Produto);
+                    dsStock.PesquisarStock(produtos.Produto, produto);
+
+                    dsStock.AtualizarStock(produtos.Produto, produtos.Quantidade, tipoDocumento);
+
+                }
+            }
+        }
+
+        private void AplicarDesconto()
+        {
+            try
+            {
+                if (decimal.TryParse(txtTotal.Text, out decimal total) && decimal.TryParse(txtDesconto.Text, out decimal desconto))
+                {
+                    if (cBoxEuro.Checked)
+                    {
+                        total -= desconto;
+                        cBoxPercent.Checked = false;
+                        cBoxPercent.Enabled = false;
+                        txtTotal.Text = total.ToString("F2");
+                    }
+
+                    else if (cBoxPercent.Checked)
+                    {
+                        total -= (total * (desconto / 100));
+                        cBoxEuro.Enabled = false;
+                        cBoxEuro.Checked = false;
+                        txtTotal.Text = total.ToString("F2");
+                    }
+                    else
+                    {
+                        cBoxEuro.Enabled = true;
+                        cBoxPercent.Enabled = true;
+                        CalcularTotalDocumento();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao aplicar desconto: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void AbrirSelecaoForn()
+        {
+            try
+            {
+                FrmDados frmDados = new FrmDados();
+                frmDados.MostrarTabelaDados("DsFornecedores");
+
+                if (frmDados.RowSelecionada is FornecedoresRow clienteRow)
+                {
+                    TxtCodigoCl.Text = clienteRow.FornecedorID;
+                    TxtNomeCl.Text = clienteRow.Nome;
+                    TxtTelefone.Text = clienteRow.Contato;
+                    TxtEmail.Text = clienteRow.Site;
+
+                    HabilitarCliente();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao selecionar cliente: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void AbrirSelecaoClientes()
+        {
+            try
+            {
+                FrmDados frmDados = new FrmDados();
+                frmDados.MostrarTabelaDados("DsClientes");
+
+                if (frmDados.RowSelecionada is ClientesRow clienteRow)
+                {
+                    TxtCodigoCl.Text = clienteRow.CodCl;
+                    TxtNomeCl.Text = clienteRow.Nome;
+                    TxtTelefone.Text = clienteRow.Telefone;
+                    TxtEmail.Text = clienteRow.Email;
+                    HabilitarCliente();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao selecionar cliente: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void AbrirSelecaoDocumentos()
+        {
+            try
+            {
+                FrmDados frmDados = new FrmDados();
+                frmDados.MostrarTabelaDados("DsDocumentos");
+
+                if (frmDados.RowSelecionada is DsDocumentos.CabecDocumentoRow docRow)
+                {
+                    TxtCodigoDoc.Text = docRow.TipoDocumento;
+                    TxtDescricaoDoc.Text = dsDocumentos.TipoDocumentos
+                        .FirstOrDefault(t => t.CodDoc == docRow.TipoDocumento)?.Descricao;
+                    NrDoc.Text = docRow.NrDocumento.ToString();
+                    PreencheDocumento(docRow.TipoDocumento, docRow.NrDocumento);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao selecionar documento: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void EstadoDoc()
+        {
+            if (TxtCodigoDoc.Text.Contains("OR"))
+            {
+                txtEstado.Items.Clear();
+                txtEstado.Items.AddRange(new string[] { "Entregue", "Aceite", "Cancelado", "Finalizado" });
+            }
+            else if (TxtCodigoDoc.Text.Contains("FT"))
+            {
+                txtEstado.Items.Clear();
+                txtEstado.Items.AddRange(new string[] { "Emitida", "Concluida", "Anulada" });
+            }
+            else if (TxtCodigoDoc.Text.Contains("ED"))
+            {
+                txtEstado.Items.Clear();
+                txtEstado.Items.AddRange(new string[] { "Realizada", "Em espera", "Cancelada", "Em andamento" });
+            }
+            else if (TxtCodigoDoc.Text.Contains("ND"))
+            {
+                txtEstado.Items.Clear();
+                txtEstado.Items.AddRange(new string[] { "Numerario", "Artigo", "Cancelada" });
+            }
+
+
+        }
+        private void CalcularTotalDocumento()
+        {
+            try
+            {
+                decimal soma = 0;
+
+                foreach (DataGridViewRow linha in DgridArtigos.Rows)
+                {
+                    if (linha.Cells["totalDataGridViewTextBoxColumn"].Value != null)
+                    {
+                        soma += Convert.ToDecimal(linha.Cells["totalDataGridViewTextBoxColumn"].Value);
+                    }
+                }
+
+                txtTotal.Text = soma.ToString("F2");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao calcular total: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void AdicionarDescricoesPr()
+        {
+            try
+            {
+                foreach (DataGridViewRow linha in DgridArtigos.Rows)
+                {
+                    // Preenche a coluna Marca
+                    if (linha.Cells["Marca"].Value != DBNull.Value)
+                    {
+                        linha.Cells["NomeMarca"].Value = querryProdutosTableAdapter.NomeMarca(int.Parse(linha.Cells["Marca"].Value.ToString()));
+                    }
+                    // Preenche a coluna Categoria
+                    if (linha.Cells["Categoria"].Value != DBNull.Value)
+                    {
+                        linha.Cells["NomeCategoria"].Value = querryProdutosTableAdapter.NomeCategoria(linha.Cells["Categoria"].Value.ToString());
+                    }
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao adicionar descricao: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+        private void LimparFormulario()
+        {
+            NrDoc.Text = "0";
+            TxtCodigoDoc.Text = "";
+            TxtDescricaoDoc.Text = string.Empty;
+            DataMod.Value = DateTime.Now;
+            dateTimePicker1.Value = DateTime.Now;
+            txtTotal.Text = "0.00";
+            txtObservacoes.Text = string.Empty;
+            txtEstado.SelectedIndex = -1;
+
+            LimparCliente();
+
+            LimparProduto();
+            txtObservacoes.Text = "";
+            dsClientes.Clientes.Clear();
+            dsDocumentos.CabecDocumento.Clear();
+            dsDocumentos.ListaProdutos.Clear();
+        }
+
+        private void LimparCliente()
+        {
+            TxtCodigoCl.Text = "";
+            TxtNomeCl.Text = "Nome";
+            TxtTelefone.Text = "Telefone";
+            TxtEmail.Text = "Email";
+        }
+
+        private void LimparProduto()
+        {
+            txtEquipNome.Text = string.Empty;
+            txtCat.Text = "";
+            txtMarca.Text = "";
+            txtImei.Text = string.Empty;
+            txtObservacoes.Text = "";
+
+        }
+
+        private void HabilitarCampos()
+        {
+            DataMod.Enabled = true;
+            TxtCodigoCl.Enabled = true;
+            NrDoc.Enabled = true;
+            txtEstado.Enabled = true;
+            dateTimePicker1.Enabled = true;
+            txtDesconto.Enabled = true;
+            tsGravarDoc.Enabled = true;
+        }
+
+        private void DesabilitarBotoes()
+        {
+            BtnNovo.Enabled = false;
+            BtnEliminar.Enabled = false;
+            btnAbrirPr.Enabled = false;
+            btnGravarPr.Enabled = false;
+            TxtCodigoCl.Enabled = false;
+            tsGravarDoc.Enabled = false;
+            txtDesconto.Enabled = false;
+            dateTimePicker1.Enabled = false;
+        }
+
+        private void HabilitarBotoes()
+        {
+            BtnNovo.Enabled = true;
+            BtnEliminar.Enabled = true;
+            tsGravarDoc.Enabled = true;
+            btnAbrirPr.Enabled = true;
+            tsImprimir.Enabled = true;
+            btnAbrirCliente.Enabled = true;
+            txtDesconto.Enabled = true;
+            dateTimePicker1.Enabled = true;
+        }
+
+        private void HabilitarCliente()
+        {
+            label10.Visible = true;
+            lblFornecedor.Visible = false;
+            txtMorada.Visible = false;
+            cbCategoria.Visible = false;
+            TxtNomeCl.Enabled = true;
+            TxtTelefone.Enabled = true;
+            TxtEmail.Enabled = true;
+
+
+        }
+        private void HabilitarFornecedor()
+        {
+            label10.Visible = false;
+            lblFornecedor.Visible = true;
+            txtMorada.Visible = true;
+            cbCategoria.Visible = true;
+            cbCategoria.Enabled = true;
+
+            TxtEmail.Text = "Site";
+
+
+        }
+        private void HabilitarProduto()
+        {
+            txtEquipNome.Enabled = true;
+            txtCat.Enabled = true;
+            txtMarca.Enabled = true;
+            txtImei.Enabled = true;
+            txtObservacoes.Enabled = true;
+            txtTipoPr.Enabled = true;
+            btnGravarPr.Enabled = true;
+        }
+
+
+        private void TxtCodigoDoc_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            try
+            {
+                if (TxtCodigoDoc.Text != "")
+                {
+
+                    var tipoRow = dsDocumentos.TipoDocumentos.FindByCodDoc(TxtCodigoDoc.SelectedValue.ToString());
+
+                    if (tipoRow != null)
+                    {
+                        TxtDescricaoDoc.Text = tipoRow.Descricao;
+                        AtribuirDescriçaoCodCl();
+                        NrDoc.Text = dsDocumentos.DaNrDocSeguinte(TxtCodigoDoc.Text).ToString();
+
+                        HabilitarBotoes();
+                        HabilitarCampos();
+                        LimparProduto();
+                        dsDocumentos.ListaProdutos.Clear();
+                    }
+                    EstadoDoc();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao carregar tipo de documento: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+       
+        private void TxtCodigoCl_KeyDown_1(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.F4)
             {
-                if (TxtCodigoCl.Text=="CL")
+                if (TxtCodigoCl.Text == "CL")
                 {
                     AbrirSelecaoForn();
                 }
@@ -279,7 +619,7 @@ namespace TeleBerço
             }
         }
 
-        private void TxtCodigoCl_Leave(object sender, EventArgs e)
+        private void TxtCodigoCl_Leave_1(object sender, EventArgs e)
         {
             try
             {
@@ -300,6 +640,58 @@ namespace TeleBerço
 
             }
         }
+
+        private void NrDoc_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+
+            PreencheDocumento(TxtCodigoDoc.Text, int.Parse(NrDoc.Text));
+
+        }
+
+        private void txtDesconto_TextChanged(object sender, EventArgs e)
+        {
+            if ((txtDesconto.Text == "0") || (txtDesconto.Text == ""))
+            {
+                CalcularTotalDocumento();
+            }
+            else
+            {
+                AplicarDesconto();
+            }
+        }
+
+        private void cBoxEuro_CheckedChanged_1(object sender, EventArgs e)
+        {
+            AplicarDesconto();
+        }
+
+        private void cBoxPercent_CheckedChanged_1(object sender, EventArgs e)
+        {
+            AplicarDesconto();
+        }
+
+
+        private void DgridArtigos_RowLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (DgridArtigos.Rows[e.RowIndex].Cells["precoUntDataGridViewTextBoxColumn"].Value != null &&
+                    DgridArtigos.Rows[e.RowIndex].Cells["quantidadeDataGridViewTextBoxColumn"].Value != null)
+                {
+                    decimal precoUnitario = Convert.ToDecimal(DgridArtigos.Rows[e.RowIndex].Cells["precoUntDataGridViewTextBoxColumn"].Value);
+                    decimal quantidade = Convert.ToDecimal(DgridArtigos.Rows[e.RowIndex].Cells["quantidadeDataGridViewTextBoxColumn"].Value);
+                    decimal totalLinha = precoUnitario * quantidade;
+                    DgridArtigos.Rows[e.RowIndex].Cells["totalDataGridViewTextBoxColumn"].Value = Math.Round(totalLinha, 2);
+                }
+
+                CalcularTotalDocumento();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao atualizar linha: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
 
         private void btnNovoPr_Click_1(object sender, EventArgs e)
         {
@@ -419,7 +811,7 @@ namespace TeleBerço
 
                     dsDocumentos.UpdateDoc();
                     dsDocumentos.UpdateLinhas();
-                    
+
                     AtualizarEstoqueAoSalvarDocumento();
 
                     MessageBox.Show("Documento salvo com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -503,28 +895,7 @@ namespace TeleBerço
             }
         }
 
-        private void DgridArtigos_RowLeave(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                if (DgridArtigos.Rows[e.RowIndex].Cells["precoUntDataGridViewTextBoxColumn"].Value != null &&
-                    DgridArtigos.Rows[e.RowIndex].Cells["quantidadeDataGridViewTextBoxColumn"].Value != null)
-                {
-                    decimal precoUnitario = Convert.ToDecimal(DgridArtigos.Rows[e.RowIndex].Cells["precoUntDataGridViewTextBoxColumn"].Value);
-                    decimal quantidade = Convert.ToDecimal(DgridArtigos.Rows[e.RowIndex].Cells["quantidadeDataGridViewTextBoxColumn"].Value);
-                    decimal totalLinha = precoUnitario * quantidade;
-                    DgridArtigos.Rows[e.RowIndex].Cells["totalDataGridViewTextBoxColumn"].Value = Math.Round(totalLinha, 2);
-                }
 
-                CalcularTotalDocumento();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Erro ao atualizar linha: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-     
 
         private void btnNovoCliente_Click(object sender, EventArgs e)
         {
@@ -549,7 +920,7 @@ namespace TeleBerço
 
                     }
                     else
-                    { 
+                    {
                         PrepararCliente();
                     }
                 }
@@ -580,7 +951,7 @@ namespace TeleBerço
 
                         MessageBox.Show("Cliente Criado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         LimparCliente();
-                        
+
                         BtnGravarCliente.Enabled = false;
                         TxtNomeCl.Enabled = false;
                     }
@@ -596,10 +967,6 @@ namespace TeleBerço
             }
         }
 
-        private void cBoxEuro_CheckedChanged(object sender, EventArgs e)
-        {
-            AplicarDesconto();
-        }
 
         private void btnAbrirPr_Click_1(object sender, EventArgs e)
         {
@@ -623,349 +990,151 @@ namespace TeleBerço
             }
         }
 
-        private void AtribuirDescriçaoCodCl()
-        {
-            if (TxtDescricaoDoc.Text.Contains("Fornecedor"))
-            {
-                HabilitarFornecedor();
-                TxtCodigoCl.Text = "FN";
-
-            }
-            else if (TxtDescricaoDoc.Text.Contains("Cliente"))
-            {
-                HabilitarCliente();
-
-                TxtCodigoCl.Text = "CL";
-            }
-            else
-            {
-                TxtCodigoCl.Text = "CL";
-            }
-        }
-
-        private void NrDoc_SelectedIndexChanged(object sender, EventArgs e)
-        {
-           
-            PreencheDocumento(TxtCodigoDoc.Text, int.Parse(NrDoc.Text));
-           
-        }
-
-        public void AtualizarEstoqueAoSalvarDocumento()
-        {
-            // Obter o tipo do documento
-            string tipoDocumento = dsDocumentos.CabecDocumento[0].TipoDocumento;
-            string tipoEntrada = "";
-            DateTime data = dsDocumentos.CabecDocumento[0].DataRececao;
-            if ((tipoDocumento.Contains("FTC")) || (tipoDocumento.Contains("NDF")))
-            {
-                // Para vendas e devoluções ao fornecedor, diminuir o estoque
-                tipoEntrada = "S";
-            }
-            else if ((tipoDocumento.Contains("FTF")) || (tipoDocumento.Contains("NDC")))
-            {
-                // Para compras e devoluções de clientes, aumentar o estoque
-                tipoEntrada = "E";
-            }
-            // Exemplo: "Venda", "Compra", "Devolucao"
-           
-            // Iterar sobre a ListaProdutos associada ao documento
-            foreach (ListaProdutosRow produtos in dsDocumentos.ListaProdutos.Rows)
-            {
-                // Apenas processar linhas que não foram excluídas
-                if (produtos.RowState != DataRowState.Deleted)
-                {
-                    ProdutosRow produto = dsProdutos.Produtos.FindByCodPr(produtos.Produto);
-                    dsStock.PesquisarStock(produtos.Produto, produto);
-
-                    dsStock.AtualizarStock(produtos.Produto, produtos.Quantidade, tipoDocumento);
-                
-                }
-            }          
-        }
-
-        private void AplicarDesconto()
-        {
-            try
-            {
-                if (decimal.TryParse(txtTotal.Text, out decimal total) && decimal.TryParse(txtDesconto.Text, out decimal desconto))
-                {
-                    if (cBoxEuro.Checked)
-                    {
-                        total -= desconto;
-                        cBoxPercent.Checked = false;
-                        cBoxPercent.Enabled = false;
-                        txtTotal.Text = total.ToString("F2");
-                    }
-
-                    else if (cBoxPercent.Checked)
-                    {
-                        total -= (total * (desconto / 100));
-                        cBoxEuro.Enabled = false;
-                        cBoxEuro.Checked = false;
-                        txtTotal.Text = total.ToString("F2");
-                    }
-                    else
-                    {
-                        cBoxEuro.Enabled = true;
-                        cBoxPercent.Enabled = true;
-                        CalcularTotalDocumento();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Erro ao aplicar desconto: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void AbrirSelecaoForn()
+        private void tsMarcas_Click_1(object sender, EventArgs e)
         {
             try
             {
                 FrmDados frmDados = new FrmDados();
-                frmDados.MostrarTabelaDados("DsFornecedores");
-
-                if (frmDados.RowSelecionada is FornecedoresRow clienteRow)
-                {
-                    TxtCodigoCl.Text = clienteRow.FornecedorID;
-                    TxtNomeCl.Text = clienteRow.Nome;
-                    TxtTelefone.Text = clienteRow.Contato;
-                    TxtEmail.Text = clienteRow.Site;
-
-                    HabilitarCliente();
-                }
+                frmDados.MostrarTabelaDados("DsMarcas");
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erro ao selecionar cliente: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Erro ao carregar Marcas: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void AbrirSelecaoClientes()
+        private void tsAddMarcas_Click_1(object sender, EventArgs e)
         {
             try
             {
-                FrmDados frmDados = new FrmDados();
-                frmDados.MostrarTabelaDados("DsClientes");
-
-                if (frmDados.RowSelecionada is ClientesRow clienteRow)
-                {
-                    TxtCodigoCl.Text = clienteRow.CodCl;
-                    TxtNomeCl.Text = clienteRow.Nome;
-                    TxtTelefone.Text = clienteRow.Telefone;
-                    TxtEmail.Text = clienteRow.Email;
-                    HabilitarCliente();
-                }
+                FrmCat_Marca frmCat_Marca = new FrmCat_Marca();
+                frmCat_Marca.tipoDadosAtual = FrmCat_Marca.TipoDados.Marcas;
+                frmCat_Marca.ShowDialog();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erro ao selecionar cliente: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Erro ao abrir formulario: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+        private void tsAddCategorias_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                FrmCat_Marca frmCat_Marca = new FrmCat_Marca();
+                frmCat_Marca.tipoDadosAtual = FrmCat_Marca.TipoDados.Categorias;
+                frmCat_Marca.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao abrir formulario: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void AbrirSelecaoDocumentos()
+
+
+        private void tsAddCl_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                FrmClientes frmClientes = new FrmClientes();
+                frmClientes.tipoDadosAtual = FrmClientes.TipoDados.Clientes;
+                frmClientes.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao abrir formulário de clientes: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void tsConsultaCliente_Click_1(object sender, EventArgs e)
+        {
+            AbrirSelecaoClientes();
+        }
+
+        private void tsConsultaForn_Click_1(object sender, EventArgs e)
+        {
+            AbrirSelecaoForn();
+        }
+
+
+        private void tsAddForn_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                FrmClientes frmClientes = new FrmClientes();
+                frmClientes.tipoDadosAtual = FrmClientes.TipoDados.Fornecedores;
+                frmClientes.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao abrir formulário de fornecedores: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+        private void tsArmazem_Click(object sender, EventArgs e)
+        {
+            FrmStock frmStock = new FrmStock();
+            frmStock.ShowDialog();
+        }
+
+
+
+
+        private void tsAddCl_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                FrmClientes frmClientes = new FrmClientes();
+                frmClientes.tipoDadosAtual = FrmClientes.TipoDados.Clientes;
+                frmClientes.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao abrir formulário de clientes: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+        private void tsDocumentos_Click(object sender, EventArgs e)
         {
             try
             {
                 FrmDados frmDados = new FrmDados();
                 frmDados.MostrarTabelaDados("DsDocumentos");
-
-                if (frmDados.RowSelecionada is DsDocumentos.CabecDocumentoRow docRow)
-                {
-                    TxtCodigoDoc.Text = docRow.TipoDocumento;
-                    TxtDescricaoDoc.Text = dsDocumentos.TipoDocumentos
-                        .FirstOrDefault(t => t.CodDoc == docRow.TipoDocumento)?.Descricao;
-                    NrDoc.Text = docRow.NrDocumento.ToString();
-                    PreencheDocumento(docRow.TipoDocumento, docRow.NrDocumento);
-                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erro ao selecionar documento: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Erro ao carregar Documentos: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void EstadoDoc()
-        {
-            if (TxtCodigoDoc.Text.Contains( "OR"))
-            {
-                txtEstado.Items.Clear();
-                txtEstado.Items.AddRange(new string[] { "Entregue", "Aceite", "Cancelado", "Finalizado" });
-            }
-            else if (TxtCodigoDoc.Text.Contains( "FT"))
-            {
-                txtEstado.Items.Clear();
-                txtEstado.Items.AddRange(new string[] { "Emitida", "Concluida", "Anulada" });
-            }
-            else if (TxtCodigoDoc.Text.Contains("ED"))
-            {
-                txtEstado.Items.Clear();
-                txtEstado.Items.AddRange(new string[] { "Realizada", "Em espera", "Cancelada", "Em andamento" });
-            }
-            else if (TxtCodigoDoc.Text.Contains( "ND"))
-            {
-                txtEstado.Items.Clear();
-                txtEstado.Items.AddRange(new string[] { "Numerario", "Artigo", "Cancelada" });
-            }
 
-
-        }
-        private void CalcularTotalDocumento()
+        private void tsConsultaCat_Click(object sender, EventArgs e)
         {
             try
             {
-                decimal soma = 0;
-
-                foreach (DataGridViewRow linha in DgridArtigos.Rows)
-                {
-                    if (linha.Cells["totalDataGridViewTextBoxColumn"].Value != null)
-                    {
-                        soma += Convert.ToDecimal(linha.Cells["totalDataGridViewTextBoxColumn"].Value);
-                    }
-                }
-
-                txtTotal.Text = soma.ToString("F2");
+                FrmDados frmDados = new FrmDados();
+                frmDados.MostrarTabelaDados("DsCategorias");
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erro ao calcular total: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Erro ao carregar Categorias: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void AdicionarDescricoesPr()
+
+        private void btnAbrirCliente_Click(object sender, EventArgs e)
         {
-            try
+            if (TxtDescricaoDoc.Text.Contains("Fornecedor"))
             {
-                foreach (DataGridViewRow linha in DgridArtigos.Rows)
-                {
-                    // Preenche a coluna Marca
-                    if (linha.Cells["Marca"].Value != DBNull.Value)
-                    {
-                        linha.Cells["NomeMarca"].Value = querryProdutosTableAdapter.NomeMarca(int.Parse(linha.Cells["Marca"].Value.ToString()));
-                    }
-                    // Preenche a coluna Categoria
-                    if (linha.Cells["Categoria"].Value != DBNull.Value)
-                    {
-                        linha.Cells["NomeCategoria"].Value = querryProdutosTableAdapter.NomeCategoria(linha.Cells["Categoria"].Value.ToString());
-                    }
-
-                }
-              
+                AbrirSelecaoForn();
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show($"Erro ao adicionar descricao: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                AbrirSelecaoClientes();
             }
-        }
-
-     
-
-
-        private void LimparFormulario()
-        {
-            NrDoc.Text = "0";
-            TxtCodigoDoc.Text = "";
-            TxtDescricaoDoc.Text = string.Empty;
-            DataMod.Value = DateTime.Now;
-            dateTimePicker1.Value = DateTime.Now;
-            txtTotal.Text = "0.00";
-            txtObservacoes.Text = string.Empty;
-            txtEstado.SelectedIndex = -1;
-
-            LimparCliente();
-           
-            LimparProduto();
-            txtObservacoes.Text = "";
-            dsClientes.Clientes.Clear();
-            dsDocumentos.CabecDocumento.Clear();
-            dsDocumentos.ListaProdutos.Clear();
-        }
-
-        private void LimparCliente()
-        {
-            TxtCodigoCl.Text = "";
-            TxtNomeCl.Text = "Nome";
-            TxtTelefone.Text = "Telefone";
-            TxtEmail.Text = "Email";
-        }
-
-        private void LimparProduto()
-        {
-            txtEquipNome.Text = string.Empty;
-            txtCat.Text = "";
-            txtMarca.Text = "";
-            txtImei.Text = string.Empty;
-            txtObservacoes.Text = "";
-
-        }
-
-        private void HabilitarCampos()
-        {
-            DataMod.Enabled = true;
-            TxtCodigoCl.Enabled = true;
-            NrDoc.Enabled = true;
-            txtEstado.Enabled = true;
-            dateTimePicker1.Enabled = true;
-            txtDesconto.Enabled = true;
-            tsGravarDoc.Enabled = true;
-        }
-
-        private void DesabilitarBotoes()
-        {
-            BtnNovo.Enabled = false;
-            BtnEliminar.Enabled = false;
-            btnAbrirPr.Enabled = false;
-            btnGravarPr.Enabled = false;
-            TxtCodigoCl.Enabled = false;
-            tsGravarDoc.Enabled = false;
-            txtDesconto.Enabled = false;
-            dateTimePicker1.Enabled = false;
-        }
-
-        private void HabilitarBotoes()
-        {
-            BtnNovo.Enabled = true;
-            BtnEliminar.Enabled = true;
-            tsGravarDoc.Enabled = true;
-            btnAbrirPr.Enabled = true;
-            tsImprimir.Enabled = true;
-            btnAbrirCliente.Enabled = true;
-            txtDesconto.Enabled = true;
-            dateTimePicker1.Enabled = true;
-        }
-
-        private void HabilitarCliente()
-        {
-            label10.Visible = true;
-            lblFornecedor.Visible = false;
-            txtMorada.Visible = false;
-            cbCategoria.Visible = false;
-            TxtNomeCl.Enabled = true;
-            TxtTelefone.Enabled = true;
-            TxtEmail.Enabled = true;
-
-
-        }
-        private void HabilitarFornecedor()
-        {
-            label10.Visible = false;
-            lblFornecedor.Visible = true;
-            txtMorada.Visible = true;
-            cbCategoria.Visible = true;
-            cbCategoria.Enabled = true;
-     
-            TxtEmail.Text = "Site";
-          
-
-        }
-            private void HabilitarProduto()
-        {
-            txtEquipNome.Enabled = true;
-            txtCat.Enabled = true;
-            txtMarca.Enabled = true;
-            txtImei.Enabled = true;
-            txtObservacoes.Enabled = true;
-            txtTipoPr.Enabled = true;
-            btnGravarPr.Enabled = true;
         }
 
         private void ConfigurarImpressao()
@@ -1503,10 +1672,10 @@ namespace TeleBerço
                     float bottomImgHeight = bottomImage.Height * (desiredBottomImgWidth / bottomImage.Width) - 75;
 
                     // Posicionar a imagem no fundo da página, centralizada horizontalmente
-                    float bottomImageX = marginLeft + (pageWidth/2) - (desiredBottomImgWidth/2);
-                    float bottomImageYPosition = marginTop + pageHeight - (bottomImgHeight/2); // Posicionar logo após o último conteúdo
+                    float bottomImageX = marginLeft + (pageWidth / 2) - (desiredBottomImgWidth / 2);
+                    float bottomImageYPosition = marginTop + pageHeight - (bottomImgHeight / 2); // Posicionar logo após o último conteúdo
 
-                    graphics.DrawImage(bottomImage, bottomImageX, bottomImageYPosition+30, desiredBottomImgWidth, bottomImgHeight);
+                    graphics.DrawImage(bottomImage, bottomImageX, bottomImageYPosition + 30, desiredBottomImgWidth, bottomImgHeight);
                     yPos = marginTop + pageHeight - bottomImgHeight - 50;
 
                 }
@@ -1514,169 +1683,10 @@ namespace TeleBerço
             return yPos;
         }
 
-        private void txtDesconto_TextChanged_1(object sender, EventArgs e)
-        {
-            if ((txtDesconto.Text == "0") || (txtDesconto.Text == ""))
-            {
-                CalcularTotalDocumento();
-            }
-            else
-            {
-                AplicarDesconto();
-            }
-        }
-
-       
-        private void tsMarcas_Click_1(object sender, EventArgs e)
-        {
-            try
-            {
-                FrmDados frmDados = new FrmDados();
-                frmDados.MostrarTabelaDados("DsMarcas");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Erro ao carregar Marcas: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void tsAddMarcas_Click_1(object sender, EventArgs e)
-        {
-            try
-            {
-                FrmCat_Marca frmCat_Marca = new FrmCat_Marca();
-                frmCat_Marca.tipoDadosAtual = FrmCat_Marca.TipoDados.Marcas;
-                frmCat_Marca.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Erro ao abrir formulario: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-        }
-
-        private void tsAddCategorias_Click_1(object sender, EventArgs e)
-        {
-            try
-            {
-                FrmCat_Marca frmCat_Marca = new FrmCat_Marca();
-                frmCat_Marca.tipoDadosAtual = FrmCat_Marca.TipoDados.Categorias;
-                frmCat_Marca.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Erro ao abrir formulario: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void cBoxPercent_CheckedChanged(object sender, EventArgs e)
-        {
-            AplicarDesconto();
-        }
-
-        private void tsAddCl_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                FrmClientes frmClientes = new FrmClientes();
-                frmClientes.tipoDadosAtual = FrmClientes.TipoDados.Clientes;
-                frmClientes.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Erro ao abrir formulário de clientes: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void tsConsultaCliente_Click_1(object sender, EventArgs e)
-        {
-            AbrirSelecaoClientes();
-        }
-
-        private void tsConsultaForn_Click_1(object sender, EventArgs e)
-        {
-            AbrirSelecaoForn();
-        }
-
-
-        private void tsAddForn_Click_1(object sender, EventArgs e)
-        {
-            try
-            {
-                FrmClientes frmClientes = new FrmClientes();
-                frmClientes.tipoDadosAtual = FrmClientes.TipoDados.Fornecedores;
-                frmClientes.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Erro ao abrir formulário de fornecedores: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-    
-        private void tsArmazem_Click(object sender, EventArgs e)
-        {
-            FrmStock frmStock = new FrmStock();
-            frmStock.ShowDialog();
-        }
-
-       
-  
-
-        private void tsAddCl_Click_1(object sender, EventArgs e)
-        {
-            try
-            {
-                FrmClientes frmClientes = new FrmClientes();
-                frmClientes.tipoDadosAtual = FrmClientes.TipoDados.Clientes;
-                frmClientes.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Erro ao abrir formulário de clientes: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-
-        private void tsDocumentos_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                FrmDados frmDados = new FrmDados();
-                frmDados.MostrarTabelaDados("DsDocumentos");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Erro ao carregar Documentos: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
+   
       
 
-        private void tsConsultaCat_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                FrmDados frmDados = new FrmDados();
-                frmDados.MostrarTabelaDados("DsCategorias");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Erro ao carregar Categorias: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void btnAbrirCliente_Click(object sender, EventArgs e)
-        {
-            if (TxtDescricaoDoc.Text.Contains("Fornecedor"))
-            {
-                AbrirSelecaoForn();
-            }
-            else
-            {
-                AbrirSelecaoClientes();
-            }
-        }
+       
     }
 }
 

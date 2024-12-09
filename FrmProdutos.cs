@@ -24,9 +24,8 @@ namespace TeleBerço
           
             if (RowSelecionada != null)
             {
-                dsArtigos.CarregaArtigos();
                 CarregarProdutoSelecionado();
-                HabilitarCampos();
+           
             }
             else
             {
@@ -207,9 +206,10 @@ namespace TeleBerço
 
                     // Se o produto não existe no estoque, adicioná-lo     
 
-                   dsStock.PesquisarStock(produtoRow.CodPr,produtoRow);               
-                              
-                       dsStock.UpdateStock();
+                  dsStock.PesquisarStock(produtoRow.CodPr);               
+                      
+                       dsStock.UpdateStock(); 
+                    
                     }
                 else
                 {

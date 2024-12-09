@@ -18,7 +18,7 @@ namespace TeleBerço
         public void CarregarStockPr()
         {
             StockPr.Clear();
-         
+
             stockPrTableAdapter.FillPr_Stock(StockPr);
         }
 
@@ -38,11 +38,11 @@ namespace TeleBerço
             movimentacoeStockTableAdapter.Update(MovimentacoeStock);
         }
 
-        public void NovoStockRow(ProdutosRow produto)
+        public void NovoStockRow(string produto)
         {
             var stock = Armazem.NewArmazemRow();
 
-            stock.ProdutoID = produto.CodPr;
+            stock.ProdutoID = produto;
             stock.Quantidade = 0;
             Armazem.AddArmazemRow(stock);
         }
@@ -52,7 +52,7 @@ namespace TeleBerço
             var movimento = MovimentacoeStock.NewMovimentacoeStockRow();
 
             movimento.ProdutoID = "";
-            movimento.DataMovimentacao = DateTime.Now;
+            movimento.DataMovimentacao = DateTime.Now.Date;
             movimento.Quantidade = 0;
             movimento.TipoMovimentacao = "";
             movimento.NomeProduto = "";
@@ -74,8 +74,9 @@ namespace TeleBerço
 
         }
 
-        public ArmazemRow PesquisarStock(string produto, ProdutosRow produtos)
+        public ArmazemRow PesquisarStock(string produto)
         {
+            Armazem.Clear();
             armazemTableAdapter.FillByProdutoId(Armazem, produto);
             if (Armazem.Rows.Count > 0)
             {
@@ -83,7 +84,9 @@ namespace TeleBerço
             }
             else
             {
-                NovoStockRow(produtos);
+                MessageBox.Show("Produto não existente em Stock. Criada entrada com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                NovoStockRow(produto);
                 return Armazem[0];
             }
         }
@@ -109,7 +112,7 @@ namespace TeleBerço
 
             string tipoEntrada = "";
             int ajusteQuantidade = 0;
-            DateTime data = DateTime.Now;
+            DateTime data = DateTime.Now.Date;
 
             if (stockRow.ProdutoID == produtoID)
             {
@@ -138,8 +141,8 @@ namespace TeleBerço
                     // Você pode decidir como tratar esse caso, por exemplo, impedir a operação
                     stockRow.Quantidade = 0; // Ajustar para zero para evitar estoque negativo
                 }
-               RegistrarMovimentacao(stockRow.ProdutoID, ajusteQuantidade, tipoEntrada, data);
-               UpdateStock();
+                RegistrarMovimentacao(stockRow.ProdutoID, Math.Abs(ajusteQuantidade), tipoEntrada, data);
+                UpdateStock();
             }
             else
             {
@@ -153,14 +156,14 @@ namespace TeleBerço
         {
             MovimentacoeStock.Clear();
             NovoMovimentoRow();
-           
+
             MovimentacoeStockRow novaMovimentacao = MovimentacoeStock[0];
 
             novaMovimentacao.ProdutoID = produtoID;
             novaMovimentacao.Quantidade = quantidade;
             novaMovimentacao.TipoMovimentacao = tipoMovimento; // 'E' para entrada, 'S' para saída
             novaMovimentacao.NomeProduto = querryProdutosTableAdapter.NomeProduto(produtoID);
-            novaMovimentacao.DataMovimentacao = date;
+            novaMovimentacao.DataMovimentacao = date.Date;
 
             UpdateMovimentos();
         }

@@ -125,7 +125,7 @@ namespace TeleBerço
             novaLinha.Produto = rowSelecionada.CodPr;
             novaLinha.Observacao = rowSelecionada.Observacao;
             novaLinha.Quantidade = 0;
-            novaLinha.PrecoUnt = rowSelecionada.PreçoVenda;
+            novaLinha.PrecoUnt = decimal.Parse(rowSelecionada.PreçoVenda.ToString("F2")); 
             novaLinha.Total = (decimal)0.00;
             novaLinha.IMEI = rowSelecionada.IMEI;
             novaLinha.Marca = rowSelecionada.Marcas;

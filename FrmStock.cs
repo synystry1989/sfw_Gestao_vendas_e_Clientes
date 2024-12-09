@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Data;
-using System.Linq;
 using System.Windows.Forms;
 using TeleBerço.DsProdutosTableAdapters;
-using static TeleBerço.DsProdutos;
 using static TeleBerço.DsStock;
 
 namespace TeleBerço
@@ -17,10 +15,10 @@ namespace TeleBerço
 
         DsStock dsStock = new DsStock();
         DsProdutos dsArtigos = new DsProdutos();
-        public DataRow RowSelecionada{ get; private set; }
- 
+        public DataRow RowSelecionada { get; private set; }
 
-     
+
+
         public DataView dataViewStock { get; set; }
         public DataView dataViewMov { get; set; }
 
@@ -29,10 +27,10 @@ namespace TeleBerço
 
         private void FrmStock_Load(object sender, EventArgs e)
         {
-          
+
             CarregarMovimentos();
             CarregarStockPr();
-            
+
             ConfigurarControles();
 
         }
@@ -43,9 +41,9 @@ namespace TeleBerço
                 // Configura os controles de filtro e pesquisa com base no tipo de dados atual
                 cbTipoDoc.Items.AddRange(new string[] { "Entrada", "Saida" });
                 cbFiltro.Items.Clear();
+                cbFiltro.Enabled = true;
                 cbOrdenar.Items.Clear();
-                dateTimePicker1.Visible = false;
-                dateTimePicker2.Visible = false;
+
 
                 dGridStock.Columns["Marca"].Visible = false;
                 dGridStock.Columns["Categoria"].Visible = false;
@@ -53,20 +51,17 @@ namespace TeleBerço
                 dGridStock.Columns["CodPr"].HeaderText = "Codigo";
                 dGridStock.Columns["NomeMarca"].HeaderText = "Marca";
                 dGridStock.Columns["NomeCategoria"].HeaderText = "Categoria";
+                dGridStock.Columns["NomeCategoria"].DisplayIndex = 1;
+                dGridStock.Columns["NomeMarca"].DisplayIndex = 2;
+                dGridStock.Columns["CodPr"].DisplayIndex = 3;
+                dGridStock.Columns["NomeProduto"].DisplayIndex = 4;
 
-
-                //dGridProdutos.Columns["Marcas"].Visible = false;
-                //dGridProdutos.Columns["Categorias"].Visible = false;
-
-                //dGridProdutos.Columns["NomeProduto"].Visible = false;
-                //dGridProdutos.Columns["PreçoVenda"].Visible = false;
-                //dGridProdutos.Columns["PrecoCusto"].Visible = false;
-
-                //dGridStock.Columns["ProdutoID"].Visible = false;
 
                 dgridMovimentos.Columns["ProdutoID"].Visible = false;
+                dgridMovimentos.Columns["NomeProduto"].DisplayIndex = 1;
                 dgridMovimentos.Columns["NomeProduto"].HeaderText = "Produto";
 
+                cbOrdenar.Items.AddRange(new string[] { "Data", "Tipo", "Produto" });
 
             }
             catch (Exception ex)
@@ -99,7 +94,7 @@ namespace TeleBerço
 
         private void CarregarStockPr()
         {
-           
+
             dsStock.CarregarStockPr();
             AdicionarDetalhesProdutos();
             dataViewStock = new DataView(dsStock.StockPr);
@@ -117,14 +112,25 @@ namespace TeleBerço
 
         private void AplicarFiltroPorDatas(DateTime dataInicio, DateTime dataFim)
         {
-            string campoData = cbFiltro.SelectedItem.ToString().Replace(" ", "");
-            dataViewMov.RowFilter = $"{campoData} >= '{dataInicio:yyyy-MM-dd}' AND {campoData} <= '{dataFim:yyyy-MM-dd}'";
+            DateTime inicioDoDia = dataInicio.Date;
+
+            DateTime fimDoDia = dataFim.Date;
+            // mesma data, hora zero
+
+
+            dataViewMov.RowFilter = string.Format("{0} >= #{1:MM/dd/yyyy}# AND {0} < #{2:MM/dd/yyyy}#",
+                                               "DataMovimentacao", inicioDoDia, fimDoDia);
+
         }
 
         private void AplicarFiltroPorData(DateTime data)
         {
-            string campoData = cbFiltro.SelectedItem.ToString().Replace(" ", "");
-            dataViewMov.RowFilter = $"{campoData} = '{data:yyyy-MM-dd}'";
+            DateTime inicioDoDia = data.Date;        // mesma data, hora zero
+            DateTime fimDoDia = inicioDoDia.AddDays(1);
+
+            dataViewMov.RowFilter = string.Format("{0} >= #{1:MM/dd/yyyy}# AND {0} < #{2:MM/dd/yyyy}#",
+                                                  "DataMovimentacao", inicioDoDia, fimDoDia);
+
         }
 
         private void SelecionarLinhaAtual(DataGridView dataGrid)
@@ -141,13 +147,13 @@ namespace TeleBerço
                 MessageBox.Show($"Erro ao selecionar item: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-        private void dateTimePicker2_KeyDown(object sender, KeyEventArgs e)
+        private void dateTimePicker2_KeyDown_1(object sender, KeyEventArgs e)
         {
             try
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    AplicarFiltroPorData(dateTimePicker2.Value.Date);
+                    AplicarFiltroPorData(dateTimePicker2.Value);
                 }
             }
             catch (Exception ex)
@@ -156,7 +162,7 @@ namespace TeleBerço
             }
         }
 
-        private void dateTimePicker1_KeyDown(object sender, KeyEventArgs e)
+        private void dateTimePicker1_KeyDown_1(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
@@ -166,9 +172,9 @@ namespace TeleBerço
                     return;
                 }
 
-                AplicarFiltroPorDatas(dateTimePicker2.Value.Date, dateTimePicker1.Value.Date);
+                AplicarFiltroPorDatas(dateTimePicker2.Value, dateTimePicker1.Value);
             }
-        }   
+        }
 
         private void AdicionarDetalhes()
         {
@@ -187,23 +193,6 @@ namespace TeleBerço
             }
 
         }
-
-  
-        public void PreencherStock(ProdutosRow produto)
-        {
-            
-            var stockRow = dsStock.PesquisarStock(TxtCodigo.Text,produto);
-            if (stockRow.ProdutoID != "")
-            {
-                TxtCodigo.Text = stockRow.ProdutoID;
-                TxtNome.Text = stockRow.Quantidade.ToString();
-            }
-            else
-            {
-                Limpar();
-            }
-        }
-
         private bool ValidarPreenchimento()
         {
             return !string.IsNullOrWhiteSpace(TxtCodigo.Text) &&
@@ -218,26 +207,25 @@ namespace TeleBerço
             dataViewStock.RowFilter = $"NomeProduto LIKE '%{termo}%' OR Marca LIKE '%{termo}%' OR Categoria LIKE '%{termo}%'OR IMEI LIKE '%{termo}%' OR Tipo LIKE '%{termo}%'";
         }
 
-        private void btnPesquisar_Click(object sender, EventArgs e)
+        private void btnPesquisar_Click_1(object sender, EventArgs e)
         {
 
         }
         //fill da grid consoante os filtros
-        private void btnAplicar_Click(object sender, EventArgs e)
+        private void btnAplicar_Click_1(object sender, EventArgs e)
         {
             if (cbOrdenar.SelectedItem == null || cbFiltro.SelectedItem == null)
             {
                 MessageBox.Show("Por favor, selecione um campo e um valor para filtrar.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
             string campo = cbOrdenar.SelectedItem.ToString();
             string valor = cbFiltro.SelectedItem.ToString();
 
             AplicarFiltro(campo, valor);
         }
 
-        private void cbOrdenar_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbOrdenar_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             cbFiltro.Items.Clear();
 
@@ -245,36 +233,24 @@ namespace TeleBerço
             {
                 return;
             }
-
             string campo = cbOrdenar.SelectedItem.ToString();
 
-           
-                    if (campo == "Data")
-                    {
-                        cbFiltro.Items.AddRange(new string[] { "Data Entrega", "Data Rececao" }); // Ajuste conforme necessário
+            if (campo == "Data")
+            {
+                cbFiltro.Items.AddRange(new string[] { "Dia", "Periodo" }); // Ajuste conforme necessário               
 
-                        dateTimePicker1.Visible = true;
-                        dateTimePicker2.Visible = true;
-                    }
-                    else if (campo == "Tipo Doc")
-                    {
-                        //dsDocumentos.CarregaTipoDoc();
-                        //var tiposDoc = dsDocumentos.TipoDocumentos.AsEnumerable().Select(t => t.Descricao).ToArray();
-                        //cbFiltro.Items.AddRange(tiposDoc);
-                    }
-                    else if (campo == "Estado")
-                    {
-                        cbFiltro.Items.AddRange(new string[] { "Pronto", "Em Preparacao", "Cancelado", "Em Espera" }); // Ajuste conforme necessário
-                    }
-                                         
-
+            }
+            else if (campo == "Tipo")
+            {
+                cbFiltro.Items.AddRange(new string[] { "E", "S" }); // Ajuste conforme necessário
+            }
+            cbFiltro.Text = "";
             cbFiltro.Enabled = cbFiltro.Items.Count > 0;
         }
 
         private void AplicarFiltro(string campo, string valor)
         {
             dataViewMov.RowFilter = $"{campo}  = '{valor}'";
-
         }
 
         private void txtPesquisa_TextChanged(object sender, EventArgs e)
@@ -285,9 +261,8 @@ namespace TeleBerço
                 // Se o texto for apagado, recarrega os dados originais
                 btnRefresh_Click(sender, e);
             }
-
         }
-   
+
         private void BtnGravar_Click(object sender, EventArgs e)
         {
             if (ValidarPreenchimento())
@@ -306,13 +281,13 @@ namespace TeleBerço
                 else
                 {
                     valorNovo = valorAntigo - valor;
-                    tipoDoc = "FTC";                 
-                    
+                    tipoDoc = "FTC";
+
                 }
                 stock.ProdutoID = TxtCodigo.Text;
 
                 dsStock.AtualizarStock(stock.ProdutoID, valor, tipoDoc);
-               
+                btnRefresh_Click(sender, e);
                 Limpar();
             }
         }
@@ -323,8 +298,8 @@ namespace TeleBerço
             SelecionarLinhaAtual(dGridStock);
             if (RowSelecionada is StockPrRow row)
             {
-               ProdutosRow produtoRow = dsArtigos.PesquisarArtigo(row.CodPr);
-               ArmazemRow stock = dsStock.PesquisarStock(row.CodPr, produtoRow);
+
+                ArmazemRow stock = dsStock.PesquisarStock(row.CodPr);
                 TxtCodigo.Text = dsStock.Armazem[0].ProdutoID;
                 TxtNome.Text = dsStock.Armazem[0].Quantidade.ToString();
             }
@@ -359,6 +334,24 @@ namespace TeleBerço
             CarregarMovimentos();
             CarregarStockPr();
 
+        }
+
+        private void cbFiltro_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbFiltro.Text == "Dia")
+            {
+                dateTimePicker2.Visible = true;
+            }
+            else if (cbFiltro.Text == "Periodo")
+            {
+                dateTimePicker1.Visible = true;
+                dateTimePicker2.Visible = true;
+            }
+            else
+            {
+                dateTimePicker1.Visible = false;
+                dateTimePicker2.Visible = false;
+            }
         }
     }
 }

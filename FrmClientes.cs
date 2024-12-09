@@ -34,16 +34,18 @@ namespace TeleBerço
                 if (RowSelecionada != null)
                 {
                     CarregarClienteSelecionado();
+
                 }
                 else
                 {
                     PrepararNovoCliente();
                 }
+              
             }
             else if (tipoDadosAtual == TipoDados.Fornecedores)
             {
-                ConfigInicialForn();
 
+                ConfigInicialForn();
                 if (RowSelecionada != null)
                 {
                     CarregarFornecedorSelecionado();
@@ -53,7 +55,6 @@ namespace TeleBerço
                     PrepararNovoFornecedor();
                 }
             }
-
         }
 
         private void ConfigInicialCl()
@@ -68,17 +69,18 @@ namespace TeleBerço
 
             LabelCliente.Visible = true;
             LblEmail.Visible = true;
+            HabilitarCampos();
         }
         private void ConfigInicialForn()
         {
             LabelCliente.Visible = false;
             LblEmail.Visible = false;
-
             lblForncedor.Visible = true;
             lblMorada.Visible = true;
             lblLoja.Visible = true;
             cbCategoria.Visible = true;
             label1.Visible = true;
+            HabilitarCampos();
         }
 
 
@@ -104,6 +106,8 @@ namespace TeleBerço
                 var clienteRow = (ClientesRow)RowSelecionada;
                 TxtCodigoCl.Text = clienteRow.CodCl;
                 PreencherCliente();
+                HabilitarCampos();
+             
 
             }
             catch (Exception ex)
@@ -116,7 +120,6 @@ namespace TeleBerço
         {
             try
             {
-
                 LimparFormulario();
                 TxtCodigoCl.Text = dsClientes.DaProxNrCliente();
             }
@@ -205,7 +208,7 @@ namespace TeleBerço
 
         private void HabilitarCampos()
         {
-            TxtCodigoCl.Enabled = true;
+          
             TxtNomeCl.Enabled = true;
             TxtTelefone.Enabled = true;
             TxtEmail.Enabled = true;
@@ -396,6 +399,7 @@ namespace TeleBerço
                 if (frmDados.DialogResult == DialogResult.OK)
                 {
                     CarregarFornecedorSelecionado();
+
                 }
             }
         }

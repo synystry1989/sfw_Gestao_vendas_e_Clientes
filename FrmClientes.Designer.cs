@@ -59,6 +59,7 @@
             // 
             this.BtnEliminar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BtnEliminar.BackColor = System.Drawing.Color.White;
+            this.BtnEliminar.Enabled = false;
             this.BtnEliminar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.BtnEliminar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.BtnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -116,6 +117,7 @@
             // 
             this.BtnGravar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BtnGravar.BackColor = System.Drawing.Color.White;
+            this.BtnGravar.Enabled = false;
             this.BtnGravar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.BtnGravar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.BtnGravar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;

@@ -139,6 +139,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DsProdutos.xsd</DependentUpon>
     </Compile>
+    <Compile Include="DsStock.cs">
+      <DependentUpon>DsStock.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DsStock.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DsStock.xsd</DependentUpon>
+    </Compile>
     <Compile Include="FrmCat_Marca.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -175,6 +183,12 @@
     <Compile Include="FrmProdutos.Designer.cs">
       <DependentUpon>FrmProdutos.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmStock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmStock.Designer.cs">
+      <DependentUpon>FrmStock.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FrmCat_Marca.resx">
@@ -194,6 +208,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmProdutos.resx">
       <DependentUpon>FrmProdutos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmStock.resx">
+      <DependentUpon>FrmStock.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -237,6 +254,17 @@
     </None>
     <None Include="DsProdutos.xss">
       <DependentUpon>DsProdutos.xsd</DependentUpon>
+    </None>
+    <None Include="DsStock.xsc">
+      <DependentUpon>DsStock.xsd</DependentUpon>
+    </None>
+    <None Include="DsStock.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DsStock.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DsStock.xss">
+      <DependentUpon>DsStock.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

@@ -2,6 +2,7 @@
 using System.Data;
 using System.Windows.Forms;
 using static TeleBerço.DsProdutos;
+using static TeleBerço.DsStock;
 
 namespace TeleBerço
 {
@@ -10,7 +11,7 @@ namespace TeleBerço
         public DataRow RowSelecionada { get; set; }
         private FrmDados frmDados = new FrmDados();
         private DsProdutos dsArtigos = new DsProdutos();
-
+        private DsStock dsStock = new DsStock();
 
         public FrmProdutos()
         {
@@ -20,18 +21,17 @@ namespace TeleBerço
         private void FrmProdutos_Load(object sender, EventArgs e)
         {
             CarregarMarcasECategorias();
-            TxtCodigoPr.Focus();
+          
             if (RowSelecionada != null)
             {
-                dsArtigos.CarregaArtigos();
                 CarregarProdutoSelecionado();
-                HabilitarCampos();
+           
             }
             else
             {
                 PrepararNovoProduto();
             }
-
+            TxtCodigoPr.Select();
         }
 
         private void CarregarMarcasECategorias()
@@ -64,8 +64,8 @@ namespace TeleBerço
             TxtPreco.Text = string.Empty;
             txtImei.Text = string.Empty;
             txtTipoPr.Text = string.Empty;
-            txtMarca.SelectedIndex = -1;
-            txtModelo.SelectedIndex = -1;
+            txtMarca.Text = "";
+            txtModelo.Text = "";
         }
 
         private void HabilitarCampos()
@@ -129,7 +129,6 @@ namespace TeleBerço
         {
             try
             {
-                dsArtigos.NovoArtigo();
                 LimparFormulario();
                 TxtCodigoPr.Text = dsArtigos.DaProxCodArtigo();
             }
@@ -155,12 +154,13 @@ namespace TeleBerço
                     txtTipoPr.Text = produtoRow.Tipo;
                     txtMarca.SelectedValue = produtoRow.Marcas;
                     txtModelo.SelectedValue = produtoRow.Categorias;
+               
                 }
                 else
                 {
-                    LimparFormulario();
-                    TxtCodigoPr.Text = produtoRow.CodPr;
+                    PrepararNovoProduto();
                 }
+               
             }
             catch (Exception ex)
             {
@@ -187,7 +187,7 @@ namespace TeleBerço
                 if (ValidarPreenchimento())
                 {
                     ProdutosRow produtoRow = dsArtigos.Produtos[0];
-
+                 
                     produtoRow.CodPr = TxtCodigoPr.Text;
                     produtoRow.NomeProduto = TxtNomeProduto.Text;
                     produtoRow.Observacao = TxtObservacao.Text;
@@ -197,14 +197,20 @@ namespace TeleBerço
                     produtoRow.Tipo = txtTipoPr.Text;
                     produtoRow.Marcas = (int)txtMarca.SelectedValue;
                     produtoRow.Categorias = txtModelo.SelectedValue.ToString();
-
+                  
                     dsArtigos.UpdateArtigos();
 
                     MessageBox.Show("Produto salvo com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     LimparFormulario();
                     DesabilitarCampos();
 
-                }
+                    // Se o produto não existe no estoque, adicioná-lo     
+
+                  dsStock.PesquisarStock(produtoRow.CodPr);               
+                      
+                       dsStock.UpdateStock(); 
+                    
+                    }
                 else
                 {
                     MessageBox.Show("Por favor, preencha corretamente todos os campos .", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -237,7 +243,7 @@ namespace TeleBerço
         {
             if (e.KeyCode == Keys.F4)
             {
-                FrmDados frmDados = new FrmDados();
+              
                 frmDados.MostrarTabelaDados("DsMarcas");
                 dsArtigos.CarregarMarcas();
             }
@@ -247,7 +253,7 @@ namespace TeleBerço
         {
             if (e.KeyCode == Keys.F4)
             {
-                FrmDados frmDados = new FrmDados();
+              
                 frmDados.MostrarTabelaDados("DsCategorias");
                 dsArtigos.CarregaCategorias();
             }
@@ -266,10 +272,12 @@ namespace TeleBerço
 
                 if (resultado == DialogResult.Yes)
                 {
-                    TxtCodigoPr.Select();
+                    TxtCodigoPr.Focus();
                     dsArtigos.EliminarPr(TxtCodigoPr.Text);
+                    dsStock.EliminarStock(TxtCodigoPr.Text);
                     LimparFormulario();
                     DesabilitarCampos();
+                    
                     MessageBox.Show("Produto excluído com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else

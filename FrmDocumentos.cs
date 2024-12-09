@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
 using System.Drawing;
 using System.Drawing.Printing;
 using System.IO;
@@ -7,6 +9,7 @@ using System.Linq;
 using System.Windows.Forms;
 using TeleBerço.DsProdutosTableAdapters;
 using static TeleBerço.DsClientes;
+using static TeleBerço.DsDocumentos;
 using static TeleBerço.DsProdutos;
 
 namespace TeleBerço
@@ -15,6 +18,7 @@ namespace TeleBerço
     {
         // Datasets e TableAdapters
         private DsClientes dsClientes = new DsClientes();
+        DsStock dsStock = new DsStock();
         private QuerryProdutosTableAdapter querryProdutosTableAdapter = new QuerryProdutosTableAdapter();
         // Variáveis de controle
         private PrintDocument printDocument = new PrintDocument();
@@ -26,9 +30,12 @@ namespace TeleBerço
 
         private void FrmDocumentos_Load(object sender, EventArgs e)
         {
+            // TODO: esta linha de código carrega dados na tabela 'dsProdutos.Categorias'. Você pode movê-la ou removê-la conforme necessário.
+            this.categoriasTableAdapter.Fill(this.dsProdutos.Categorias);
+
             try
             {
-                FormatarTabelas();
+          
                 CarregarDadosIniciais();
                 LimparFormulario();
             }
@@ -45,12 +52,11 @@ namespace TeleBerço
                 dsProdutos.CarregaCategorias();
                 dsProdutos.CarregarMarcas();
                 dsDocumentos.CarregaTipoDoc();
-                TxtCodigoDoc.Focus();
-                // Configurar ComboBoxes
+             
 
                 TxtCodigoDoc.Text = "";
 
-
+             
             }
 
             catch (Exception ex)
@@ -163,39 +169,11 @@ namespace TeleBerço
                    !string.IsNullOrWhiteSpace(TxtCusto.Text);
         }
 
-        private void TxtCodigoDoc_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (TxtCodigoDoc.Text != "")
-                {
-
-                    var tipoRow = dsDocumentos.TipoDocumentos.FindByCodDoc(TxtCodigoDoc.SelectedValue.ToString());
-
-                    if (tipoRow != null)
-                    {
-                        TxtDescricaoDoc.Text = tipoRow.Descricao;
-                        NrDoc.Text = dsDocumentos.DaNrDocSeguinte(TxtCodigoDoc.Text).ToString();
-
-                        HabilitarBotoes();
-                        HabilitarCampos();
-                        LimparProduto();
-                        dsDocumentos.ListaProdutos.Clear();
-                    }
-                    EstadoDoc();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Erro ao carregar tipo de documento: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
         public void PrepararCliente()
         {
-            
-            TxtCodigoCl.Text = dsClientes.DaProxNrCliente();
 
+            TxtCodigoCl.Text = dsClientes.DaProxNrCliente();
+       
             BtnGravarCliente.Enabled = true;
             HabilitarCliente();
 
@@ -215,11 +193,9 @@ namespace TeleBerço
             else
             {
                 PrepararCliente();
-
             }
 
         }
-
         public void PreencherFornecedor()
         {
             var fornecedorRow = dsClientes.PesquisaFornecedor(TxtCodigoCl.Text);
@@ -229,413 +205,87 @@ namespace TeleBerço
                 TxtNomeCl.Text = fornecedorRow.Nome;
                 TxtTelefone.Text = fornecedorRow.Contato;
                 TxtEmail.Text = fornecedorRow.Site;
-                txtMorada.Text = fornecedorRow.Morada;         
+                txtMorada.Text = fornecedorRow.Morada;
                 cbCategoria.SelectedValue = fornecedorRow.Categoria;
             }
             else
             {
                 PrepararFornecedor();
             }
-
         }
 
         public void PrepararFornecedor()
         {
-         
+
             TxtCodigoCl.Text = dsClientes.DaProxNrFornecedor();
             TxtNomeCl.Enabled = true;
-            BtnGravarCliente.Enabled = true;
            
+            BtnGravarCliente.Enabled = true;
+
             HabilitarFornecedor();
 
         }
-        private void TxtCodigoDoc_KeyDown(object sender, KeyEventArgs e)
+        private void TxtCodigoDoc_KeyDown_1(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.F4)
             {
                 AbrirSelecaoDocumentos();
                 EstadoDoc();
+               
             }
         }
 
-        private void TxtCodigoCl_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.F4)
-            {
-                if (TxtDescricaoDoc.Text.Contains("Fornecedor"))
-                {
-                    AbrirSelecaoForn();
-                }
-                else
-                {
-                    AbrirSelecaoClientes();
-                }
-
-            }
-        }
-
-        private void TxtCodigoCl_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                if (TxtCodigoCl.Text.Contains("CL"))
-                {
-                    PreencheCliente();
-                }
-
-                else if (TxtCodigoCl.Text.Contains("FN"))
-                {
-                    PreencherFornecedor();
-
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Erro ao preencher cliente: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-            }
-        }
-
-        private void btnNovoPr_Click(object sender, EventArgs e)
-        {
-            try
-            {
-
-                LimparProduto();
-                txtObservacoes.Text = "";
-                HabilitarProduto();
-                dsProdutos.NovoArtigo();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Erro ao criar novo produto: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-        }
-
-        private void btnGravarPr_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                ProdutosRow produtoRow = dsProdutos.Produtos[0];
-                if (ValidaPreenchimentoProdutos())
-                {
-
-                    if (produtoRow.CodPr == dsProdutos.DaProxCodArtigo())
-                    {
-                        produtoRow.NomeProduto = txtEquipNome.Text;
-                        produtoRow.Categorias = txtCat.SelectedValue.ToString();
-                        produtoRow.Marcas = (int)txtMarca.SelectedValue;
-                        produtoRow.IMEI = txtImei.Text;
-                        produtoRow.Observacao = txtObservacoes.Text;
-                        produtoRow.Tipo = txtTipoPr.Text;
-
-                        dsProdutos.UpdateArtigos();
-
-                        MessageBox.Show("Produto salvo com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Preencha corretamente todos os campos .", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Erro ao gravar produto: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void BtnNovo_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                FrmDados frmDados = new FrmDados();
-                frmDados.MostrarTabelaDados("DsArtigos");
-
-                if (frmDados.RowSelecionada is ProdutosRow produtoRow)
-                {
-                    dsDocumentos.NovaLinhaArtigos(produtoRow);
-                    txtObservacoes.Text += produtoRow.Observacao + ";";
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Erro ao adicionar produto: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void BtnEliminar_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (DgridArtigos.CurrentRow != null)
-                {
-                    var id = Guid.Parse(DgridArtigos.CurrentRow.Cells["iDDataGridViewTextBoxColumn"].Value.ToString());
-                    dsDocumentos.EliminarLinha(id);
-                    txtObservacoes.Clear();
-                    foreach (DataGridViewRow linha in DgridArtigos.Rows)
-                    {
-                        txtObservacoes.Text += linha.Cells["Observacao"].Value.ToString() + ";";
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Erro ao eliminar produto: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void TsGravarDoc_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var docRow = dsDocumentos.CabecDocumento[0];
-
-                if (ValidaPreenchimentoDocumento())
-                {
-                    docRow.TipoDocumento = TxtCodigoDoc.Text;
-                    docRow.NrDocumento = int.Parse(NrDoc.Text);
-                    docRow.Cliente = TxtCodigoCl.Text;
-                    docRow.Total = decimal.Parse(txtTotal.Text);
-                    docRow.Estado = txtEstado.Text;
-                    docRow.Observacoes = txtObservacoes.Text;
-                    docRow.DataEntrega = dateTimePicker1.Value.Date;
-                    docRow.DataRececao = DataMod.Value.Date;
-                    docRow.Desconto = int.Parse(txtDesconto.Text);
-                    if ((txtCat.Text == "") || (txtMarca.Text == ""))
-                    {// Obter código do produto
-                        docRow.CodProduto = "PR000";
-                    }
-                    else
-                    {
-                        docRow.CodProduto = txtCodPr.Text;
-                    }
-
-                    dsDocumentos.UpdateDoc();
-                    dsDocumentos.UpdateLinhas();
-
-                    MessageBox.Show("Documento salvo com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    LimparFormulario();
-                }
-                else
-                {
-                    MessageBox.Show("Preencha todos os campos obrigatórios do documento.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Erro ao gravar documento: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void TsNovoDoc_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                LimparFormulario();
-                HabilitarCampos();
-                HabilitarBotoes();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Erro ao criar novo documento: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void TsSair_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        private void tsImprimir_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                ConfigurarImpressao();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Erro ao imprimir documento: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-
-        private void TsConsultarDocumentos_Click(object sender, EventArgs e)
-        {
-            AbrirSelecaoDocumentos();
-        }
-
-        private void TsAddProduto_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                FrmProdutos frmProdutos = new FrmProdutos();
-                frmProdutos.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Erro ao abrir formulário de produtos: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void TsConsultaProduto_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                FrmDados frmDados = new FrmDados();
-                frmDados.MostrarTabelaDados("DsArtigos");
-
-                if (frmDados.RowSelecionada is ProdutosRow produtoRow)
-                {
-
-                    txtEquipNome.Text = produtoRow.NomeProduto;
-                    txtCat.Text = querryProdutosTableAdapter.NomeCategoria(produtoRow.Categorias).ToString();
-                    txtMarca.Text = querryProdutosTableAdapter.NomeMarca(produtoRow.Marcas);
-                    txtImei.Text = produtoRow.IMEI;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Erro ao consultar produtos: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void DgridArtigos_RowLeave(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                if (DgridArtigos.Rows[e.RowIndex].Cells["precoUntDataGridViewTextBoxColumn"].Value != null &&
-                    DgridArtigos.Rows[e.RowIndex].Cells["quantidadeDataGridViewTextBoxColumn"].Value != null)
-                {
-                    decimal precoUnitario = Convert.ToDecimal(DgridArtigos.Rows[e.RowIndex].Cells["precoUntDataGridViewTextBoxColumn"].Value);
-                    decimal quantidade = Convert.ToDecimal(DgridArtigos.Rows[e.RowIndex].Cells["quantidadeDataGridViewTextBoxColumn"].Value);
-                    decimal totalLinha = precoUnitario * quantidade;
-                    DgridArtigos.Rows[e.RowIndex].Cells["totalDataGridViewTextBoxColumn"].Value = Math.Round(totalLinha, 2);
-                }
-
-                CalcularTotalDocumento();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Erro ao atualizar linha: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void btnAbrirCliente_Click_1(object sender, EventArgs e)
+        private void AtribuirDescriçaoCodCl()
         {
             if (TxtDescricaoDoc.Text.Contains("Fornecedor"))
             {
-                AbrirSelecaoForn();
+                HabilitarFornecedor();
+                TxtCodigoCl.Text = "FN";
+
+            }
+            else if (TxtDescricaoDoc.Text.Contains("Cliente"))
+            {
+                HabilitarCliente();
+
+                TxtCodigoCl.Text = "CL";
             }
             else
             {
-                AbrirSelecaoClientes();
+                TxtCodigoCl.Text = "CL";
             }
         }
 
-
-        private void btnNovoCliente_Click(object sender, EventArgs e)
+        public void AtualizarEstoqueAoSalvarDocumento()
         {
-            try
+            // Obter o tipo do documento
+            string tipoDocumento = dsDocumentos.CabecDocumento[0].TipoDocumento;
+            string tipoEntrada = "";
+            DateTime data = dsDocumentos.CabecDocumento[0].DataRececao;
+            if ((tipoDocumento.Contains("FTC")) || (tipoDocumento.Contains("NDF")))
             {
-                if (TxtCodigoCl.Text.Contains("CL"))
+                // Para vendas e devoluções ao fornecedor, diminuir o estoque
+                tipoEntrada = "S";
+            }
+            else if ((tipoDocumento.Contains("FTF")) || (tipoDocumento.Contains("NDC")))
+            {
+                // Para compras e devoluções de clientes, aumentar o estoque
+                tipoEntrada = "E";
+            }
+            // Exemplo: "Venda", "Compra", "Devolucao"
+
+            // Iterar sobre a ListaProdutos associada ao documento
+            foreach (ListaProdutosRow produtos in dsDocumentos.ListaProdutos.Rows)
+            {
+                // Apenas processar linhas que não foram excluídas
+                if (produtos.RowState != DataRowState.Deleted)
                 {
-                    PrepararCliente();
+                 //   ProdutosRow produto = dsProdutos.Produtos.FindByCodPr(produtos.Produto);
+                    dsStock.PesquisarStock(produtos.Produto/*, produto*/);
+
+                    dsStock.AtualizarStock(produtos.Produto, produtos.Quantidade, tipoDocumento);
 
                 }
-                else if (TxtCodigoCl.Text == "FN")
-                {
-                    PrepararFornecedor();
-                }
-                else
-                {
-                    var resultado = MessageBox.Show("Deseja criar um Novo fornecedor?", "Questão", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                    if (resultado == DialogResult.Yes)
-                    {
-                        PrepararFornecedor();
-
-                    }
-                    else
-                    { 
-                        PrepararCliente();
-                    }
-
-                }
-
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Erro ao criar: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void BtnGravarCliente_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                ClientesRow novoCliente = dsClientes.Clientes[0];
-                if (ValidaPreenchimentoCliente())
-                {
-                    if (novoCliente.CodCl == dsClientes.DaProxNrCliente())
-                    {
-
-                        novoCliente.Nome = TxtNomeCl.Text;
-                        novoCliente.CodCl = TxtCodigoCl.Text;
-                        novoCliente.Telefone = TxtTelefone.Text;
-                        novoCliente.Email = TxtEmail.Text;
-
-                        dsClientes.UpdateClientes();
-
-                        MessageBox.Show("Cliente Criado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        LimparCliente();
-                        BtnGravarCliente.Enabled = false;
-                        TxtNomeCl.Enabled = false;
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Preencha todos os campos corretamente.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Erro ao gravar cliente: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void cBoxEuro_CheckedChanged(object sender, EventArgs e)
-        {
-            AplicarDesconto();
-        }
-
-        private void btnAbrirPr_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                FrmDados frmDados = new FrmDados();
-                frmDados.MostrarTabelaDados("DsArtigos");
-
-                if (frmDados.RowSelecionada is ProdutosRow produtoRow)
-                {
-                    txtCodPr.Text = produtoRow.CodPr;
-                    txtEquipNome.Text = produtoRow.NomeProduto;
-                    txtCat.Text = querryProdutosTableAdapter.NomeCategoria(produtoRow.Categorias).ToString();
-                    txtMarca.Text = querryProdutosTableAdapter.NomeMarca(produtoRow.Marcas);
-                    txtImei.Text = produtoRow.IMEI;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Erro ao abrir produto: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void NrDoc_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            PreencheDocumento(TxtCodigoDoc.Text, int.Parse(NrDoc.Text));
         }
 
         private void AplicarDesconto()
@@ -687,7 +337,7 @@ namespace TeleBerço
                     TxtTelefone.Text = clienteRow.Contato;
                     TxtEmail.Text = clienteRow.Site;
 
-                    HabilitarCliente();
+                    HabilitarFornecedor ();
                 }
             }
             catch (Exception ex)
@@ -725,7 +375,7 @@ namespace TeleBerço
                 FrmDados frmDados = new FrmDados();
                 frmDados.MostrarTabelaDados("DsDocumentos");
 
-                if (frmDados.RowSelecionada is DsDocumentos.CabecDocumentoRow docRow)
+                if (frmDados.RowSelecionada is CabecDocumentoRow docRow)
                 {
                     TxtCodigoDoc.Text = docRow.TipoDocumento;
                     TxtDescricaoDoc.Text = dsDocumentos.TipoDocumentos
@@ -742,22 +392,22 @@ namespace TeleBerço
 
         private void EstadoDoc()
         {
-            if (TxtCodigoDoc.Text == "ORC")
+            if (TxtCodigoDoc.Text.Contains("OR"))
             {
                 txtEstado.Items.Clear();
                 txtEstado.Items.AddRange(new string[] { "Entregue", "Aceite", "Cancelado", "Finalizado" });
             }
-            else if (TxtCodigoDoc.Text == "FC")
+            else if (TxtCodigoDoc.Text.Contains("FT"))
             {
                 txtEstado.Items.Clear();
                 txtEstado.Items.AddRange(new string[] { "Emitida", "Concluida", "Anulada" });
             }
-            else if (TxtCodigoDoc.Text == "NDE")
+            else if (TxtCodigoDoc.Text.Contains("ED"))
             {
                 txtEstado.Items.Clear();
                 txtEstado.Items.AddRange(new string[] { "Realizada", "Em espera", "Cancelada", "Em andamento" });
             }
-            else if (TxtCodigoDoc.Text == "NDE")
+            else if (TxtCodigoDoc.Text.Contains("ND"))
             {
                 txtEstado.Items.Clear();
                 txtEstado.Items.AddRange(new string[] { "Numerario", "Artigo", "Cancelada" });
@@ -802,7 +452,10 @@ namespace TeleBerço
                     {
                         linha.Cells["NomeCategoria"].Value = querryProdutosTableAdapter.NomeCategoria(linha.Cells["Categoria"].Value.ToString());
                     }
+
+
                 }
+
             }
             catch (Exception ex)
             {
@@ -810,14 +463,6 @@ namespace TeleBerço
             }
         }
 
-        private void FormatarTabelas()
-        {
-
-            DgridArtigos.Columns["precoUntDataGridViewTextBoxColumn"].DefaultCellStyle.Format = "F2";
-            DgridArtigos.Columns["quantidadeDataGridViewTextBoxColumn"].DefaultCellStyle.Format = "F2";
-            DgridArtigos.Sort(DgridArtigos.Columns["numLInhaDataGridViewTextBoxColumn"], ListSortDirection.Ascending);
-
-        }
 
         private void LimparFormulario()
         {
@@ -828,9 +473,10 @@ namespace TeleBerço
             dateTimePicker1.Value = DateTime.Now;
             txtTotal.Text = "0.00";
             txtObservacoes.Text = string.Empty;
-            txtEstado.SelectedIndex = -1;
+            txtEstado.Text = "";
 
             LimparCliente();
+
             LimparProduto();
             txtObservacoes.Text = "";
             dsClientes.Clientes.Clear();
@@ -856,16 +502,7 @@ namespace TeleBerço
 
         }
 
-        private void HabilitarCampos()
-        {
-            DataMod.Enabled = true;
-            TxtCodigoCl.Enabled = true;
-            NrDoc.Enabled = true;
-            txtEstado.Enabled = true;
-            dateTimePicker1.Enabled = true;
-            txtDesconto.Enabled = true;
-            tsGravarDoc.Enabled = true;
-        }
+       
 
         private void DesabilitarBotoes()
         {
@@ -881,6 +518,7 @@ namespace TeleBerço
 
         private void HabilitarBotoes()
         {
+          
             BtnNovo.Enabled = true;
             BtnEliminar.Enabled = true;
             tsGravarDoc.Enabled = true;
@@ -897,7 +535,11 @@ namespace TeleBerço
             lblFornecedor.Visible = false;
             txtMorada.Visible = false;
             cbCategoria.Visible = false;
-            
+            TxtNomeCl.Enabled = true;
+            TxtTelefone.Enabled = true;
+            TxtEmail.Enabled = true;
+            TxtEmail.Text = "Email";
+
 
         }
         private void HabilitarFornecedor()
@@ -906,11 +548,13 @@ namespace TeleBerço
             lblFornecedor.Visible = true;
             txtMorada.Visible = true;
             cbCategoria.Visible = true;
+            cbCategoria.Enabled = true;
+
             TxtEmail.Text = "Site";
-          
+
 
         }
-            private void HabilitarProduto()
+        private void HabilitarProduto()
         {
             txtEquipNome.Enabled = true;
             txtCat.Enabled = true;
@@ -919,6 +563,587 @@ namespace TeleBerço
             txtObservacoes.Enabled = true;
             txtTipoPr.Enabled = true;
             btnGravarPr.Enabled = true;
+        }
+
+
+        private void TxtCodigoDoc_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            try
+            {
+                if (TxtCodigoDoc.Text != "")
+                {
+
+                    var tipoRow = dsDocumentos.TipoDocumentos.FindByCodDoc(TxtCodigoDoc.SelectedValue.ToString());
+
+                    if (tipoRow != null)
+                    {
+                        TxtDescricaoDoc.Text = tipoRow.Descricao;
+                        NrDoc.Text = dsDocumentos.DaNrDocSeguinte(TxtCodigoDoc.Text).ToString();
+
+                        HabilitarBotoes();
+                      
+                        LimparProduto();
+                        dsDocumentos.ListaProdutos.Clear();
+                    }
+                    EstadoDoc();
+                    AtribuirDescriçaoCodCl();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao carregar tipo de documento: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+        private void TxtCodigoCl_KeyDown_1(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F4)
+            {
+                if (TxtCodigoCl.Text == "FN")
+                {
+                    AbrirSelecaoForn();
+                }
+                else
+                {
+                    AbrirSelecaoClientes();
+                }
+            }
+        }
+
+        private void TxtCodigoCl_Leave_1(object sender, EventArgs e)
+        {
+            try
+            {
+                if (TxtCodigoCl.Text.Contains("CL"))
+                {
+                    PreencheCliente();
+                }
+
+                else if (TxtCodigoCl.Text.Contains("FN"))
+                {
+                    PreencherFornecedor();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao preencher cliente: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+        }
+
+        private void NrDoc_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+
+            PreencheDocumento(TxtCodigoDoc.Text, int.Parse(NrDoc.Text));
+
+        }
+
+        private void txtDesconto_TextChanged(object sender, EventArgs e)
+        {
+            if ((txtDesconto.Text == "0") || (txtDesconto.Text == ""))
+            {
+                CalcularTotalDocumento();
+            }
+            else
+            {
+                AplicarDesconto();
+            }
+        }
+
+        private void cBoxEuro_CheckedChanged_1(object sender, EventArgs e)
+        {
+            AplicarDesconto();
+        }
+
+        private void cBoxPercent_CheckedChanged_1(object sender, EventArgs e)
+        {
+            AplicarDesconto();
+        }
+
+
+        private void DgridArtigos_RowLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (DgridArtigos.Rows[e.RowIndex].Cells["precoUntDataGridViewTextBoxColumn"].Value != null &&
+                    DgridArtigos.Rows[e.RowIndex].Cells["quantidadeDataGridViewTextBoxColumn"].Value != null)
+                {
+                    decimal precoUnitario = Convert.ToDecimal(DgridArtigos.Rows[e.RowIndex].Cells["precoUntDataGridViewTextBoxColumn"].Value);
+                    decimal quantidade = Convert.ToDecimal(DgridArtigos.Rows[e.RowIndex].Cells["quantidadeDataGridViewTextBoxColumn"].Value);
+                    decimal totalLinha = precoUnitario * quantidade;
+                    DgridArtigos.Rows[e.RowIndex].Cells["totalDataGridViewTextBoxColumn"].Value = Math.Round(totalLinha, 2);
+                }
+
+                CalcularTotalDocumento();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao atualizar linha: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void DgridArtigos_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (DgridArtigos.Enabled)
+            {
+                foreach (DataGridViewRow linha in DgridArtigos.Rows)
+                {
+                    var produto = dsStock.PesquisarStock(linha.Cells["produtoDataGridViewTextBoxColumn"].Value.ToString());
+                    // Preenche a coluna Marca
+                    if (int.Parse(linha.Cells["quantidadeDataGridViewTextBoxColumn"].Value.ToString()) > produto.Quantidade)
+                    {
+                        MessageBox.Show($"Não existe essa quantidade em stock. Tem apenas {produto.Quantidade} disponiveis", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                        linha.Cells["quantidadeDataGridViewTextBoxColumn"].Value = produto.Quantidade;
+                    }
+                }
+            }
+        }
+
+        private void btnNovoPr_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+
+                LimparProduto();
+                txtObservacoes.Text = "";
+                HabilitarProduto();
+                dsProdutos.NovoArtigo();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao criar novo produto: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+        private void btnGravarPr_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                ProdutosRow produtoRow = dsProdutos.Produtos[0];
+                if (ValidaPreenchimentoProdutos())
+                {
+
+                    if (produtoRow.CodPr == dsProdutos.DaProxCodArtigo())
+                    {
+                        produtoRow.NomeProduto = txtEquipNome.Text;
+                        produtoRow.Categorias = txtCat.SelectedValue.ToString();
+                        produtoRow.Marcas = (int)txtMarca.SelectedValue;
+                        produtoRow.IMEI = txtImei.Text;
+                        produtoRow.Observacao = txtObservacoes.Text;
+                        produtoRow.Tipo = txtTipoPr.Text;
+
+                        dsProdutos.UpdateArtigos();
+
+                        MessageBox.Show("Produto salvo com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Preencha corretamente todos os campos .", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao gravar produto: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void BtnNovo_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                DgridArtigos.Enabled = true;
+                FrmDados frmDados = new FrmDados();
+                frmDados.MostrarTabelaDados("DsArtigos");
+
+                if (frmDados.RowSelecionada is ProdutosRow produtoRow)
+                {
+                    dsDocumentos.NovaLinhaArtigos(produtoRow);
+                    txtObservacoes.Text += produtoRow.Observacao + ";";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao adicionar produto: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void BtnEliminar_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DgridArtigos.CurrentRow != null)
+                {
+                    var id = Guid.Parse(DgridArtigos.CurrentRow.Cells["iDDataGridViewTextBoxColumn"].Value.ToString());
+                    dsDocumentos.EliminarLinha(id);
+                    txtObservacoes.Clear();
+                    foreach (DataGridViewRow linha in DgridArtigos.Rows)
+                    {
+                        txtObservacoes.Text += linha.Cells["Observacao"].Value.ToString() + ";";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao eliminar produto: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void tsGravarDoc_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                var docRow = dsDocumentos.CabecDocumento[0];
+
+                if (ValidaPreenchimentoDocumento())
+                {
+                    docRow.TipoDocumento = TxtCodigoDoc.Text;
+                    docRow.NrDocumento = int.Parse(NrDoc.Text);
+                    docRow.Cliente = TxtCodigoCl.Text;
+                    docRow.Total = decimal.Parse(txtTotal.Text);
+                    docRow.Estado = txtEstado.Text;
+                    docRow.Observacoes = txtObservacoes.Text;
+                    docRow.DataEntrega = dateTimePicker1.Value.Date;
+                    docRow.DataRececao = DataMod.Value.Date;
+                    docRow.Desconto = int.Parse(txtDesconto.Text);
+                    if ((txtCat.Text == "") || (txtMarca.Text == ""))
+                    {// Obter código do produto
+                        docRow.CodProduto = "PR000";
+                    }
+                    else
+                    {
+                        docRow.CodProduto = txtCodPr.Text;
+                    }
+
+                    dsDocumentos.UpdateDoc();
+                    dsDocumentos.UpdateLinhas();
+
+                    AtualizarEstoqueAoSalvarDocumento();
+
+                    MessageBox.Show("Documento salvo com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LimparFormulario();
+                }
+                else
+                {
+                    MessageBox.Show("Preencha todos os campos obrigatórios do documento.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao gravar documento: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void tsNovoDoc_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                LimparFormulario();
+                HabilitarBotoes();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao criar novo documento: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void tsSair_Click_1(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void tsImprimir_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                ConfigurarImpressao();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao imprimir documento: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void tsAddProduto_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                FrmProdutos frmProdutos = new FrmProdutos();
+                frmProdutos.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao abrir formulário de produtos: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void tsConsultaProduto_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                FrmDados frmDados = new FrmDados();
+                frmDados.MostrarTabelaDados("DsArtigos");
+
+                if (frmDados.RowSelecionada is ProdutosRow produtoRow)
+                {
+
+                    txtEquipNome.Text = produtoRow.NomeProduto;
+                    txtCat.Text = querryProdutosTableAdapter.NomeCategoria(produtoRow.Categorias).ToString();
+                    txtMarca.Text = querryProdutosTableAdapter.NomeMarca(produtoRow.Marcas);
+                    txtImei.Text = produtoRow.IMEI;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao consultar produtos: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+        private void btnNovoCliente_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (TxtCodigoCl.Text.Contains("CL"))
+                {
+                    PrepararCliente();
+
+                }
+                else if (TxtCodigoCl.Text == "FN")
+                {
+                    PrepararFornecedor();
+                }
+                else
+                {
+                    var resultado = MessageBox.Show("Deseja criar um Novo fornecedor?", "Questão", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    if (resultado == DialogResult.Yes)
+                    {
+                        PrepararFornecedor();
+
+                    }
+                    else
+                    {
+                        PrepararCliente();
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao criar: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void BtnGravarCliente_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                ClientesRow novoCliente = dsClientes.Clientes[0];
+                if (ValidaPreenchimentoCliente())
+                {
+                    if (novoCliente.CodCl == dsClientes.DaProxNrCliente())
+                    {
+
+                        novoCliente.Nome = TxtNomeCl.Text;
+                        novoCliente.CodCl = TxtCodigoCl.Text;
+                        novoCliente.Telefone = TxtTelefone.Text;
+                        novoCliente.Email = TxtEmail.Text;
+
+                        dsClientes.UpdateClientes();
+
+                        MessageBox.Show("Cliente Criado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        LimparCliente();
+
+                        BtnGravarCliente.Enabled = false;
+                        TxtNomeCl.Enabled = false;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Preencha todos os campos corretamente.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao gravar cliente: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+        private void btnAbrirPr_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                FrmDados frmDados = new FrmDados();
+                frmDados.MostrarTabelaDados("DsArtigos");
+
+                if (frmDados.RowSelecionada is ProdutosRow produtoRow)
+                {
+                    txtCodPr.Text = produtoRow.CodPr;
+                    txtEquipNome.Text = produtoRow.NomeProduto;
+                    txtCat.Text = querryProdutosTableAdapter.NomeCategoria(produtoRow.Categorias).ToString();
+                    txtMarca.Text = querryProdutosTableAdapter.NomeMarca(produtoRow.Marcas);
+                    txtImei.Text = produtoRow.IMEI;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao abrir produto: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void tsMarcas_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                FrmDados frmDados = new FrmDados();
+                frmDados.MostrarTabelaDados("DsMarcas");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao carregar Marcas: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void tsAddMarcas_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                FrmCat_Marca frmCat_Marca = new FrmCat_Marca();
+                frmCat_Marca.tipoDadosAtual = FrmCat_Marca.TipoDados.Marcas;
+                frmCat_Marca.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao abrir formulario: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+        private void tsAddCategorias_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                FrmCat_Marca frmCat_Marca = new FrmCat_Marca();
+                frmCat_Marca.tipoDadosAtual = FrmCat_Marca.TipoDados.Categorias;
+                frmCat_Marca.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao abrir formulario: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+
+        private void tsAddCl_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                FrmClientes frmClientes = new FrmClientes();
+                frmClientes.tipoDadosAtual = FrmClientes.TipoDados.Clientes;
+                frmClientes.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao abrir formulário de clientes: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void tsConsultaCliente_Click_1(object sender, EventArgs e)
+        {
+            AbrirSelecaoClientes();
+        }
+
+        private void tsConsultaForn_Click_1(object sender, EventArgs e)
+        {
+            AbrirSelecaoForn();
+        }
+
+
+        private void tsAddForn_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                FrmClientes frmClientes = new FrmClientes();
+                frmClientes.tipoDadosAtual = FrmClientes.TipoDados.Fornecedores;
+                frmClientes.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao abrir formulário de fornecedores: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+        private void tsArmazem_Click(object sender, EventArgs e)
+        {
+            FrmStock frmStock = new FrmStock();
+            frmStock.ShowDialog();
+        }
+
+
+
+
+        private void tsAddCl_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                FrmClientes frmClientes = new FrmClientes();
+                frmClientes.tipoDadosAtual = FrmClientes.TipoDados.Clientes;
+                frmClientes.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao abrir formulário de clientes: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+        private void tsDocumentos_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                FrmDados frmDados = new FrmDados();
+                frmDados.MostrarTabelaDados("DsDocumentos");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao carregar Documentos: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+        private void tsConsultaCat_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                FrmDados frmDados = new FrmDados();
+                frmDados.MostrarTabelaDados("DsCategorias");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao carregar Categorias: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnAbrirCliente_Click(object sender, EventArgs e)
+        {
+            if (TxtDescricaoDoc.Text.Contains("Fornecedor"))
+            {
+                AbrirSelecaoForn();
+            }
+            else
+            {
+                AbrirSelecaoClientes();
+            }
         }
 
         private void ConfigurarImpressao()
@@ -1372,11 +1597,14 @@ namespace TeleBerço
 
                 // Centralizar texto no cabeçalho
                 string headerText = columnHeaders[i];
-                SizeF headerSize = graphics.MeasureString(headerText, fonteTexto);
-                float textX = xPos + (columnWidths[i] - headerSize.Width) / 2;
-                float textY = yPos + (lineHeight - headerSize.Height) / 2;
+                RectangleF headerRect = new RectangleF(xPos, yPos, columnWidths[i], lineHeight);
+                StringFormat headerFormat = new StringFormat
+                {
+                    Alignment = StringAlignment.Center,
+                    LineAlignment = StringAlignment.Center
+                };
 
-                graphics.DrawString(headerText, fonteTexto, brush, textX, textY);
+                graphics.DrawString(headerText, fonteTexto, brush, headerRect, headerFormat);
                 xPos += columnWidths[i];
             }
             yPos += lineHeight;
@@ -1387,23 +1615,50 @@ namespace TeleBerço
             {
                 if (!row.IsNewRow)
                 {
+                    // Calcular a altura máxima necessária para esta linha
+                    float maxCellHeight = 0;
+                    List<string> cellValues = new List<string>();
+
+                    for (int i = 0; i < numColumns; i++)
+                    {
+                        // Obter o valor da célula
+                        string cellValue = row.Cells[columnsToPrint[i]].Value?.ToString() ?? "";
+                        cellValues.Add(cellValue);
+
+                        // Medir o tamanho do texto com quebra de linha
+                        SizeF textSize = graphics.MeasureString(cellValue, fonteTabela, (int)columnWidths[i]);
+                        if (textSize.Height > maxCellHeight)
+                        {
+                            maxCellHeight = textSize.Height;
+                        }
+                    }
+
+                    // Definir a altura da linha com base na altura máxima das células
+                    float cellHeight = maxCellHeight + 5; // Adicionar um pequeno espaçamento
+
+                    xPos = marginLeft;
                     for (int i = 0; i < numColumns; i++)
                     {
                         // Desenhar retângulo da célula
-                        graphics.DrawRectangle(pen, xPos, yPos, columnWidths[i], lineHeight - 2);
+                        graphics.DrawRectangle(pen, xPos, yPos, columnWidths[i], cellHeight);
 
-                        // Obter o valor da célula
-                        string cellValue = row.Cells[columnsToPrint[i]].Value?.ToString() ?? "";
+                        // Definir o retângulo para desenhar o texto
+                        RectangleF cellRect = new RectangleF(xPos + 2, yPos + 2, columnWidths[i] - 4, cellHeight - 4);
 
-                        // Centralizar texto na célula
-                        SizeF cellSize = graphics.MeasureString(cellValue, fonteTabela);
-                        float textX = xPos + (columnWidths[i] - cellSize.Width) / 2;
-                        float textY = yPos + (lineHeight - cellSize.Height) / 2;
+                        // Formatar o texto para quebra de linha
+                        StringFormat cellFormat = new StringFormat
+                        {
+                            Alignment = StringAlignment.Near,
+                            LineAlignment = StringAlignment.Near,
+                            FormatFlags = StringFormatFlags.LineLimit // Permitir quebra de linha
+                        };
 
-                        graphics.DrawString(cellValue, fonteTabela, brush, textX, textY);
+                        // Desenhar o texto dentro da célula
+                        graphics.DrawString(cellValues[i], fonteTabela, brush, cellRect, cellFormat);
+
                         xPos += columnWidths[i];
                     }
-                    yPos += lineHeight;
+                    yPos += cellHeight;
                     xPos = marginLeft;
                 }
             }
@@ -1411,6 +1666,8 @@ namespace TeleBerço
             yPos += 20; // Espaçamento após a tabela
             return yPos;
         }
+
+
 
         private float DrawFinalLogo(Graphics graphics, float marginLeft, float yPos, float marginTop, float pageWidth, float pageHeight, Brush brush)
         {
@@ -1420,144 +1677,21 @@ namespace TeleBerço
             {
                 using (Image bottomImage = Image.FromFile(bottomImagePath))
                 {
-                    float desiredBottomImgWidth = 600;
+                    float desiredBottomImgWidth = 500;
                     float bottomImgHeight = bottomImage.Height * (desiredBottomImgWidth / bottomImage.Width) - 75;
 
                     // Posicionar a imagem no fundo da página, centralizada horizontalmente
-                    float bottomImageX = marginLeft + pageWidth - desiredBottomImgWidth;
-                    float bottomImageYPosition = marginTop + pageHeight - bottomImgHeight; // Posicionar logo após o último conteúdo
+                    float bottomImageX = marginLeft + (pageWidth / 2) - (desiredBottomImgWidth / 2);
+                    float bottomImageYPosition = marginTop + pageHeight - (bottomImgHeight / 2); // Posicionar logo após o último conteúdo
 
-                    graphics.DrawImage(bottomImage, bottomImageX, bottomImageYPosition, desiredBottomImgWidth, bottomImgHeight);
-                    yPos = marginTop + pageHeight - bottomImgHeight - 70;
+                    graphics.DrawImage(bottomImage, bottomImageX, bottomImageYPosition + 30, desiredBottomImgWidth, bottomImgHeight);
+                    yPos = marginTop + pageHeight - bottomImgHeight - 50;
 
                 }
             }
             return yPos;
         }
 
-        private void txtDesconto_TextChanged_1(object sender, EventArgs e)
-        {
-            if ((txtDesconto.Text == "0") || (txtDesconto.Text == ""))
-            {
-                CalcularTotalDocumento();
-            }
-            else
-            {
-                AplicarDesconto();
-            }
-        }
-
-        private void toolStripMenuItem10_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                FrmDados frmDados = new FrmDados();
-                frmDados.MostrarTabelaDados("DsCategorias");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Erro ao carregar Categorias: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-        private void tsMarcas_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                FrmDados frmDados = new FrmDados();
-                frmDados.MostrarTabelaDados("DsMarcas");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Erro ao carregar Marcas: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void tsAddMarcas_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                FrmCat_Marca frmCat_Marca = new FrmCat_Marca();
-                frmCat_Marca.tipoDadosAtual = FrmCat_Marca.TipoDados.Marcas;
-                frmCat_Marca.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Erro ao abrir formulario: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void tsAddCategorias_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                FrmCat_Marca frmCat_Marca = new FrmCat_Marca();
-                frmCat_Marca.tipoDadosAtual = FrmCat_Marca.TipoDados.Categorias;
-                frmCat_Marca.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Erro ao abrir formulario: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void cBoxPercent_CheckedChanged(object sender, EventArgs e)
-        {
-            AplicarDesconto();
-        }
-
-        private void tsAddCl_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                FrmClientes frmClientes = new FrmClientes();
-                frmClientes.tipoDadosAtual = FrmClientes.TipoDados.Clientes;
-                frmClientes.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Erro ao abrir formulário de clientes: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void tsConsultaCliente_Click(object sender, EventArgs e)
-        {
-            AbrirSelecaoClientes();
-        }
-
-        private void tsConsultaForn_Click(object sender, EventArgs e)
-        {
-            AbrirSelecaoForn();
-        }
-
-
-        private void tsAddForn_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                FrmClientes frmClientes = new FrmClientes();
-                frmClientes.tipoDadosAtual = FrmClientes.TipoDados.Fornecedores;
-                frmClientes.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Erro ao abrir formulário de clientes: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void TxtDescricaoDoc_TextChanged(object sender, EventArgs e)
-        {
-            if (TxtDescricaoDoc.Text.Contains("Fornecedor"))
-            {
-                HabilitarFornecedor();
-                TxtCodigoCl.Text = "FN";
-
-            }
-            else
-            {
-                HabilitarCliente();
-                TxtCodigoCl.Text = "CL";
-            }
-        }
+      
     }
 }
-

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Reflection.Emit;
 using System.Windows.Forms;
 using static TeleBerço.DsClientes;
 
@@ -25,7 +26,7 @@ namespace TeleBerço
             InitializeComponent();
         }
 
-        private void FrmClientes_Load(object sender, EventArgs e)
+        private void FrmClientes_Load_1(object sender, EventArgs e)
         {
             if (tipoDadosAtual == TipoDados.Clientes)
             {
@@ -40,7 +41,7 @@ namespace TeleBerço
                 {
                     PrepararNovoCliente();
                 }
-              
+
             }
             else if (tipoDadosAtual == TipoDados.Fornecedores)
             {
@@ -69,7 +70,7 @@ namespace TeleBerço
 
             LabelCliente.Visible = true;
             LblEmail.Visible = true;
-            HabilitarCampos();
+            
         }
         private void ConfigInicialForn()
         {
@@ -80,7 +81,6 @@ namespace TeleBerço
             lblLoja.Visible = true;
             cbCategoria.Visible = true;
             label1.Visible = true;
-            HabilitarCampos();
         }
 
 
@@ -106,8 +106,7 @@ namespace TeleBerço
                 var clienteRow = (ClientesRow)RowSelecionada;
                 TxtCodigoCl.Text = clienteRow.CodCl;
                 PreencherCliente();
-                HabilitarCampos();
-             
+               
 
             }
             catch (Exception ex)
@@ -157,12 +156,13 @@ namespace TeleBerço
                     TxtTelefone.Text = clienteRow.Telefone;
                     TxtEmail.Text = clienteRow.Email;
 
-                    TxtCodigoCl.Focus();
+                   // TxtCodigoCl.Focus();
                 }
                 else
                 {
                     PrepararNovoCliente();
                 }
+                HabilitarCampos();
             }
             catch (Exception ex)
             {
@@ -184,7 +184,7 @@ namespace TeleBerço
                     cbCategoria.SelectedValue = clienteRow.Categoria;
                     txtMorada.Text = clienteRow.Morada;
 
-                    TxtCodigoCl.Focus();
+                   // TxtCodigoCl.Focus();
                 }
                 else
                 {
@@ -208,7 +208,7 @@ namespace TeleBerço
 
         private void HabilitarCampos()
         {
-          
+
             TxtNomeCl.Enabled = true;
             TxtTelefone.Enabled = true;
             TxtEmail.Enabled = true;
@@ -249,6 +249,7 @@ namespace TeleBerço
 
         private void BtnGravar_Click(object sender, EventArgs e)
         {
+
             try
             {
                 if (ValidarPreenchimento())
@@ -369,44 +370,12 @@ namespace TeleBerço
 
         private void BtnSair_Click(object sender, EventArgs e)
         {
-            try
-            {
-                this.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Erro ao encerrar formulario: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-        }
-
-        private void TxtCodigoCl_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (tipoDadosAtual == TipoDados.Clientes)
-            {
-                if (e.KeyCode == Keys.F4)
-                {
-                    frmDados.MostrarTabelaDados("DsClientes");
-                    if (frmDados.DialogResult == DialogResult.OK)
-                    {
-                        CarregarClienteSelecionado();
-                    }
-                }
-            }
-            else if (tipoDadosAtual == TipoDados.Fornecedores)
-            {
-                frmDados.MostrarTabelaDados("DsFornecedores");
-                if (frmDados.DialogResult == DialogResult.OK)
-                {
-                    CarregarFornecedorSelecionado();
-
-                }
-            }
+            this.Close();
         }
 
         private void TxtCodigoCl_Leave(object sender, EventArgs e)
         {
-            if (tipoDadosAtual == TipoDados.Clientes)
+             if (tipoDadosAtual == TipoDados.Clientes)
             {
                 PreencherCliente();
             }
@@ -415,7 +384,6 @@ namespace TeleBerço
                 PreencherFornecedor();
             }
         }
-
-
+        }
     }
-}
+

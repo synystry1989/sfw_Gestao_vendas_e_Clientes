@@ -14,6 +14,7 @@ namespace TeleBerço
 
         public void CarregaArtigos()
         {
+            Produtos.Clear();
             adpArtigos.Fill(Produtos);
         }
         public void UpdateArtigos()
@@ -23,6 +24,7 @@ namespace TeleBerço
 
         public void CarregarMarcas()
         {
+            Marcas.Clear();
             MarcasTableAdapter.Fill(Marcas);
         }
 
@@ -32,6 +34,7 @@ namespace TeleBerço
         }
         public void CarregaCategorias()
         {
+            Categorias.Clear();
             CategoriasTableAdapter.Fill(Categorias);
         }
 
@@ -79,6 +82,37 @@ namespace TeleBerço
                 return Produtos[0];
             }
         }
+
+        public CategoriasRow PesquisarCat(string codCat)
+        {
+            CategoriasTableAdapter.FillByCodCat(Categorias, codCat);
+
+            if (Produtos.Rows.Count > 0)
+            {
+                return Categorias[0];
+            }
+            else
+            {
+                NovaCategoria();
+                return Categorias[0];
+            }
+        }
+
+        public MarcasRow PesquisarMarca(int id)
+        {
+            MarcasTableAdapter.FillByMarca(Marcas, id);
+
+            if (Produtos.Rows.Count > 0)
+            {
+                return Marcas[0];
+            }
+            else
+            {
+                NovaMarca();
+                return Marcas[0];
+            }
+        }
+
         public string DaProxCodArtigo()
         {
 
@@ -132,6 +166,7 @@ namespace TeleBerço
 
         public void EliminarCat(string id)
         {
+            CarregaCategorias();
             CategoriasRow linhaSelecionada = Categorias.FindByCodCat(id);
 
             linhaSelecionada?.Delete();
@@ -139,6 +174,7 @@ namespace TeleBerço
         }
         public void EliminarMarca(int id)
         {
+            CarregarMarcas();
             MarcasRow linhaSelecionada = Marcas.FindById(id);
 
             linhaSelecionada?.Delete();

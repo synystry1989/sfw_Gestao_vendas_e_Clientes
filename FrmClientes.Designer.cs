@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.BtnEliminar = new System.Windows.Forms.Button();
             this.BtnNovo = new System.Windows.Forms.Button();
             this.BtnSair = new System.Windows.Forms.Button();
@@ -49,7 +50,12 @@
             this.LblNome = new System.Windows.Forms.Label();
             this.TxtNomeCl = new System.Windows.Forms.TextBox();
             this.LabelCliente = new System.Windows.Forms.Label();
+            this.dsProdutos = new TeleBerço.DsProdutos();
+            this.categoriasBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.categoriasTableAdapter = new TeleBerço.DsProdutosTableAdapters.CategoriasTableAdapter();
             this.PainelCliente.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dsProdutos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.categoriasBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // BtnEliminar
@@ -217,7 +223,7 @@
             this.TxtTelefone.Margin = new System.Windows.Forms.Padding(8, 5, 8, 5);
             this.TxtTelefone.Name = "TxtTelefone";
             this.TxtTelefone.Size = new System.Drawing.Size(206, 29);
-            this.TxtTelefone.TabIndex = 23;
+            this.TxtTelefone.TabIndex = 3;
             // 
             // lblMorada
             // 
@@ -244,12 +250,16 @@
             // 
             // cbCategoria
             // 
+            this.cbCategoria.DataSource = this.categoriasBindingSource;
+            this.cbCategoria.DisplayMember = "Nome";
+            this.cbCategoria.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbCategoria.FormattingEnabled = true;
             this.cbCategoria.Location = new System.Drawing.Point(291, 188);
             this.cbCategoria.Margin = new System.Windows.Forms.Padding(4);
             this.cbCategoria.Name = "cbCategoria";
-            this.cbCategoria.Size = new System.Drawing.Size(206, 21);
+            this.cbCategoria.Size = new System.Drawing.Size(206, 29);
             this.cbCategoria.TabIndex = 5;
+            this.cbCategoria.ValueMember = "CodCat";
             // 
             // lblLoja
             // 
@@ -343,6 +353,20 @@
             this.LabelCliente.TabIndex = 1;
             this.LabelCliente.Text = "Cliente";
             // 
+            // dsProdutos
+            // 
+            this.dsProdutos.DataSetName = "DsProdutos";
+            this.dsProdutos.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // categoriasBindingSource
+            // 
+            this.categoriasBindingSource.DataMember = "Categorias";
+            this.categoriasBindingSource.DataSource = this.dsProdutos;
+            // 
+            // categoriasTableAdapter
+            // 
+            this.categoriasTableAdapter.ClearBeforeFill = true;
+            // 
             // FrmClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -358,6 +382,8 @@
             this.Load += new System.EventHandler(this.FrmClientes_Load_1);
             this.PainelCliente.ResumeLayout(false);
             this.PainelCliente.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dsProdutos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.categoriasBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -385,5 +411,8 @@
         internal System.Windows.Forms.Label LblNome;
         internal System.Windows.Forms.TextBox TxtNomeCl;
         internal System.Windows.Forms.Label LabelCliente;
+        private DsProdutos dsProdutos;
+        private System.Windows.Forms.BindingSource categoriasBindingSource;
+        private DsProdutosTableAdapters.CategoriasTableAdapter categoriasTableAdapter;
     }
 }

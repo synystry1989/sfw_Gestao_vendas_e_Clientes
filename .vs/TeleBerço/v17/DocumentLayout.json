@@ -3,126 +3,130 @@
   "WorkspaceRootPath": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|c:\\users\\synys\\source\\repos\\sfw_gestao_vendas_e_clientes\\frmclientes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|solutionrelative:frmclientes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|c:\\users\\synys\\source\\repos\\sfw_gestao_vendas_e_clientes\\frmclientes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|solutionrelative:frmclientes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\frmdados.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|solutionrelative:frmdados.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\synys\\AppData\\Local\\Temp\\.vsdbgsrc\\a28dfcbb5a11338c7216338034de5a724aa672f7173b7c3e5f98f10f9d3319f1\\CompareInfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|c:\\users\\synys\\source\\repos\\sfw_gestao_vendas_e_clientes\\frmdocumentos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|solutionrelative:frmdocumentos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\synys\\source\\repos\\Gestao_Doc(Teleberco )\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\frmdados.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|solutionrelative:frmdados.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\frmstock.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|solutionrelative:frmstock.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\frmprodutos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|solutionrelative:frmprodutos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\synys\\AppData\\Local\\Temp\\.vsdbgsrc\\78fa74b6f243b98314f8c586abd00493fc378d1ab05c95b261c8aa82c8f7ed0e\\NativeWindow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\synys\\AppData\\Local\\Temp\\.vsdbgsrc\\5c3976a8ab79914a1d756de194e958a3d2915aba84d7c931df16432579e8a075\\Control.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\frmdocumentos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|solutionrelative:frmdocumentos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\frmstock.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|solutionrelative:frmstock.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\synys\\AppData\\Local\\Temp\\.vsdbgsrc\\65bd1bd31fd9f24f68c71095e72124e363104503b5c83e9599252f471973f92e\\NameNode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\dsstock.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|solutionrelative:dsstock.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\dsstock.xsd||{07AC752B-D2B0-4DCD-AD9C-237BF561A30A}",
-      "RelativeMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|solutionrelative:dsstock.xsd||{07AC752B-D2B0-4DCD-AD9C-237BF561A30A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\dsdocumentos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|solutionrelative:dsdocumentos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\frmprodutos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|solutionrelative:frmprodutos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\synys\\AppData\\Local\\Temp\\.vsdbgsrc\\1e18bcf331ed9b56cd03effaa32caf02fa696c65b9e6fd549092cdd31bd364f3\\BinaryNode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\synys\\AppData\\Local\\Temp\\.vsdbgsrc\\9950e5c35cc093779f455dc10af0ac3e54a449516a6675b5ec711608d07cb8ae\\DataGridViewCellCollection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\synys\\AppData\\Local\\Temp\\.vsdbgsrc\\7a009400665a3850b14cc26f355fcb5db21db56051bd2902ca3b67392866557f\\Application.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\dsclientes.xsd||{07AC752B-D2B0-4DCD-AD9C-237BF561A30A}",
-      "RelativeMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|solutionrelative:dsclientes.xsd||{07AC752B-D2B0-4DCD-AD9C-237BF561A30A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\frmdocumentos.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|solutionrelative:frmdocumentos.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\frmdados.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|solutionrelative:frmdados.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\dsprodutos.xsd||{07AC752B-D2B0-4DCD-AD9C-237BF561A30A}",
-      "RelativeMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|solutionrelative:dsprodutos.xsd||{07AC752B-D2B0-4DCD-AD9C-237BF561A30A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\frmcat_marca.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|solutionrelative:frmcat_marca.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\synys\\AppData\\Local\\Temp\\.vsdbgsrc\\9bdfe0ea4640daa3ed042a795816b7edf59f0f1c149a725e3d23a7cb2a1849e4\\DbDataAdapter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\dsprodutos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|solutionrelative:dsprodutos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\synys\\AppData\\Local\\Temp\\.vsdbgsrc\\f808de3a6ba11c9fa3b8fd4785eea88df903f42880ba9656dcd9623c3f02795d\\ComboBox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\dsprodutos.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|solutionrelative:dsprodutos.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\dsprodutos.xsd||{07AC752B-D2B0-4DCD-AD9C-237BF561A30A}",
+      "RelativeMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|solutionrelative:dsprodutos.xsd||{07AC752B-D2B0-4DCD-AD9C-237BF561A30A}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\frmcat_marca.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|solutionrelative:frmcat_marca.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\frmcat_marca.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|solutionrelative:frmcat_marca.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\frmclientes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|solutionrelative:frmclientes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\frmclientes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|solutionrelative:frmclientes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\synys\\AppData\\Local\\Temp\\.vsdbgsrc\\02e4f3ff987c2851192253a4b09f53f89d113ec3b9062b5310af17b553cc10d4\\Form.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\frmdados.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|solutionrelative:frmdados.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\frmdados.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|solutionrelative:frmdados.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\dsdocumentos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|solutionrelative:dsdocumentos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\frmdocumentos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|solutionrelative:frmdocumentos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\frmdocumentos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|solutionrelative:frmdocumentos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|c:\\users\\synys\\source\\repos\\sfw_gestao_vendas_e_clientes\\dsclientes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|solutionrelative:dsclientes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\synys\\AppData\\Local\\Temp\\.vsdbgsrc\\b72669d13285213e9bb0d9c06bd89726b0e01f3f9c505755033fd0b4bd6a3405\\ContainerControl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\dsclientes.xsd||{07AC752B-D2B0-4DCD-AD9C-237BF561A30A}",
+      "RelativeMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|solutionrelative:dsclientes.xsd||{07AC752B-D2B0-4DCD-AD9C-237BF561A30A}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\dsdocumentos.xsd||{07AC752B-D2B0-4DCD-AD9C-237BF561A30A}",
       "RelativeMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|solutionrelative:dsdocumentos.xsd||{07AC752B-D2B0-4DCD-AD9C-237BF561A30A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\dsclientes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|solutionrelative:dsclientes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\dsprodutos.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|solutionrelative:dsprodutos.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\dsstock.xsd||{07AC752B-D2B0-4DCD-AD9C-237BF561A30A}",
+      "RelativeMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|solutionrelative:dsstock.xsd||{07AC752B-D2B0-4DCD-AD9C-237BF561A30A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\frmstock.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|solutionrelative:frmstock.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\synys\\AppData\\Local\\Temp\\.vsdbgsrc\\9950e5c35cc093779f455dc10af0ac3e54a449516a6675b5ec711608d07cb8ae\\DataGridViewCellCollection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\frmstock.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|solutionrelative:frmstock.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\synys\\AppData\\Local\\Temp\\.vsdbgsrc\\2e21d4369f2771b34c3488f6d20042115aa377e43aa3949dc8a877c55356b86e\\Number.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\synys\\AppData\\Local\\Temp\\.vsdbgsrc\\7a009400665a3850b14cc26f355fcb5db21db56051bd2902ca3b67392866557f\\Application.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\synys\\AppData\\Local\\Temp\\.vsdbgsrc\\5c3976a8ab79914a1d756de194e958a3d2915aba84d7c931df16432579e8a075\\Control.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\frmstock.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|solutionrelative:frmstock.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\frmstock.resx||{FF4D6ACA-9352-4A5F-821E-F4D6EBDCAB11}",
+      "RelativeMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|solutionrelative:frmstock.resx||{FF4D6ACA-9352-4A5F-821E-F4D6EBDCAB11}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\synys\\AppData\\Local\\Temp\\.vsdbgsrc\\7d798e8583efdf2333250e01b521a4a963b9fbecd62cbf68aef16e2d9935d82c\\DataColumn.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\synys\\source\\repos\\Gestao_Doc(Teleberco )\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\synys\\AppData\\Local\\Temp\\.vsdbgsrc\\1e18bcf331ed9b56cd03effaa32caf02fa696c65b9e6fd549092cdd31bd364f3\\BinaryNode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\frmdados.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CDB22B5F-D36F-40A8-9B0F-6FED0784676E}|TeleBer\u00E7o.csproj|solutionrelative:frmdados.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\synys\\AppData\\Local\\Temp\\.vsdbgsrc\\9bdfe0ea4640daa3ed042a795816b7edf59f0f1c149a725e3d23a7cb2a1849e4\\DbDataAdapter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\synys\\AppData\\Local\\Temp\\.vsdbgsrc\\fff20f910549cd4eea41bbdb3caaf0673ace6187637ed650c095594f15d6f00d\\ToolStripItem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
@@ -144,11 +148,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 15,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 17,
               "Title": "DsClientes.xsd",
               "DocumentMoniker": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\DsClientes.xsd",
               "RelativeDocumentMoniker": "DsClientes.xsd",
@@ -160,16 +164,17 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 12,
               "Title": "DsDocumentos.cs",
               "DocumentMoniker": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\DsDocumentos.cs",
               "RelativeDocumentMoniker": "DsDocumentos.cs",
               "ToolTip": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\DsDocumentos.cs",
               "RelativeToolTip": "DsDocumentos.cs",
-              "ViewState": "AQIAAHoAAAAAzG/XdLr1v38AAABaAAAA",
+              "ViewState": "AQIAAD4AAAAAAAAAAAAAAE8AAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-29T21:07:36.591Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Bookmark",
@@ -197,94 +202,70 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "FrmClientes.cs",
-              "DocumentMoniker": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\FrmClientes.cs",
-              "RelativeDocumentMoniker": "FrmClientes.cs",
-              "ToolTip": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\FrmClientes.cs*",
-              "RelativeToolTip": "FrmClientes.cs*",
-              "ViewState": "AQIAAIwAAAAAAAAAAAAuwKQAAAAiAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-09T16:09:02.244Z",
+              "DocumentIndex": 4,
+              "Title": "DsProdutos.xsd",
+              "DocumentMoniker": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\DsProdutos.xsd",
+              "RelativeDocumentMoniker": "DsProdutos.xsd",
+              "ToolTip": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\DsProdutos.xsd",
+              "RelativeToolTip": "DsProdutos.xsd",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003579|",
+              "WhenOpened": "2024-11-20T13:38:50.487Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "FrmClientes.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\FrmClientes.cs",
-              "RelativeDocumentMoniker": "FrmClientes.cs",
-              "ToolTip": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\FrmClientes.cs [Design]*",
-              "RelativeToolTip": "FrmClientes.cs [Design]*",
+              "DocumentIndex": 3,
+              "Title": "DsProdutos.cs",
+              "DocumentMoniker": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\DsProdutos.cs",
+              "RelativeDocumentMoniker": "DsProdutos.cs",
+              "ToolTip": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\DsProdutos.cs",
+              "RelativeToolTip": "DsProdutos.cs",
+              "ViewState": "AQIAADEAAABAmtDOB40qwBAAAAAdAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-09T16:08:55.763Z",
+              "WhenOpened": "2024-11-20T13:18:18.839Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "FrmCat_Marca.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\FrmCat_Marca.cs",
+              "RelativeDocumentMoniker": "FrmCat_Marca.cs",
+              "ToolTip": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\FrmCat_Marca.cs [Design]",
+              "RelativeToolTip": "FrmCat_Marca.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-13T01:18:48.152Z",
               "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "FrmStock.cs",
-              "DocumentMoniker": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\FrmStock.cs",
-              "RelativeDocumentMoniker": "FrmStock.cs",
-              "ToolTip": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\FrmStock.cs",
-              "RelativeToolTip": "FrmStock.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAADgAAABCAAAA",
+              "DocumentIndex": 5,
+              "Title": "FrmCat_Marca.cs",
+              "DocumentMoniker": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\FrmCat_Marca.cs",
+              "RelativeDocumentMoniker": "FrmCat_Marca.cs",
+              "ToolTip": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\FrmCat_Marca.cs",
+              "RelativeToolTip": "FrmCat_Marca.cs",
+              "ViewState": "AQIAAGUAAAAA7yWoJasVwHkAAAAyAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-02T14:51:14.977Z"
+              "WhenOpened": "2024-11-23T19:32:56.92Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "FrmProdutos.cs",
-              "DocumentMoniker": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\FrmProdutos.cs",
-              "RelativeDocumentMoniker": "FrmProdutos.cs",
-              "ToolTip": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\FrmProdutos.cs",
-              "RelativeToolTip": "FrmProdutos.cs",
-              "ViewState": "AQIAAJkAAAAAAAAAAAAewKwAAAANAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-29T13:49:12.041Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "FrmDocumentos.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\FrmDocumentos.cs",
-              "RelativeDocumentMoniker": "FrmDocumentos.cs",
-              "ToolTip": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\FrmDocumentos.cs [Design]",
-              "RelativeToolTip": "FrmDocumentos.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-06T12:47:40.736Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 10,
               "Title": "FrmDados.cs",
               "DocumentMoniker": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\FrmDados.cs",
               "RelativeDocumentMoniker": "FrmDados.cs",
               "ToolTip": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\FrmDados.cs",
               "RelativeToolTip": "FrmDados.cs",
-              "ViewState": "AQIAAHcBAAAAMPc0IITdv5EBAAANAAAA",
+              "ViewState": "AQIAAF4AAAAAAAAAAAAAALEBAAAVAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-29T13:34:28.547Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "CompareInfo.cs",
-              "DocumentMoniker": "C:\\Users\\synys\\AppData\\Local\\Temp\\.vsdbgsrc\\a28dfcbb5a11338c7216338034de5a724aa672f7173b7c3e5f98f10f9d3319f1\\CompareInfo.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\a28dfcbb5a11338c7216338034de5a724aa672f7173b7c3e5f98f10f9d3319f1\\CompareInfo.cs",
-              "ToolTip": "C:\\Users\\synys\\AppData\\Local\\Temp\\.vsdbgsrc\\a28dfcbb5a11338c7216338034de5a724aa672f7173b7c3e5f98f10f9d3319f1\\CompareInfo.cs [Somente Leitura]",
-              "RelativeToolTip": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\a28dfcbb5a11338c7216338034de5a724aa672f7173b7c3e5f98f10f9d3319f1\\CompareInfo.cs [Somente Leitura]",
-              "ViewState": "AQIAAKcFAAAAAAAAAAAAwLwFAAACAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-09T16:00:19.318Z",
-              "EditorCaption": " [Somente Leitura]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 11,
               "Title": "FrmDados.cs [Design]",
               "DocumentMoniker": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\FrmDados.cs",
               "RelativeDocumentMoniker": "FrmDados.cs",
@@ -296,7 +277,276 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 2,
+              "Title": "FrmProdutos.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\FrmProdutos.cs",
+              "RelativeDocumentMoniker": "FrmProdutos.cs",
+              "ToolTip": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\FrmProdutos.cs [Design]",
+              "RelativeToolTip": "FrmProdutos.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-03T13:36:54.731Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "FrmProdutos.cs",
+              "DocumentMoniker": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\FrmProdutos.cs",
+              "RelativeDocumentMoniker": "FrmProdutos.cs",
+              "ToolTip": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\FrmProdutos.cs",
+              "RelativeToolTip": "FrmProdutos.cs",
+              "ViewState": "AQIAALgAAAAAAAAAAAAAANIAAAAlAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-29T13:49:12.041Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DsStock.cs",
+              "DocumentMoniker": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\DsStock.cs",
+              "RelativeDocumentMoniker": "DsStock.cs",
+              "ToolTip": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\DsStock.cs",
+              "RelativeToolTip": "DsStock.cs",
+              "ViewState": "AQIAAFwAAAAAAAAAAAAAwG4AAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-03T12:18:03.053Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "FrmClientes.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\FrmClientes.cs",
+              "RelativeDocumentMoniker": "FrmClientes.cs",
+              "ToolTip": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\FrmClientes.cs [Design]",
+              "RelativeToolTip": "FrmClientes.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-09T16:08:55.763Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Form.cs",
+              "DocumentMoniker": "C:\\Users\\synys\\AppData\\Local\\Temp\\.vsdbgsrc\\02e4f3ff987c2851192253a4b09f53f89d113ec3b9062b5310af17b553cc10d4\\Form.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\02e4f3ff987c2851192253a4b09f53f89d113ec3b9062b5310af17b553cc10d4\\Form.cs",
+              "ToolTip": "C:\\Users\\synys\\AppData\\Local\\Temp\\.vsdbgsrc\\02e4f3ff987c2851192253a4b09f53f89d113ec3b9062b5310af17b553cc10d4\\Form.cs",
+              "RelativeToolTip": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\02e4f3ff987c2851192253a4b09f53f89d113ec3b9062b5310af17b553cc10d4\\Form.cs",
+              "ViewState": "AQIAAAMRAAAAAAAAAAAAwBURAAAcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-10T16:26:51.721Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "FrmClientes.cs",
+              "DocumentMoniker": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\FrmClientes.cs",
+              "RelativeDocumentMoniker": "FrmClientes.cs",
+              "ToolTip": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\FrmClientes.cs",
+              "RelativeToolTip": "FrmClientes.cs",
+              "ViewState": "AQIAAIQAAAAAAAAAAAAmwJUAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-09T16:09:02.244Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "FrmDocumentos.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\FrmDocumentos.cs",
+              "RelativeDocumentMoniker": "FrmDocumentos.cs",
+              "ToolTip": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\FrmDocumentos.cs [Design]",
+              "RelativeToolTip": "FrmDocumentos.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-11T00:08:25.844Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "FrmDocumentos.cs",
+              "DocumentMoniker": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\FrmDocumentos.cs",
+              "RelativeDocumentMoniker": "FrmDocumentos.cs",
+              "ToolTip": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\FrmDocumentos.cs",
+              "RelativeToolTip": "FrmDocumentos.cs",
+              "ViewState": "AQIAAAQAAAAAAAAAAAAAAN4EAAAaAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-29T13:59:32.568Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "DsClientes.cs",
+              "DocumentMoniker": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\DsClientes.cs",
+              "RelativeDocumentMoniker": "DsClientes.cs",
+              "ToolTip": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\DsClientes.cs",
+              "RelativeToolTip": "DsClientes.cs",
+              "ViewState": "AQIAAAsAAACAa68cYEUuwJ0AAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-05T11:21:06.945Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "ContainerControl.cs",
+              "DocumentMoniker": "C:\\Users\\synys\\AppData\\Local\\Temp\\.vsdbgsrc\\b72669d13285213e9bb0d9c06bd89726b0e01f3f9c505755033fd0b4bd6a3405\\ContainerControl.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\b72669d13285213e9bb0d9c06bd89726b0e01f3f9c505755033fd0b4bd6a3405\\ContainerControl.cs",
+              "ToolTip": "C:\\Users\\synys\\AppData\\Local\\Temp\\.vsdbgsrc\\b72669d13285213e9bb0d9c06bd89726b0e01f3f9c505755033fd0b4bd6a3405\\ContainerControl.cs",
+              "RelativeToolTip": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\b72669d13285213e9bb0d9c06bd89726b0e01f3f9c505755033fd0b4bd6a3405\\ContainerControl.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-11T12:28:34.305Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "DsDocumentos.xsd",
+              "DocumentMoniker": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\DsDocumentos.xsd",
+              "RelativeDocumentMoniker": "DsDocumentos.xsd",
+              "ToolTip": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\DsDocumentos.xsd",
+              "RelativeToolTip": "DsDocumentos.xsd",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003579|",
+              "WhenOpened": "2024-10-29T21:08:05.129Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "DsProdutos.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\DsProdutos.Designer.cs",
+              "RelativeDocumentMoniker": "DsProdutos.Designer.cs",
+              "ToolTip": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\DsProdutos.Designer.cs",
+              "RelativeToolTip": "DsProdutos.Designer.cs",
+              "ViewState": "AQIAAPgMAAAAAAAAAAAAwAoNAAAeAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-04T13:01:47.125Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "DataGridViewCellCollection.cs",
+              "DocumentMoniker": "C:\\Users\\synys\\AppData\\Local\\Temp\\.vsdbgsrc\\9950e5c35cc093779f455dc10af0ac3e54a449516a6675b5ec711608d07cb8ae\\DataGridViewCellCollection.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\9950e5c35cc093779f455dc10af0ac3e54a449516a6675b5ec711608d07cb8ae\\DataGridViewCellCollection.cs",
+              "ToolTip": "C:\\Users\\synys\\AppData\\Local\\Temp\\.vsdbgsrc\\9950e5c35cc093779f455dc10af0ac3e54a449516a6675b5ec711608d07cb8ae\\DataGridViewCellCollection.cs",
+              "RelativeToolTip": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\9950e5c35cc093779f455dc10af0ac3e54a449516a6675b5ec711608d07cb8ae\\DataGridViewCellCollection.cs",
+              "ViewState": "AQIAAIUAAAAAAAAAAAAAwJcAAAAEAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-06T13:14:20.251Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "DsStock.xsd",
+              "DocumentMoniker": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\DsStock.xsd",
+              "RelativeDocumentMoniker": "DsStock.xsd",
+              "ToolTip": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\DsStock.xsd",
+              "RelativeToolTip": "DsStock.xsd",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003579|",
+              "WhenOpened": "2024-12-04T15:21:45.942Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "FrmStock.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\FrmStock.cs",
+              "RelativeDocumentMoniker": "FrmStock.cs",
+              "ToolTip": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\FrmStock.cs [Design]",
+              "RelativeToolTip": "FrmStock.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-02T14:39:59.575Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "FrmStock.cs",
+              "DocumentMoniker": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\FrmStock.cs",
+              "RelativeDocumentMoniker": "FrmStock.cs",
+              "ToolTip": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\FrmStock.cs",
+              "RelativeToolTip": "FrmStock.cs",
+              "ViewState": "AQIAAKsBAAAAAAAAAAAuwLsBAAAoAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-02T14:51:14.977Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "Application.cs",
+              "DocumentMoniker": "C:\\Users\\synys\\AppData\\Local\\Temp\\.vsdbgsrc\\7a009400665a3850b14cc26f355fcb5db21db56051bd2902ca3b67392866557f\\Application.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\7a009400665a3850b14cc26f355fcb5db21db56051bd2902ca3b67392866557f\\Application.cs",
+              "ToolTip": "C:\\Users\\synys\\AppData\\Local\\Temp\\.vsdbgsrc\\7a009400665a3850b14cc26f355fcb5db21db56051bd2902ca3b67392866557f\\Application.cs",
+              "RelativeToolTip": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\7a009400665a3850b14cc26f355fcb5db21db56051bd2902ca3b67392866557f\\Application.cs",
+              "ViewState": "AQIAAD4BAAAAAAAAAAAAwFABAAAHAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-06T12:54:51.056Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "Number.cs",
+              "DocumentMoniker": "C:\\Users\\synys\\AppData\\Local\\Temp\\.vsdbgsrc\\2e21d4369f2771b34c3488f6d20042115aa377e43aa3949dc8a877c55356b86e\\Number.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\2e21d4369f2771b34c3488f6d20042115aa377e43aa3949dc8a877c55356b86e\\Number.cs",
+              "ToolTip": "C:\\Users\\synys\\AppData\\Local\\Temp\\.vsdbgsrc\\2e21d4369f2771b34c3488f6d20042115aa377e43aa3949dc8a877c55356b86e\\Number.cs",
+              "RelativeToolTip": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\2e21d4369f2771b34c3488f6d20042115aa377e43aa3949dc8a877c55356b86e\\Number.cs",
+              "ViewState": "AQIAAP8CAAAAAAAAAAAAwBEDAAAEAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-12T19:13:41.016Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "Control.cs",
+              "DocumentMoniker": "C:\\Users\\synys\\AppData\\Local\\Temp\\.vsdbgsrc\\5c3976a8ab79914a1d756de194e958a3d2915aba84d7c931df16432579e8a075\\Control.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\5c3976a8ab79914a1d756de194e958a3d2915aba84d7c931df16432579e8a075\\Control.cs",
+              "ToolTip": "C:\\Users\\synys\\AppData\\Local\\Temp\\.vsdbgsrc\\5c3976a8ab79914a1d756de194e958a3d2915aba84d7c931df16432579e8a075\\Control.cs",
+              "RelativeToolTip": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\5c3976a8ab79914a1d756de194e958a3d2915aba84d7c931df16432579e8a075\\Control.cs",
+              "ViewState": "AQIAAG0aAAAAAAAAAAAMwH8aAAADAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-05T11:45:08.6Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "FrmStock.resx",
+              "DocumentMoniker": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\FrmStock.resx",
+              "RelativeDocumentMoniker": "FrmStock.resx",
+              "ToolTip": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\FrmStock.resx",
+              "RelativeToolTip": "FrmStock.resx",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
+              "WhenOpened": "2024-12-10T14:02:20.514Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "FrmStock.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\FrmStock.Designer.cs",
+              "RelativeDocumentMoniker": "FrmStock.Designer.cs",
+              "ToolTip": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\FrmStock.Designer.cs",
+              "RelativeToolTip": "FrmStock.Designer.cs",
+              "ViewState": "AQIAAAEAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-10T14:02:21.184Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "DataColumn.cs",
+              "DocumentMoniker": "C:\\Users\\synys\\AppData\\Local\\Temp\\.vsdbgsrc\\7d798e8583efdf2333250e01b521a4a963b9fbecd62cbf68aef16e2d9935d82c\\DataColumn.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\7d798e8583efdf2333250e01b521a4a963b9fbecd62cbf68aef16e2d9935d82c\\DataColumn.cs",
+              "ToolTip": "C:\\Users\\synys\\AppData\\Local\\Temp\\.vsdbgsrc\\7d798e8583efdf2333250e01b521a4a963b9fbecd62cbf68aef16e2d9935d82c\\DataColumn.cs",
+              "RelativeToolTip": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\7d798e8583efdf2333250e01b521a4a963b9fbecd62cbf68aef16e2d9935d82c\\DataColumn.cs",
+              "ViewState": "AQIAAKwFAAAAAAAAAAAAwMEFAAACAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-10T00:22:41.662Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\synys\\source\\repos\\Gestao_Doc(Teleberco )\\Program.cs",
               "RelativeDocumentMoniker": "..\\Gestao_Doc(Teleberco )\\Program.cs",
@@ -308,92 +558,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "NativeWindow.cs",
-              "DocumentMoniker": "C:\\Users\\synys\\AppData\\Local\\Temp\\.vsdbgsrc\\78fa74b6f243b98314f8c586abd00493fc378d1ab05c95b261c8aa82c8f7ed0e\\NativeWindow.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\78fa74b6f243b98314f8c586abd00493fc378d1ab05c95b261c8aa82c8f7ed0e\\NativeWindow.cs",
-              "ToolTip": "C:\\Users\\synys\\AppData\\Local\\Temp\\.vsdbgsrc\\78fa74b6f243b98314f8c586abd00493fc378d1ab05c95b261c8aa82c8f7ed0e\\NativeWindow.cs",
-              "RelativeToolTip": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\78fa74b6f243b98314f8c586abd00493fc378d1ab05c95b261c8aa82c8f7ed0e\\NativeWindow.cs",
-              "ViewState": "AQIAANACAAAAAAAAAAAMwOUCAAAEAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-05T11:50:13.832Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Control.cs",
-              "DocumentMoniker": "C:\\Users\\synys\\AppData\\Local\\Temp\\.vsdbgsrc\\5c3976a8ab79914a1d756de194e958a3d2915aba84d7c931df16432579e8a075\\Control.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\5c3976a8ab79914a1d756de194e958a3d2915aba84d7c931df16432579e8a075\\Control.cs",
-              "ToolTip": "C:\\Users\\synys\\AppData\\Local\\Temp\\.vsdbgsrc\\5c3976a8ab79914a1d756de194e958a3d2915aba84d7c931df16432579e8a075\\Control.cs",
-              "RelativeToolTip": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\5c3976a8ab79914a1d756de194e958a3d2915aba84d7c931df16432579e8a075\\Control.cs",
-              "ViewState": "AQIAAEo9AAAAAAAAAAAMwF89AAADAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-05T11:45:08.6Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "FrmDocumentos.cs",
-              "DocumentMoniker": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\FrmDocumentos.cs",
-              "RelativeDocumentMoniker": "FrmDocumentos.cs",
-              "ToolTip": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\FrmDocumentos.cs",
-              "RelativeToolTip": "FrmDocumentos.cs",
-              "ViewState": "AQIAAB4CAAAAAAAAAAAhwEwCAAAiAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-29T13:59:32.568Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "FrmStock.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\FrmStock.cs",
-              "RelativeDocumentMoniker": "FrmStock.cs",
-              "ToolTip": "C:\\Users\\synys\\source\\repos\\Gestao_Doc(Teleberco )\\FrmStock.cs [Design]",
-              "RelativeToolTip": "..\\Gestao_Doc(Teleberco )\\FrmStock.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-02T14:39:59.575Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "NameNode.cs",
-              "DocumentMoniker": "C:\\Users\\synys\\AppData\\Local\\Temp\\.vsdbgsrc\\65bd1bd31fd9f24f68c71095e72124e363104503b5c83e9599252f471973f92e\\NameNode.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\65bd1bd31fd9f24f68c71095e72124e363104503b5c83e9599252f471973f92e\\NameNode.cs",
-              "ToolTip": "C:\\Users\\synys\\AppData\\Local\\Temp\\.vsdbgsrc\\65bd1bd31fd9f24f68c71095e72124e363104503b5c83e9599252f471973f92e\\NameNode.cs",
-              "RelativeToolTip": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\65bd1bd31fd9f24f68c71095e72124e363104503b5c83e9599252f471973f92e\\NameNode.cs",
-              "ViewState": "AQIAACIAAAAAAAAAAAAMwDcAAAADAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-06T21:09:00.934Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "DsStock.cs",
-              "DocumentMoniker": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\DsStock.cs",
-              "RelativeDocumentMoniker": "DsStock.cs",
-              "ToolTip": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\DsStock.cs",
-              "RelativeToolTip": "DsStock.cs",
-              "ViewState": "AQIAAGgAAAAAAAAAAAAgwI8AAAAQAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-03T12:18:03.053Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "DsStock.xsd",
-              "DocumentMoniker": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\DsStock.xsd",
-              "RelativeDocumentMoniker": "DsStock.xsd",
-              "ToolTip": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\DsStock.xsd",
-              "RelativeToolTip": "DsStock.xsd",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003579|",
-              "WhenOpened": "2024-12-04T15:21:45.942Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 31,
               "Title": "BinaryNode.cs",
               "DocumentMoniker": "C:\\Users\\synys\\AppData\\Local\\Temp\\.vsdbgsrc\\1e18bcf331ed9b56cd03effaa32caf02fa696c65b9e6fd549092cdd31bd364f3\\BinaryNode.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\1e18bcf331ed9b56cd03effaa32caf02fa696c65b9e6fd549092cdd31bd364f3\\BinaryNode.cs",
@@ -401,49 +566,11 @@
               "RelativeToolTip": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\1e18bcf331ed9b56cd03effaa32caf02fa696c65b9e6fd549092cdd31bd364f3\\BinaryNode.cs",
               "ViewState": "AQIAADABAAAAAAAAAAAMwEUBAAACAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-06T17:34:18.75Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-06T17:34:18.75Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "FrmProdutos.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\FrmProdutos.cs",
-              "RelativeDocumentMoniker": "FrmProdutos.cs",
-              "ToolTip": "C:\\Users\\synys\\source\\repos\\Gestao_Doc(Teleberco )\\FrmProdutos.cs [Design]",
-              "RelativeToolTip": "..\\Gestao_Doc(Teleberco )\\FrmProdutos.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-03T13:36:54.731Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "DataGridViewCellCollection.cs",
-              "DocumentMoniker": "C:\\Users\\synys\\AppData\\Local\\Temp\\.vsdbgsrc\\9950e5c35cc093779f455dc10af0ac3e54a449516a6675b5ec711608d07cb8ae\\DataGridViewCellCollection.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\9950e5c35cc093779f455dc10af0ac3e54a449516a6675b5ec711608d07cb8ae\\DataGridViewCellCollection.cs",
-              "ToolTip": "C:\\Users\\synys\\AppData\\Local\\Temp\\.vsdbgsrc\\9950e5c35cc093779f455dc10af0ac3e54a449516a6675b5ec711608d07cb8ae\\DataGridViewCellCollection.cs",
-              "RelativeToolTip": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\9950e5c35cc093779f455dc10af0ac3e54a449516a6675b5ec711608d07cb8ae\\DataGridViewCellCollection.cs",
-              "ViewState": "AQIAAIcAAAAAAAAAAAAkwJcAAAAEAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-06T13:14:20.251Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "Application.cs",
-              "DocumentMoniker": "C:\\Users\\synys\\AppData\\Local\\Temp\\.vsdbgsrc\\7a009400665a3850b14cc26f355fcb5db21db56051bd2902ca3b67392866557f\\Application.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\7a009400665a3850b14cc26f355fcb5db21db56051bd2902ca3b67392866557f\\Application.cs",
-              "ToolTip": "C:\\Users\\synys\\AppData\\Local\\Temp\\.vsdbgsrc\\7a009400665a3850b14cc26f355fcb5db21db56051bd2902ca3b67392866557f\\Application.cs",
-              "RelativeToolTip": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\7a009400665a3850b14cc26f355fcb5db21db56051bd2902ca3b67392866557f\\Application.cs",
-              "ViewState": "AQIAAEABAAAAAAAAAAAkwFABAAAHAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-06T12:54:51.056Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 32,
               "Title": "FrmDados.Designer.cs",
               "DocumentMoniker": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\FrmDados.Designer.cs",
               "RelativeDocumentMoniker": "FrmDados.Designer.cs",
@@ -456,41 +583,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "FrmDocumentos.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\FrmDocumentos.Designer.cs",
-              "RelativeDocumentMoniker": "FrmDocumentos.Designer.cs",
-              "ToolTip": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\FrmDocumentos.Designer.cs",
-              "RelativeToolTip": "FrmDocumentos.Designer.cs",
-              "ViewState": "AQIAADkFAAAAAAAAAADgv0oFAAB8AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-05T11:57:37.418Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 24,
-              "Title": "DsProdutos.xsd",
-              "DocumentMoniker": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\DsProdutos.xsd",
-              "RelativeDocumentMoniker": "DsProdutos.xsd",
-              "ToolTip": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\DsProdutos.xsd",
-              "RelativeToolTip": "DsProdutos.xsd",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003579|",
-              "WhenOpened": "2024-11-20T13:38:50.487Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 25,
-              "Title": "FrmCat_Marca.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\FrmCat_Marca.cs",
-              "RelativeDocumentMoniker": "FrmCat_Marca.cs",
-              "ToolTip": "C:\\Users\\synys\\source\\repos\\Gestao_Doc(Teleberco )\\FrmCat_Marca.cs [Design]",
-              "RelativeToolTip": "..\\Gestao_Doc(Teleberco )\\FrmCat_Marca.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-13T01:18:48.152Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 33,
               "Title": "DbDataAdapter.cs",
               "DocumentMoniker": "C:\\Users\\synys\\AppData\\Local\\Temp\\.vsdbgsrc\\9bdfe0ea4640daa3ed042a795816b7edf59f0f1c149a725e3d23a7cb2a1849e4\\DbDataAdapter.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\9bdfe0ea4640daa3ed042a795816b7edf59f0f1c149a725e3d23a7cb2a1849e4\\DbDataAdapter.cs",
@@ -498,84 +591,11 @@
               "RelativeToolTip": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\9bdfe0ea4640daa3ed042a795816b7edf59f0f1c149a725e3d23a7cb2a1849e4\\DbDataAdapter.cs",
               "ViewState": "AQIAAAAGAAAAAAAAAAAAAI8GAAADAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-05T13:07:55.064Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-05T13:07:55.064Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
-              "Title": "DsProdutos.cs",
-              "DocumentMoniker": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\DsProdutos.cs",
-              "RelativeDocumentMoniker": "DsProdutos.cs",
-              "ToolTip": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\DsProdutos.cs",
-              "RelativeToolTip": "DsProdutos.cs",
-              "ViewState": "AQIAAC8AAAAAAAAAAAA8wEMAAAAbAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-20T13:18:18.839Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 28,
-              "Title": "ComboBox.cs",
-              "DocumentMoniker": "C:\\Users\\synys\\AppData\\Local\\Temp\\.vsdbgsrc\\f808de3a6ba11c9fa3b8fd4785eea88df903f42880ba9656dcd9623c3f02795d\\ComboBox.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\f808de3a6ba11c9fa3b8fd4785eea88df903f42880ba9656dcd9623c3f02795d\\ComboBox.cs",
-              "ToolTip": "C:\\Users\\synys\\AppData\\Local\\Temp\\.vsdbgsrc\\f808de3a6ba11c9fa3b8fd4785eea88df903f42880ba9656dcd9623c3f02795d\\ComboBox.cs",
-              "RelativeToolTip": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\f808de3a6ba11c9fa3b8fd4785eea88df903f42880ba9656dcd9623c3f02795d\\ComboBox.cs",
-              "ViewState": "AQIAAGMSAAAAAAAAAAAAAHsSAAAHAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-15T17:28:47.217Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 29,
-              "Title": "DsProdutos.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\DsProdutos.Designer.cs",
-              "RelativeDocumentMoniker": "DsProdutos.Designer.cs",
-              "ToolTip": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\DsProdutos.Designer.cs",
-              "RelativeToolTip": "DsProdutos.Designer.cs",
-              "ViewState": "AQIAAPwCAAAAAAAAAAAjwA0DAAAhAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-04T13:01:47.125Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 30,
-              "Title": "FrmCat_Marca.cs",
-              "DocumentMoniker": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\FrmCat_Marca.cs",
-              "RelativeDocumentMoniker": "FrmCat_Marca.cs",
-              "ToolTip": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\FrmCat_Marca.cs",
-              "RelativeToolTip": "FrmCat_Marca.cs",
-              "ViewState": "AQIAABIAAAAAAAAAAAAjwCIAAAAuAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-23T19:32:56.92Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 31,
-              "Title": "DsDocumentos.xsd",
-              "DocumentMoniker": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\DsDocumentos.xsd",
-              "RelativeDocumentMoniker": "DsDocumentos.xsd",
-              "ToolTip": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\DsDocumentos.xsd",
-              "RelativeToolTip": "DsDocumentos.xsd",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003579|",
-              "WhenOpened": "2024-10-29T21:08:05.129Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 32,
-              "Title": "DsClientes.cs",
-              "DocumentMoniker": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\DsClientes.cs",
-              "RelativeDocumentMoniker": "DsClientes.cs",
-              "ToolTip": "C:\\Users\\synys\\source\\repos\\sfw_Gestao_vendas_e_Clientes\\DsClientes.cs",
-              "RelativeToolTip": "DsClientes.cs",
-              "ViewState": "AQIAAGsAAAAAAAAAAADgv3wAAAAbAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-05T11:21:06.945Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 34,
               "Title": "ToolStripItem.cs",
               "DocumentMoniker": "C:\\Users\\synys\\AppData\\Local\\Temp\\.vsdbgsrc\\fff20f910549cd4eea41bbdb3caaf0673ace6187637ed650c095594f15d6f00d\\ToolStripItem.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\fff20f910549cd4eea41bbdb3caaf0673ace6187637ed650c095594f15d6f00d\\ToolStripItem.cs",
@@ -583,12 +603,11 @@
               "RelativeToolTip": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\fff20f910549cd4eea41bbdb3caaf0673ace6187637ed650c095594f15d6f00d\\ToolStripItem.cs",
               "ViewState": "AQIAAB0PAAAAAAAAAAAjwCwPAAACAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-26T16:45:01.62Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-26T16:45:01.62Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 35,
               "Title": "dbo.Produtos [Dados]",
               "DocumentMoniker": "ViewDataWindow_MSSQL__/BRUNO_PC/DB_TeleBerco2017/True/SqlTable/dbo.Produtos.sql",
               "ToolTip": "dbo.Produtos [Dados]",
@@ -597,7 +616,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 36,
               "Title": "dbo.Marcas [Dados]",
               "DocumentMoniker": "ViewDataWindow_MSSQL__/BRUNO_PC/DB_TeleBerco2017/True/SqlTable/dbo.Marcas.sql",
               "ToolTip": "dbo.Marcas [Dados]",
@@ -606,7 +625,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 37,
               "Title": "AccessibleObject.cs",
               "DocumentMoniker": "C:\\Users\\synys\\AppData\\Local\\Temp\\.vsdbgsrc\\8b6e5402a1c23f9b29916245f9d6418ed750e3af4a7be9cf949164ff734345b1\\AccessibleObject.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\8b6e5402a1c23f9b29916245f9d6418ed750e3af4a7be9cf949164ff734345b1\\AccessibleObject.cs",
@@ -614,8 +633,7 @@
               "RelativeToolTip": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\8b6e5402a1c23f9b29916245f9d6418ed750e3af4a7be9cf949164ff734345b1\\AccessibleObject.cs",
               "ViewState": "AQIAAEgJAAAAAAAAAAAnwGQJAAADAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-18T18:02:48.631Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-18T18:02:48.631Z"
             }
           ]
         }

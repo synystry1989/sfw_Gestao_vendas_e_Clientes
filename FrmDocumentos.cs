@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Printing;
@@ -19,6 +18,8 @@ namespace TeleBerço
         // Datasets e TableAdapters
         private DsClientes dsClientes = new DsClientes();
         DsStock dsStock = new DsStock();
+        public string tipoDoc { get; set; }
+        public int nrDoc { get; set; }
         private QuerryProdutosTableAdapter querryProdutosTableAdapter = new QuerryProdutosTableAdapter();
         // Variáveis de controle
         private PrintDocument printDocument = new PrintDocument();
@@ -30,14 +31,23 @@ namespace TeleBerço
 
         private void FrmDocumentos_Load(object sender, EventArgs e)
         {
-            // TODO: esta linha de código carrega dados na tabela 'dsProdutos.Categorias'. Você pode movê-la ou removê-la conforme necessário.
-            this.categoriasTableAdapter.Fill(this.dsProdutos.Categorias);
 
             try
             {
-          
                 CarregarDadosIniciais();
-                LimparFormulario();
+                if (dsDocumentos.TipoDocumentos.FindByCodDoc(tipoDoc) != null && tipoDoc!="AM")
+                {
+                    TxtCodigoDoc.Text = tipoDoc;
+                    NrDoc.Text = nrDoc.ToString();
+              
+                    tsImprimir_Click_1(sender, e);
+                    this.Close();
+                }
+                else
+                {
+                    LimparFormulario();
+                }
+
             }
             catch (Exception ex)
             {
@@ -52,11 +62,7 @@ namespace TeleBerço
                 dsProdutos.CarregaCategorias();
                 dsProdutos.CarregarMarcas();
                 dsDocumentos.CarregaTipoDoc();
-             
-
                 TxtCodigoDoc.Text = "";
-
-             
             }
 
             catch (Exception ex)
@@ -65,7 +71,7 @@ namespace TeleBerço
             }
         }
 
-        private void PreencheDocumento(string tipoDoc, int nrDoc)
+        public void PreencheDocumento(string tipoDoc, int nrDoc)
         {
             try
             {
@@ -90,6 +96,7 @@ namespace TeleBerço
                     }  // Preencher dados do cliente associado
                     if (rowPesquisada.Cliente.Contains("CL"))
                     {
+
                         var clienteRow = dsClientes.PesquisaCliente(rowPesquisada.Cliente);
 
                         if (clienteRow.CodCl != dsClientes.DaProxNrCliente())
@@ -102,6 +109,7 @@ namespace TeleBerço
                     }
                     else if (rowPesquisada.Cliente.Contains("FN"))
                     {
+
                         var clienteRow = dsClientes.PesquisaFornecedor(rowPesquisada.Cliente);
                         if (clienteRow.FornecedorID != dsClientes.DaProxNrFornecedor())
                         {
@@ -112,6 +120,7 @@ namespace TeleBerço
                             txtMorada.Text = clienteRow.Morada;
                             cbCategoria.SelectedValue = clienteRow.Categoria;
                         }
+
                     }
                     // Preencher dados do documento
                     DataMod.Value = rowPesquisada.DataRececao;
@@ -173,9 +182,9 @@ namespace TeleBerço
         {
 
             TxtCodigoCl.Text = dsClientes.DaProxNrCliente();
-       
-            BtnGravarCliente.Enabled = true;
+
             HabilitarCliente();
+            LimparCliente();
 
 
         }
@@ -206,7 +215,7 @@ namespace TeleBerço
                 TxtTelefone.Text = fornecedorRow.Contato;
                 TxtEmail.Text = fornecedorRow.Site;
                 txtMorada.Text = fornecedorRow.Morada;
-                cbCategoria.SelectedValue = fornecedorRow.Categoria;
+                cbCategoria.Text = querryProdutosTableAdapter.NomeCategoria( fornecedorRow.Categoria).ToString();
             }
             else
             {
@@ -218,11 +227,8 @@ namespace TeleBerço
         {
 
             TxtCodigoCl.Text = dsClientes.DaProxNrFornecedor();
-            TxtNomeCl.Enabled = true;
-           
-            BtnGravarCliente.Enabled = true;
-
             HabilitarFornecedor();
+            LimparFornecedor();
 
         }
         private void TxtCodigoDoc_KeyDown_1(object sender, KeyEventArgs e)
@@ -231,7 +237,7 @@ namespace TeleBerço
             {
                 AbrirSelecaoDocumentos();
                 EstadoDoc();
-               
+
             }
         }
 
@@ -252,6 +258,7 @@ namespace TeleBerço
             else
             {
                 TxtCodigoCl.Text = "CL";
+                HabilitarCliente();
             }
         }
 
@@ -259,6 +266,8 @@ namespace TeleBerço
         {
             // Obter o tipo do documento
             string tipoDocumento = dsDocumentos.CabecDocumento[0].TipoDocumento;
+            int nrDoc = dsDocumentos.CabecDocumento[0].NrDocumento;
+            string codDoc = tipoDocumento + nrDoc.ToString("000");
             string tipoEntrada = "";
             DateTime data = dsDocumentos.CabecDocumento[0].DataRececao;
             if ((tipoDocumento.Contains("FTC")) || (tipoDocumento.Contains("NDF")))
@@ -279,10 +288,11 @@ namespace TeleBerço
                 // Apenas processar linhas que não foram excluídas
                 if (produtos.RowState != DataRowState.Deleted)
                 {
-                 //   ProdutosRow produto = dsProdutos.Produtos.FindByCodPr(produtos.Produto);
+                    //   ProdutosRow produto = dsProdutos.Produtos.FindByCodPr(produtos.Produto);
                     dsStock.PesquisarStock(produtos.Produto/*, produto*/);
 
-                    dsStock.AtualizarStock(produtos.Produto, produtos.Quantidade, tipoDocumento);
+
+                    dsStock.AtualizarStock(produtos.Produto, produtos.Quantidade, tipoDocumento, codDoc);
 
                 }
             }
@@ -336,8 +346,10 @@ namespace TeleBerço
                     TxtNomeCl.Text = clienteRow.Nome;
                     TxtTelefone.Text = clienteRow.Contato;
                     TxtEmail.Text = clienteRow.Site;
+                    txtMorada.Text = clienteRow.Morada;
+                    cbCategoria.SelectedValue = clienteRow.Categoria;
 
-                    HabilitarFornecedor ();
+                    HabilitarFornecedor();
                 }
             }
             catch (Exception ex)
@@ -484,12 +496,24 @@ namespace TeleBerço
             dsDocumentos.ListaProdutos.Clear();
         }
 
+       
+
+
         private void LimparCliente()
         {
-            TxtCodigoCl.Text = "";
+
             TxtNomeCl.Text = "Nome";
             TxtTelefone.Text = "Telefone";
             TxtEmail.Text = "Email";
+        }
+        private void LimparFornecedor()
+        {
+
+            TxtNomeCl.Text = "Nome";
+            TxtTelefone.Text = "Telefone";
+            TxtEmail.Text = "site";
+            txtMorada.Text = "Morada";
+            cbCategoria.Text = "";
         }
 
         private void LimparProduto()
@@ -502,15 +526,13 @@ namespace TeleBerço
 
         }
 
-       
-
         private void DesabilitarBotoes()
         {
             BtnNovo.Enabled = false;
             BtnEliminar.Enabled = false;
             btnAbrirPr.Enabled = false;
             btnGravarPr.Enabled = false;
-            TxtCodigoCl.Enabled = false;
+
             tsGravarDoc.Enabled = false;
             txtDesconto.Enabled = false;
             dateTimePicker1.Enabled = false;
@@ -518,7 +540,7 @@ namespace TeleBerço
 
         private void HabilitarBotoes()
         {
-          
+
             BtnNovo.Enabled = true;
             BtnEliminar.Enabled = true;
             tsGravarDoc.Enabled = true;
@@ -527,6 +549,7 @@ namespace TeleBerço
             btnAbrirCliente.Enabled = true;
             txtDesconto.Enabled = true;
             dateTimePicker1.Enabled = true;
+            txtEstado.Enabled = true;
         }
 
         private void HabilitarCliente()
@@ -538,8 +561,6 @@ namespace TeleBerço
             TxtNomeCl.Enabled = true;
             TxtTelefone.Enabled = true;
             TxtEmail.Enabled = true;
-            TxtEmail.Text = "Email";
-
 
         }
         private void HabilitarFornecedor()
@@ -548,10 +569,11 @@ namespace TeleBerço
             lblFornecedor.Visible = true;
             txtMorada.Visible = true;
             cbCategoria.Visible = true;
+            TxtEmail.Enabled = true;
+            txtMorada.Enabled = true;
+            TxtTelefone.Enabled = true;
             cbCategoria.Enabled = true;
-
-            TxtEmail.Text = "Site";
-
+            TxtNomeCl.Enabled = true;
 
         }
         private void HabilitarProduto()
@@ -563,8 +585,17 @@ namespace TeleBerço
             txtObservacoes.Enabled = true;
             txtTipoPr.Enabled = true;
             btnGravarPr.Enabled = true;
-        }
+            TxtPreco.Visible = true;
+            TxtCusto.Visible = true;
+            txtTipoPr.Visible = true;
+            LblStock.Visible = true;
+            LblPreco.Visible = true;
+            label16.Visible = true;
+            lblQtd.Visible = true;
+            txtQtd.Visible = true;
+            txtQtd.Enabled= true;
 
+        }
 
         private void TxtCodigoDoc_SelectedIndexChanged_1(object sender, EventArgs e)
         {
@@ -572,8 +603,7 @@ namespace TeleBerço
             {
                 if (TxtCodigoDoc.Text != "")
                 {
-
-                    var tipoRow = dsDocumentos.TipoDocumentos.FindByCodDoc(TxtCodigoDoc.SelectedValue.ToString());
+                    var tipoRow = dsDocumentos.TipoDocumentos.FindByCodDoc(TxtCodigoDoc.Text);
 
                     if (tipoRow != null)
                     {
@@ -581,7 +611,7 @@ namespace TeleBerço
                         NrDoc.Text = dsDocumentos.DaNrDocSeguinte(TxtCodigoDoc.Text).ToString();
 
                         HabilitarBotoes();
-                      
+
                         LimparProduto();
                         dsDocumentos.ListaProdutos.Clear();
                     }
@@ -601,7 +631,7 @@ namespace TeleBerço
         {
             if (e.KeyCode == Keys.F4)
             {
-                if (TxtCodigoCl.Text == "FN")
+                if (TxtCodigoCl.Text.Contains("FN"))
                 {
                     AbrirSelecaoForn();
                 }
@@ -626,6 +656,7 @@ namespace TeleBerço
                     PreencherFornecedor();
 
                 }
+             
             }
             catch (Exception ex)
             {
@@ -736,15 +767,29 @@ namespace TeleBerço
                         produtoRow.IMEI = txtImei.Text;
                         produtoRow.Observacao = txtObservacoes.Text;
                         produtoRow.Tipo = txtTipoPr.Text;
+                        produtoRow.PrecoCusto = decimal.Parse(TxtCusto.Text);
+                        produtoRow.PreçoVenda = decimal.Parse(TxtPreco.Text);
 
                         dsProdutos.UpdateArtigos();
 
                         MessageBox.Show("Produto salvo com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        var row = dsStock.PesquisarStock(produtoRow.CodPr);
+
+
+                        MessageBox.Show("Produto não existente em Stock. Criada entrada com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        dsStock.AtualizarStock(produtoRow.CodPr, int.Parse(txtQtd.Text), "AM+", "999");
+
+                        LimparProduto();
+
+                      
+
                     }
-                }
-                else
-                {
-                    MessageBox.Show("Preencha corretamente todos os campos .", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    else
+                    {
+                        MessageBox.Show("Preencha corretamente todos os campos .", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
                 }
             }
             catch (Exception ex)
@@ -858,7 +903,7 @@ namespace TeleBerço
             Close();
         }
 
-        private void tsImprimir_Click_1(object sender, EventArgs e)
+        public void tsImprimir_Click_1(object sender, EventArgs e)
         {
             try
             {
@@ -912,27 +957,39 @@ namespace TeleBerço
             {
                 if (TxtCodigoCl.Text.Contains("CL"))
                 {
+                    dsClientes.NovoCliente();
+
                     PrepararCliente();
 
                 }
-                else if (TxtCodigoCl.Text == "FN")
+                else if (TxtCodigoCl.Text.Contains("FN"))
                 {
+
+                    dsClientes.NovoFornecedor();
                     PrepararFornecedor();
+
                 }
-                else
+                else if (TxtCodigoCl.Text == "")
                 {
                     var resultado = MessageBox.Show("Deseja criar um Novo fornecedor?", "Questão", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                     if (resultado == DialogResult.Yes)
                     {
+                        dsClientes.NovoFornecedor();
                         PrepararFornecedor();
 
                     }
                     else
                     {
+                        dsClientes.NovoCliente();
                         PrepararCliente();
+
                     }
+                 
                 }
+
+                BtnGravarCliente.Enabled = true;
+
 
             }
             catch (Exception ex)
@@ -945,30 +1002,56 @@ namespace TeleBerço
         {
             try
             {
-                ClientesRow novoCliente = dsClientes.Clientes[0];
-                if (ValidaPreenchimentoCliente())
+                if (TxtCodigoCl.Text.Contains("CL"))
                 {
-                    if (novoCliente.CodCl == dsClientes.DaProxNrCliente())
+                    ClientesRow novoCliente = dsClientes.Clientes[0];
+                    if (ValidaPreenchimentoCliente())
                     {
+                        if (novoCliente.CodCl == dsClientes.DaProxNrCliente())
+                        {
 
-                        novoCliente.Nome = TxtNomeCl.Text;
-                        novoCliente.CodCl = TxtCodigoCl.Text;
-                        novoCliente.Telefone = TxtTelefone.Text;
-                        novoCliente.Email = TxtEmail.Text;
+                            novoCliente.Nome = TxtNomeCl.Text;
+                            novoCliente.CodCl = TxtCodigoCl.Text;
+                            novoCliente.Telefone = TxtTelefone.Text;
+                            novoCliente.Email = TxtEmail.Text;
 
-                        dsClientes.UpdateClientes();
+                            dsClientes.UpdateClientes();
 
-                        MessageBox.Show("Cliente Criado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        LimparCliente();
+                            MessageBox.Show("Cliente Criado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                        BtnGravarCliente.Enabled = false;
-                        TxtNomeCl.Enabled = false;
+
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Preencha todos os campos corretamente.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
-                else
+                else if (TxtCodigoCl.Text.Contains("FN"))
                 {
-                    MessageBox.Show("Preencha todos os campos corretamente.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    FornecedoresRow novoCliente = dsClientes.Fornecedores[0];
+                    if (ValidaPreenchimentoCliente())
+                    {
+                        if (novoCliente.FornecedorID == dsClientes.DaProxNrFornecedor())
+                        {
+
+                            novoCliente.Nome = TxtNomeCl.Text;
+                            novoCliente.FornecedorID = TxtCodigoCl.Text;
+                            novoCliente.Contato = TxtTelefone.Text;
+                            novoCliente.Site = TxtEmail.Text;
+                            novoCliente.Morada = txtMorada.Text;
+                            novoCliente.Categoria = cbCategoria.SelectedValue.ToString();
+
+                            dsClientes.UpdateFornecedores();
+
+                            MessageBox.Show("foenecedor Criado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        }
+                    }
                 }
+
+                BtnGravarCliente.Enabled = false;
+
             }
             catch (Exception ex)
             {
@@ -1136,7 +1219,7 @@ namespace TeleBerço
 
         private void btnAbrirCliente_Click(object sender, EventArgs e)
         {
-            if (TxtDescricaoDoc.Text.Contains("Fornecedor"))
+            if (TxtDescricaoDoc.Text.Contains("Fornecedor") || TxtCodigoCl.Text.Contains("FN"))
             {
                 AbrirSelecaoForn();
             }
@@ -1144,6 +1227,7 @@ namespace TeleBerço
             {
                 AbrirSelecaoClientes();
             }
+            TxtNomeCl.Enabled = false;
         }
 
         private void ConfigurarImpressao()
@@ -1218,6 +1302,7 @@ namespace TeleBerço
         {
             try
             {
+
                 // Definir margens e dimensões
                 float marginLeft = e.MarginBounds.Left;
                 float marginTop = e.MarginBounds.Top; // Ajuste conforme necessário
@@ -1270,7 +1355,9 @@ namespace TeleBerço
         private float DrawHeader(Graphics graphics, float marginLeft, float yPos, float pageWidth, Font fonteTitulo, Font fonteTexto, Brush brush)
         {
             string logoPath = "C:\\Users\\synys\\source\\repos\\TeleBerço\\Resources\\transferir.jpeg";
-            string storeName = TxtDescricaoDoc.Text; // Nome do documento
+            string storeNameTemp = dsDocumentos.CabecDocumento[0].TipoDocumento;
+            string storeName = dsDocumentos.TipoDocumentos.Where(x => x.CodDoc == storeNameTemp).Select(x => x.Descricao).First();
+            // Nome do documento
             string codDocumento = TxtCodigoDoc.Text; // Código do documento
             int nrDocumento = NrDoc.TabIndex + 1; // Número do documento
             string documento = codDocumento + $"{nrDocumento:000}";
@@ -1525,9 +1612,9 @@ namespace TeleBerço
 
             // **4.2. Desenhar "Total" e valor abaixo de "Desconto"**
             float totalY = valoresY + lineHeight + padding;
-            graphics.DrawString(totalLabel, fonteNegrito, brush, valoresX + padding + 50, totalY + padding + 20);
+            graphics.DrawString(totalLabel, fonteNegrito, brush, valoresX + padding + 20, totalY + padding + 20);
             float totalLabelWidth = graphics.MeasureString(totalLabel, fonteSubtitulo).Width;
-            graphics.DrawString(totalValor, fonteTexto, brush, valoresX + padding + totalLabelWidth + 50, totalY + padding + 20);
+            graphics.DrawString(totalValor, fonteTexto, brush, valoresX + padding + totalLabelWidth + 20, totalY + padding + 20);
 
             // **4.3. Desenhar retângulo ao redor de Desconto e Total**
             float valoresHeight = observacoesRectHeight; // Mesmo altura da seção de Observações
@@ -1576,7 +1663,7 @@ namespace TeleBerço
 
             // Definir cabeçalhos das colunas
             var columnsToPrint = new[] { "NomeCategoria", "NomeMarca", "NomeProduto", "iMEIDataGridViewTextBoxColumn", "precoUntDataGridViewTextBoxColumn", "quantidadeDataGridViewTextBoxColumn", "totalDataGridViewTextBoxColumn" };
-            var columnHeaders = new[] { "Categoria", "Marca", "Produto", "Código", "Preço Un", "Quantidade", "Total" };
+            var columnHeaders = new[] { "Categoria", "Marca", "Produto", "Código Id", "Preço Un", "Qtd", "Total" };
 
             // Calcular largura das colunas
             float totalAvailableWidth = pageWidth; // Espaço disponível para a tabela
@@ -1692,6 +1779,6 @@ namespace TeleBerço
             return yPos;
         }
 
-      
+    
     }
 }

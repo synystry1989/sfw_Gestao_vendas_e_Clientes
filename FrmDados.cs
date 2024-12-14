@@ -25,7 +25,7 @@ namespace TeleBerço
         private DsClientes dsClientes = new DsClientes();
         private DsProdutos dsArtigos = new DsProdutos();
         private DsDocumentos dsDocumentos = new DsDocumentos();
-        private DsStock dsStock = new DsStock();
+     
 
         // TableAdapters
 
@@ -68,7 +68,8 @@ namespace TeleBerço
                     break;
                 case "DsFornecedores":
                     tipoDadosAtual = TipoDados.Fornecedores;
-                    CarregarFornecedores();
+                   CarregarFornecedores();
+              
                     break;
 
             }
@@ -129,16 +130,20 @@ namespace TeleBerço
                         break;
 
                     case TipoDados.Produtos:
+
                         DgridDados.Columns["Marcas"].Visible = false;
                         DgridDados.Columns["Categorias"].Visible = false;
+
+                   
+                       DgridDados.Columns["Marca"].DisplayIndex = 1;
+                  
                         DgridDados.Columns["NomeProduto"].HeaderText = "Produto";
                         DgridDados.Columns["CodPr"].HeaderText = "Codigo";
-                        DgridDados.Columns["NomeProduto"].DisplayIndex = 3;
-                        DgridDados.Columns["Marca"].DisplayIndex = 2;
-                        DgridDados.Columns["Categoria"].DisplayIndex = 1;
-                        
+
+
                         DgridDados.Columns["PrecoCusto"].DefaultCellStyle.Format = "F2";
                         DgridDados.Columns["PreçoVenda"].DefaultCellStyle.Format = "F2";
+                    
                         break;
 
                     case TipoDados.Documentos:
@@ -148,16 +153,28 @@ namespace TeleBerço
                         DgridDados.Columns["Desconto"].Visible = false;
                         DgridDados.Columns["Total"].DefaultCellStyle.Format = "F2";
                         DgridDados.Columns["NomeCliente"].HeaderText = "Cliente";
+                        DgridDados.Columns["TipoDocumento"].HeaderText = "Documento";
+                        DgridDados.Columns["NrDocumento"].HeaderText = "Nº";
+                        DgridDados.Columns["DataRececao"].HeaderText = "Data Emissão";
+                        DgridDados.Columns["DataEntrega"].HeaderText = "Previsão Entrega";
                         DgridDados.Columns["Observacoes"].Visible = false;
                         DgridDados.Columns["CodProduto"].Visible = false;
                         DgridDados.Columns["NomeCliente"].DisplayIndex = 3;
                       break;
                        
                     case TipoDados.Fornecedores:
-
-                        DgridDados.Columns["FornecedorID"].HeaderText = "Codigo";
+                     
+                       
+                        DgridDados.Columns["Categoria"].Visible = false;
+                        DgridDados.Columns["FornecedorID"].HeaderText = "Codigo";                                   
                         DgridDados.Columns["Nome"].HeaderText = "Fornecedor";
+                        DgridDados.Columns["NomeCategoria"].HeaderText = "Categoria";
+                        DgridDados.Columns["NomeCategoria"].DisplayIndex = 2;
+     
+                        break;
 
+                    case TipoDados.Categorias:
+                        DgridDados.Columns["CodCat"].HeaderText = "Codigo";
                         break;
 
                 }
@@ -187,7 +204,9 @@ namespace TeleBerço
         {
             try
             {
+              
                 dsClientes.CarregaFornecedores();
+                AdicionarDetalheFornecedor();
                 dataViewAtual = new DataView(dsClientes.Fornecedores);
                 DgridDados.DataSource = dataViewAtual;
             }
@@ -247,6 +266,7 @@ namespace TeleBerço
             try
             {
                 dsArtigos.CarregarMarcas();
+                
                 dataViewAtual = new DataView(dsArtigos.Marcas);
                 DgridDados.DataSource = dataViewAtual;
 
@@ -254,6 +274,16 @@ namespace TeleBerço
             catch
             {
                 MessageBox.Show("Erro ao carregar Marcas", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+        public void AdicionarDetalheFornecedor()
+        {
+            foreach(DataRow row in dsClientes.Fornecedores.Rows)
+                        {
+
+                // Preenche a coluna Categoria
+                if (row["Categoria"] != DBNull.Value)
+                    row["NomeCategoria"] = querryProdutosTableAdapter.NomeCategoria(row["Categoria"].ToString());
             }
         }
 
@@ -299,7 +329,7 @@ namespace TeleBerço
         private void PesquisarProdutos(string termo)
         {
             // Pesquisa em várias colunas
-            dataViewAtual.RowFilter = $"NomeProduto LIKE '%{termo}%' OR Marca LIKE '%{termo}%' OR Categoria LIKE '%{termo}%'OR IMEI LIKE '%{termo}%' OR Tipo LIKE '%{termo}%'";
+            dataViewAtual.RowFilter = $"NomeProduto LIKE '%{termo}%' OR Marca LIKE '%{termo}%' OR Categoria LIKE '%{termo}%'OR IMEI LIKE '%{termo}%' OR Tipo LIKE '%{termo}%' OR CodPr LIKE '%{termo}%' OR Observacao LIKE '%{termo}%'";
         }
 
         private void PesquisarDocumentosPorCliente(string cliente)
@@ -336,9 +366,15 @@ namespace TeleBerço
                     break;
 
                 case TipoDados.Documentos:
-                    if ((campo == "Tipo Doc") || (campo == "Estado"))
+                    if (campo == "Tipo Doc")  
                     {
-                        dataViewAtual.RowFilter = $"{campo}  = '{valor}'";
+                        string campo1 = "TipoDocumento";
+                        string valorF = dsDocumentos.TipoDocumentos.Where(x => x.Descricao == valor).Select(x => x.CodDoc).First();
+                        dataViewAtual.RowFilter = $"{campo1}  = '{valorF}'";
+                    }
+                    else if (campo == "Estado")
+                    {
+                        dataViewAtual.RowFilter = $"{campo} = '{valor}'";
                     }
                     break;
                 case TipoDados.Fornecedores:
@@ -547,7 +583,7 @@ namespace TeleBerço
         private void BtnOk_Click_1(object sender, EventArgs e)
         {
             SelecionarLinhaAtual();
-            DialogResult = DialogResult.OK;
+           // DialogResult = DialogResult.OK;
         }
 
         private void BtnEditar_Click_1(object sender, EventArgs e)

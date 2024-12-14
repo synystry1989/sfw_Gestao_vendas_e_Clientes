@@ -30,11 +30,11 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmDocumentos));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtMorada = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.NrDoc = new System.Windows.Forms.ComboBox();
@@ -54,6 +54,7 @@
             this.txtMarca = new System.Windows.Forms.ComboBox();
             this.txtCat = new System.Windows.Forms.ComboBox();
             this.categoriasBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.categoriasBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.label6 = new System.Windows.Forms.Label();
             this.lblFornecedor = new System.Windows.Forms.Label();
             this.TxtTelefone = new System.Windows.Forms.TextBox();
@@ -66,6 +67,8 @@
             this.btnNovoCliente = new System.Windows.Forms.Button();
             this.BtnGravarCliente = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.lblQtd = new System.Windows.Forms.Label();
+            this.txtQtd = new System.Windows.Forms.TextBox();
             this.txtCodPr = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.cBoxEuro = new System.Windows.Forms.CheckBox();
@@ -117,9 +120,6 @@
             this.listaProdutosBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.BtnEliminar = new System.Windows.Forms.Button();
             this.DgridArtigos = new System.Windows.Forms.DataGridView();
-            this.btnAbrirPr = new System.Windows.Forms.Button();
-            this.btnNovoPr = new System.Windows.Forms.Button();
-            this.btnGravarPr = new System.Windows.Forms.Button();
             this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Observacao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cabProdutoIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -134,7 +134,9 @@
             this.precoUntDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.quantidadeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.totalDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.categoriasBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.btnAbrirPr = new System.Windows.Forms.Button();
+            this.btnNovoPr = new System.Windows.Forms.Button();
+            this.btnGravarPr = new System.Windows.Forms.Button();
             this.categoriasTableAdapter = new TeleBerço.DsProdutosTableAdapters.CategoriasTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.tipoDocumentosBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsDocumentos)).BeginInit();
@@ -142,12 +144,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.marcasBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsProdutos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.categoriasBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.categoriasBindingSource1)).BeginInit();
             this.panel3.SuspendLayout();
             this.menuStrip2.SuspendLayout();
             this.Panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.listaProdutosBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgridArtigos)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.categoriasBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // txtMorada
@@ -159,8 +161,8 @@
             this.txtMorada.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMorada.Location = new System.Drawing.Point(445, 70);
             this.txtMorada.Name = "txtMorada";
-            this.txtMorada.Size = new System.Drawing.Size(688, 29);
-            this.txtMorada.TabIndex = 15;
+            this.txtMorada.Size = new System.Drawing.Size(664, 29);
+            this.txtMorada.TabIndex = 9;
             this.txtMorada.Text = "Morada";
             this.txtMorada.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtMorada.Visible = false;
@@ -378,15 +380,21 @@
             // categoriasBindingSource
             // 
             this.categoriasBindingSource.DataMember = "Categorias";
+            this.categoriasBindingSource.DataSource = this.dsProdutos;
+            // 
+            // categoriasBindingSource1
+            // 
+            this.categoriasBindingSource1.DataMember = "Categorias";
+            this.categoriasBindingSource1.DataSource = this.dsProdutos;
             // 
             // label6
             // 
             this.label6.Font = new System.Drawing.Font("Lucida Fax", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(6, 28);
+            this.label6.Location = new System.Drawing.Point(18, 28);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(70, 19);
+            this.label6.Size = new System.Drawing.Size(127, 19);
             this.label6.TabIndex = 102;
-            this.label6.Text = "Objeto";
+            this.label6.Text = "Aparelho Clte";
             // 
             // lblFornecedor
             // 
@@ -409,7 +417,7 @@
             this.TxtTelefone.Location = new System.Drawing.Point(956, 35);
             this.TxtTelefone.Name = "TxtTelefone";
             this.TxtTelefone.Size = new System.Drawing.Size(153, 29);
-            this.TxtTelefone.TabIndex = 13;
+            this.TxtTelefone.TabIndex = 6;
             this.TxtTelefone.Text = "Tlm";
             this.TxtTelefone.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -433,7 +441,7 @@
             this.TxtEmail.Location = new System.Drawing.Point(1153, 35);
             this.TxtEmail.Name = "TxtEmail";
             this.TxtEmail.Size = new System.Drawing.Size(388, 29);
-            this.TxtEmail.TabIndex = 5;
+            this.TxtEmail.TabIndex = 7;
             this.TxtEmail.Text = "Email";
             this.TxtEmail.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -458,7 +466,7 @@
             this.TxtNomeCl.Location = new System.Drawing.Point(445, 35);
             this.TxtNomeCl.Name = "TxtNomeCl";
             this.TxtNomeCl.Size = new System.Drawing.Size(505, 29);
-            this.TxtNomeCl.TabIndex = 6;
+            this.TxtNomeCl.TabIndex = 5;
             this.TxtNomeCl.Text = "Nome";
             this.TxtNomeCl.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -493,7 +501,7 @@
             this.btnNovoCliente.Name = "btnNovoCliente";
             this.btnNovoCliente.Size = new System.Drawing.Size(110, 47);
             this.btnNovoCliente.TabIndex = 42;
-            this.btnNovoCliente.Text = "Novo";
+            this.btnNovoCliente.Text = "Criar";
             this.btnNovoCliente.UseVisualStyleBackColor = false;
             this.btnNovoCliente.Click += new System.EventHandler(this.btnNovoCliente_Click);
             // 
@@ -521,6 +529,8 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.panel3.Controls.Add(this.lblQtd);
+            this.panel3.Controls.Add(this.txtQtd);
             this.panel3.Controls.Add(this.txtCodPr);
             this.panel3.Controls.Add(this.label16);
             this.panel3.Controls.Add(this.cBoxEuro);
@@ -554,11 +564,38 @@
             this.panel3.Size = new System.Drawing.Size(1590, 286);
             this.panel3.TabIndex = 39;
             // 
+            // lblQtd
+            // 
+            this.lblQtd.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblQtd.AutoSize = true;
+            this.lblQtd.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblQtd.Location = new System.Drawing.Point(895, 201);
+            this.lblQtd.Name = "lblQtd";
+            this.lblQtd.Size = new System.Drawing.Size(103, 21);
+            this.lblQtd.TabIndex = 132;
+            this.lblQtd.Text = "Quantidade :";
+            this.lblQtd.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblQtd.Visible = false;
+            // 
+            // txtQtd
+            // 
+            this.txtQtd.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtQtd.Enabled = false;
+            this.txtQtd.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtQtd.Location = new System.Drawing.Point(1034, 198);
+            this.txtQtd.Name = "txtQtd";
+            this.txtQtd.Size = new System.Drawing.Size(87, 29);
+            this.txtQtd.TabIndex = 131;
+            this.txtQtd.Text = "0";
+            this.txtQtd.Visible = false;
+            // 
             // txtCodPr
             // 
             this.txtCodPr.Enabled = false;
             this.txtCodPr.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCodPr.Location = new System.Drawing.Point(126, 28);
+            this.txtCodPr.Location = new System.Drawing.Point(237, 28);
             this.txtCodPr.Name = "txtCodPr";
             this.txtCodPr.Size = new System.Drawing.Size(81, 29);
             this.txtCodPr.TabIndex = 130;
@@ -567,7 +604,7 @@
             // label16
             // 
             this.label16.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(871, 198);
+            this.label16.Location = new System.Drawing.Point(640, 198);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(52, 27);
             this.label16.TabIndex = 129;
@@ -636,9 +673,9 @@
             "Reparaçao",
             "Cliente",
             "Serviços"});
-            this.txtTipoPr.Location = new System.Drawing.Point(947, 198);
+            this.txtTipoPr.Location = new System.Drawing.Point(716, 198);
             this.txtTipoPr.Name = "txtTipoPr";
-            this.txtTipoPr.Size = new System.Drawing.Size(174, 25);
+            this.txtTipoPr.Size = new System.Drawing.Size(141, 25);
             this.txtTipoPr.TabIndex = 20;
             this.txtTipoPr.Visible = false;
             // 
@@ -679,7 +716,7 @@
             // LblPreco
             // 
             this.LblPreco.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblPreco.Location = new System.Drawing.Point(521, 200);
+            this.LblPreco.Location = new System.Drawing.Point(392, 198);
             this.LblPreco.Name = "LblPreco";
             this.LblPreco.Size = new System.Drawing.Size(86, 23);
             this.LblPreco.TabIndex = 119;
@@ -693,7 +730,7 @@
             this.TxtCusto.Font = new System.Drawing.Font("Lucida Sans Unicode", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtCusto.Location = new System.Drawing.Point(237, 196);
             this.TxtCusto.Name = "TxtCusto";
-            this.TxtCusto.Size = new System.Drawing.Size(166, 27);
+            this.TxtCusto.Size = new System.Drawing.Size(106, 27);
             this.TxtCusto.TabIndex = 18;
             this.TxtCusto.Text = "0";
             this.TxtCusto.Visible = false;
@@ -702,10 +739,10 @@
             // 
             this.TxtPreco.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TxtPreco.Font = new System.Drawing.Font("Lucida Sans Unicode", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtPreco.Location = new System.Drawing.Point(638, 198);
+            this.TxtPreco.Location = new System.Drawing.Point(509, 198);
             this.TxtPreco.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.TxtPreco.Name = "TxtPreco";
-            this.TxtPreco.Size = new System.Drawing.Size(153, 27);
+            this.TxtPreco.Size = new System.Drawing.Size(123, 27);
             this.TxtPreco.TabIndex = 19;
             this.TxtPreco.Text = "0";
             this.TxtPreco.Visible = false;
@@ -776,7 +813,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(1179, 219);
+            this.label3.Location = new System.Drawing.Point(1179, 222);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(48, 21);
             this.label3.TabIndex = 9;
@@ -804,7 +841,7 @@
             this.cbCategoria.Location = new System.Drawing.Point(225, 70);
             this.cbCategoria.Name = "cbCategoria";
             this.cbCategoria.Size = new System.Drawing.Size(214, 29);
-            this.cbCategoria.TabIndex = 131;
+            this.cbCategoria.TabIndex = 8;
             this.cbCategoria.ValueMember = "CodCat";
             this.cbCategoria.Visible = false;
             // 
@@ -999,7 +1036,7 @@
             this.toolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItem1.Image")));
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(174, 26);
-            this.toolStripMenuItem1.Text = "Pessoas";
+            this.toolStripMenuItem1.Text = "&Entidades";
             // 
             // tsConsultaProduto
             // 
@@ -1075,7 +1112,7 @@
             this.tsArmazem.Image = ((System.Drawing.Image)(resources.GetObject("tsArmazem.Image")));
             this.tsArmazem.Name = "tsArmazem";
             this.tsArmazem.Size = new System.Drawing.Size(174, 26);
-            this.tsArmazem.Text = "Armazem";
+            this.tsArmazem.Text = "&Armazem";
             this.tsArmazem.Click += new System.EventHandler(this.tsArmazem_Click);
             // 
             // tsImprimir
@@ -1148,11 +1185,11 @@
             this.BtnNovo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnNovo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnNovo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.BtnNovo.Location = new System.Drawing.Point(9, 341);
+            this.BtnNovo.Location = new System.Drawing.Point(12, 341);
             this.BtnNovo.Margin = new System.Windows.Forms.Padding(0);
             this.BtnNovo.Name = "BtnNovo";
             this.BtnNovo.Size = new System.Drawing.Size(107, 38);
-            this.BtnNovo.TabIndex = 30;
+            this.BtnNovo.TabIndex = 10;
             this.BtnNovo.Text = "Adicionar";
             this.BtnNovo.UseVisualStyleBackColor = false;
             this.BtnNovo.Click += new System.EventHandler(this.BtnNovo_Click_1);
@@ -1191,11 +1228,11 @@
             this.BtnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnEliminar.ForeColor = System.Drawing.Color.Red;
-            this.BtnEliminar.Location = new System.Drawing.Point(126, 341);
+            this.BtnEliminar.Location = new System.Drawing.Point(129, 341);
             this.BtnEliminar.Margin = new System.Windows.Forms.Padding(0);
             this.BtnEliminar.Name = "BtnEliminar";
             this.BtnEliminar.Size = new System.Drawing.Size(107, 38);
-            this.BtnEliminar.TabIndex = 31;
+            this.BtnEliminar.TabIndex = 11;
             this.BtnEliminar.Text = "Eliminar";
             this.BtnEliminar.UseVisualStyleBackColor = false;
             this.BtnEliminar.Click += new System.EventHandler(this.BtnEliminar_Click_1);
@@ -1203,24 +1240,24 @@
             // DgridArtigos
             // 
             this.DgridArtigos.AllowUserToAddRows = false;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.ControlDark;
-            this.DgridArtigos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ControlDark;
+            this.DgridArtigos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.DgridArtigos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DgridArtigos.AutoGenerateColumns = false;
             this.DgridArtigos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DgridArtigos.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.ControlDark;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DgridArtigos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ControlDark;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DgridArtigos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.DgridArtigos.ColumnHeadersHeight = 30;
             this.DgridArtigos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.iDDataGridViewTextBoxColumn,
@@ -1238,94 +1275,38 @@
             this.quantidadeDataGridViewTextBoxColumn,
             this.totalDataGridViewTextBoxColumn});
             this.DgridArtigos.DataSource = this.listaProdutosBindingSource;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.ControlDark;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DgridArtigos.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ControlDark;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DgridArtigos.DefaultCellStyle = dataGridViewCellStyle3;
             this.DgridArtigos.Enabled = false;
             this.DgridArtigos.GridColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.DgridArtigos.Location = new System.Drawing.Point(0, 382);
             this.DgridArtigos.Name = "DgridArtigos";
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.ControlDark;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DgridArtigos.RowHeadersDefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.ControlDark;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DgridArtigos.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.DgridArtigos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.ControlDark;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DgridArtigos.RowsDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.ControlDark;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DgridArtigos.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.DgridArtigos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DgridArtigos.Size = new System.Drawing.Size(1590, 63);
             this.DgridArtigos.TabIndex = 32;
             this.DgridArtigos.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgridArtigos_CellValueChanged);
             this.DgridArtigos.RowLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgridArtigos_RowLeave);
-            // 
-            // btnAbrirPr
-            // 
-            this.btnAbrirPr.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnAbrirPr.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnAbrirPr.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnAbrirPr.Enabled = false;
-            this.btnAbrirPr.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btnAbrirPr.FlatAppearance.BorderSize = 2;
-            this.btnAbrirPr.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAbrirPr.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAbrirPr.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.btnAbrirPr.Location = new System.Drawing.Point(747, 464);
-            this.btnAbrirPr.Name = "btnAbrirPr";
-            this.btnAbrirPr.Size = new System.Drawing.Size(110, 56);
-            this.btnAbrirPr.TabIndex = 43;
-            this.btnAbrirPr.Text = "Abrir";
-            this.btnAbrirPr.UseVisualStyleBackColor = false;
-            this.btnAbrirPr.Click += new System.EventHandler(this.btnAbrirPr_Click_1);
-            // 
-            // btnNovoPr
-            // 
-            this.btnNovoPr.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnNovoPr.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnNovoPr.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnNovoPr.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btnNovoPr.FlatAppearance.BorderSize = 2;
-            this.btnNovoPr.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNovoPr.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNovoPr.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.btnNovoPr.Location = new System.Drawing.Point(863, 464);
-            this.btnNovoPr.Name = "btnNovoPr";
-            this.btnNovoPr.Size = new System.Drawing.Size(110, 56);
-            this.btnNovoPr.TabIndex = 45;
-            this.btnNovoPr.Text = "Novo";
-            this.btnNovoPr.UseVisualStyleBackColor = false;
-            this.btnNovoPr.Click += new System.EventHandler(this.btnNovoPr_Click_1);
-            // 
-            // btnGravarPr
-            // 
-            this.btnGravarPr.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnGravarPr.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnGravarPr.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnGravarPr.Enabled = false;
-            this.btnGravarPr.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btnGravarPr.FlatAppearance.BorderSize = 2;
-            this.btnGravarPr.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGravarPr.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGravarPr.ForeColor = System.Drawing.Color.Red;
-            this.btnGravarPr.Location = new System.Drawing.Point(978, 464);
-            this.btnGravarPr.Name = "btnGravarPr";
-            this.btnGravarPr.Size = new System.Drawing.Size(110, 56);
-            this.btnGravarPr.TabIndex = 44;
-            this.btnGravarPr.Text = "Gravar";
-            this.btnGravarPr.UseVisualStyleBackColor = false;
-            this.btnGravarPr.Click += new System.EventHandler(this.btnGravarPr_Click_1);
             // 
             // iDDataGridViewTextBoxColumn
             // 
@@ -1417,10 +1398,61 @@
             this.totalDataGridViewTextBoxColumn.HeaderText = "Total";
             this.totalDataGridViewTextBoxColumn.Name = "totalDataGridViewTextBoxColumn";
             // 
-            // categoriasBindingSource1
+            // btnAbrirPr
             // 
-            this.categoriasBindingSource1.DataMember = "Categorias";
-            this.categoriasBindingSource1.DataSource = this.dsProdutos;
+            this.btnAbrirPr.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnAbrirPr.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnAbrirPr.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnAbrirPr.Enabled = false;
+            this.btnAbrirPr.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnAbrirPr.FlatAppearance.BorderSize = 2;
+            this.btnAbrirPr.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAbrirPr.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAbrirPr.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnAbrirPr.Location = new System.Drawing.Point(747, 464);
+            this.btnAbrirPr.Name = "btnAbrirPr";
+            this.btnAbrirPr.Size = new System.Drawing.Size(110, 56);
+            this.btnAbrirPr.TabIndex = 12;
+            this.btnAbrirPr.Text = "Abrir";
+            this.btnAbrirPr.UseVisualStyleBackColor = false;
+            this.btnAbrirPr.Click += new System.EventHandler(this.btnAbrirPr_Click_1);
+            // 
+            // btnNovoPr
+            // 
+            this.btnNovoPr.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnNovoPr.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnNovoPr.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnNovoPr.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnNovoPr.FlatAppearance.BorderSize = 2;
+            this.btnNovoPr.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNovoPr.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNovoPr.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.btnNovoPr.Location = new System.Drawing.Point(863, 464);
+            this.btnNovoPr.Name = "btnNovoPr";
+            this.btnNovoPr.Size = new System.Drawing.Size(110, 56);
+            this.btnNovoPr.TabIndex = 13;
+            this.btnNovoPr.Text = "Criar";
+            this.btnNovoPr.UseVisualStyleBackColor = false;
+            this.btnNovoPr.Click += new System.EventHandler(this.btnNovoPr_Click_1);
+            // 
+            // btnGravarPr
+            // 
+            this.btnGravarPr.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnGravarPr.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnGravarPr.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnGravarPr.Enabled = false;
+            this.btnGravarPr.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnGravarPr.FlatAppearance.BorderSize = 2;
+            this.btnGravarPr.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGravarPr.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGravarPr.ForeColor = System.Drawing.Color.Red;
+            this.btnGravarPr.Location = new System.Drawing.Point(978, 464);
+            this.btnGravarPr.Name = "btnGravarPr";
+            this.btnGravarPr.Size = new System.Drawing.Size(110, 56);
+            this.btnGravarPr.TabIndex = 44;
+            this.btnGravarPr.Text = "Gravar";
+            this.btnGravarPr.UseVisualStyleBackColor = false;
+            this.btnGravarPr.Click += new System.EventHandler(this.btnGravarPr_Click_1);
             // 
             // categoriasTableAdapter
             // 
@@ -1449,7 +1481,7 @@
             this.MinimumSize = new System.Drawing.Size(911, 564);
             this.Name = "FrmDocumentos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Documento";
+            this.Text = resources.GetString("$this.Text");
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FrmDocumentos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.tipoDocumentosBindingSource)).EndInit();
@@ -1459,6 +1491,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.marcasBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsProdutos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.categoriasBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.categoriasBindingSource1)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.menuStrip2.ResumeLayout(false);
@@ -1467,7 +1500,6 @@
             this.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.listaProdutosBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgridArtigos)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.categoriasBindingSource1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1493,7 +1525,6 @@
         private DsProdutos dsProdutos;
         internal System.Windows.Forms.ComboBox txtMarca;
         internal System.Windows.Forms.ComboBox txtCat;
-        private System.Windows.Forms.BindingSource categoriasBindingSource;
         internal System.Windows.Forms.Label label6;
         internal System.Windows.Forms.Label lblFornecedor;
         internal System.Windows.Forms.TextBox TxtTelefone;
@@ -1575,6 +1606,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn totalDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource categoriasBindingSource1;
         private DsProdutosTableAdapters.CategoriasTableAdapter categoriasTableAdapter;
+        internal System.Windows.Forms.Label lblQtd;
+        internal System.Windows.Forms.TextBox txtQtd;
+        private System.Windows.Forms.BindingSource categoriasBindingSource;
     }
 }
 

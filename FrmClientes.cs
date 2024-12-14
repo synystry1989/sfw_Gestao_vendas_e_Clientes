@@ -28,6 +28,7 @@ namespace TeleBerço
 
         private void FrmClientes_Load_1(object sender, EventArgs e)
         {
+            
             if (tipoDadosAtual == TipoDados.Clientes)
             {
                 ConfigInicialCl();
@@ -56,6 +57,7 @@ namespace TeleBerço
                     PrepararNovoFornecedor();
                 }
             }
+            HabilitarCampos();
         }
 
         private void ConfigInicialCl()
@@ -156,13 +158,12 @@ namespace TeleBerço
                     TxtTelefone.Text = clienteRow.Telefone;
                     TxtEmail.Text = clienteRow.Email;
 
-                   // TxtCodigoCl.Focus();
                 }
                 else
                 {
                     PrepararNovoCliente();
                 }
-                HabilitarCampos();
+            
             }
             catch (Exception ex)
             {
@@ -209,6 +210,7 @@ namespace TeleBerço
         private void HabilitarCampos()
         {
 
+            TxtCodigoCl.Enabled = true;
             TxtNomeCl.Enabled = true;
             TxtTelefone.Enabled = true;
             TxtEmail.Enabled = true;
@@ -245,6 +247,8 @@ namespace TeleBerço
             {
                 PrepararNovoFornecedor();
             }
+            HabilitarCampos();
+            
         }
 
         private void BtnGravar_Click(object sender, EventArgs e)
@@ -284,6 +288,7 @@ namespace TeleBerço
                             novoCliente.Site = TxtEmail.Text;
                             novoCliente.Contato = TxtTelefone.Text;
                             novoCliente.Categoria = cbCategoria.SelectedValue.ToString();
+                            novoCliente.Morada = txtMorada.Text;
                             dsClientes.UpdateFornecedores();
                             MessageBox.Show($"fornecedor gravado com sucesso.", "Confirmação", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             LimparFormulario();
@@ -374,7 +379,7 @@ namespace TeleBerço
         }
 
         private void TxtCodigoCl_Leave(object sender, EventArgs e)
-        {
+            {
              if (tipoDadosAtual == TipoDados.Clientes)
             {
                 PreencherCliente();

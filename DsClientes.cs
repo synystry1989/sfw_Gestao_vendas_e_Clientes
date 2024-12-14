@@ -50,6 +50,9 @@ namespace TeleBerço
                 novoCliente.Contato = "";
                 novoCliente.Site = "";
                 novoCliente.Categoria = "";
+                novoCliente.Morada = "";
+                novoCliente.NomeCategoria = "";
+
 
 
                 Fornecedores.AddFornecedoresRow(novoCliente);
@@ -117,33 +120,42 @@ namespace TeleBerço
             else
             //se nao existir 
             {
-                
+
                 return codFn;
             }
         }
 
         public ClientesRow PesquisaCliente(string codCl)
         {
+            Clientes.Clear();
             adpClientes.FillByCodCl(Clientes, codCl);
 
             if (Clientes.Rows.Count > 0)
             {
                 return Clientes[0];
             }
-            NovoCliente();
-            return Clientes[0];
+            else
+            {
+               NovoCliente();
+                return Clientes[0];
+            }
+          
         }
 
         public FornecedoresRow PesquisaFornecedor(string codFn)
         {
+            Fornecedores.Clear();
             FornecedoresTableAdapter.FillById(Fornecedores, codFn);
 
             if (Clientes.Rows.Count > 0)
             {
                 return Fornecedores[0];
             }
-            NovoFornecedor();
-            return Fornecedores[0];
+            else
+            {
+                NovoFornecedor();
+                return Fornecedores[0];
+            }         
         }
 
         public string CarregaNomeCliente(string codCl)

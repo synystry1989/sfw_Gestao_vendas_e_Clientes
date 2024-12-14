@@ -1999,26 +1999,25 @@ SELECT FornecedorID, Nome, Contato, Site, Morada, Categoria FROM Fornecedores WH
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[4];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT FornecedorID, Nome, Contato, Site, Morada, Categoria FROM dbo.Fornecedores" +
-                "";
+            this._commandCollection[0].CommandText = "SELECT FornecedorID, Nome, Contato, Site, Morada, Categoria FROM Fornecedores";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT FornecedorID, Nome, Contato, Site, Morada, Categoria FROM dbo.Fornecedores" +
-                " where FornecedorID=@cod";
+            this._commandCollection[1].CommandText = "SELECT FornecedorID, Nome, Contato, Site, Morada, Categoria FROM Fornecedores WHE" +
+                "RE (FornecedorID = @cod)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@cod", global::System.Data.SqlDbType.NVarChar, 20, global::System.Data.ParameterDirection.Input, 0, 0, "FornecedorID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "SELECT *FROM Fornecedores\r\nwhere (Nome LIKE \'%\' + @nome + \'%\') or (Site LIKE \'%\' " +
-                "+ @nome + \'%\') or (Contato LIKE \'%\' + @nome + \'%\')or (FornecedorID  = @nome) or " +
-                "(Morada LIKE \'%\' + @nome + \'%\')";
+            this._commandCollection[2].CommandText = "SELECT FornecedorID, Nome, Contato, Site, Morada, Categoria FROM Fornecedores WHE" +
+                "RE (Nome LIKE \'%\' + @nome + \'%\') OR (Site LIKE \'%\' + @nome + \'%\') OR (Contato LI" +
+                "KE \'%\' + @nome + \'%\') OR (FornecedorID = @nome) OR (Morada LIKE \'%\' + @nome + \'%" +
+                "\')";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@nome", global::System.Data.SqlDbType.NVarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, "Nome", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = "SELECT TOP 1 FornecedorID\r\n    FROM Fornecedores \r\n    ORDER BY FornecedorID DESC" +
-                "";
+            this._commandCollection[3].CommandText = "SELECT TOP (1) FornecedorID FROM Fornecedores ORDER BY FornecedorID DESC";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
         }
         
